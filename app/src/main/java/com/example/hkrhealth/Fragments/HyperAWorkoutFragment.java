@@ -1,7 +1,10 @@
 package com.example.hkrhealth.Fragments;
 
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +13,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
+import com.example.hkrhealth.Models.Exercise;
+import com.example.hkrhealth.Models.HypertrophyWorkout;
 import com.example.hkrhealth.R;
+
+import java.util.Calendar;
 
 public class HyperAWorkoutFragment extends Fragment {
 
@@ -20,10 +27,18 @@ public class HyperAWorkoutFragment extends Fragment {
     private HkrHealthRepository mHkrHealthRepository;
 
     //Variables
-    private final String workoutType = "A";
+    private final String mWorkoutType = "A";
+    private int mWorkoutID;
+    private HypertrophyWorkout mHypertrophyWorkout;
+    private Exercise mExercise;
+    private String mExerciseName;
+    private int mExerciseReps;
+    private double mExerciseWeight;
+    private int mExerciseSet = 1;
 
     //UI
     private Button mSaveWorkoutButton;
+    private EditText mRatingET, mCommentET;
     private TextView mHeaderOne, mHeaderTwo, mHeaderThree, mHeaderFour, mHeaderFive, mHeaderSix;
     private EditText mExOneSetOneReps, mExOneSetTwoReps, mExOneSetThreeReps;
     private EditText mExOneSetOneWeight, mExOneSetTwoWeight, mExOneSetThreeWeight;
@@ -46,6 +61,7 @@ public class HyperAWorkoutFragment extends Fragment {
 
         initalizeTextViews(view);
         initalizeEditTexts(view);
+        retrieveMaxWorkoutID();
 
         mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
         mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +75,27 @@ public class HyperAWorkoutFragment extends Fragment {
     }
 
     public void saveWorkoutButtonPressed(){
+        try {
+            //Creates the workout
+            String date = String.valueOf(Calendar.getInstance().getTime());
+            int rating = Integer.parseInt(String.valueOf(mRatingET.getText()));
+            String comment = String.valueOf(mCommentET.getText());
+            mHypertrophyWorkout = new HypertrophyWorkout(date, rating, comment, mWorkoutType);
 
+            //Inserts all the exercises to the database.
+            insertFirstExerciseToDatabase(mWorkoutID);
+            insertSecondExerciseToDatabase(mWorkoutID);
+            insertThirdExerciseToDatabase(mWorkoutID);
+            insertFourthExerciseToDatabase(mWorkoutID);
+            insertFifthExerciseToDatabase(mWorkoutID);
+            insertSixthExerciseToDatabase(mWorkoutID);
+
+            //Finally inserts the saved workout
+            mHkrHealthRepository.insertHypertrophyWorkout(mHypertrophyWorkout);
+            Log.d(TAG, "saveWorkoutButtonPressed: insertion succesful!");
+        }catch (Exception e){
+            Log.d(TAG, "saveWorkoutButtonPressed: error: " + e);
+        }
     }
 
     public void initalizeTextViews(View view){
@@ -72,6 +108,8 @@ public class HyperAWorkoutFragment extends Fragment {
     }
 
     public void initalizeEditTexts(View view){
+        mCommentET = view.findViewById(R.id.commentET);
+        mRatingET = view.findViewById(R.id.ratingET);
         mExOneSetOneReps = view.findViewById(R.id.benchPressSetOneRepsET);
         mExOneSetTwoReps = view.findViewById(R.id.benchPressSetTwoRepsET);
         mExOneSetThreeReps = view.findViewById(R.id.benchPressSetThreeRepsET);
@@ -110,4 +148,186 @@ public class HyperAWorkoutFragment extends Fragment {
         mExSixSetThreeWeight = view.findViewById(R.id.exerciseSixSetThreeWeightET);
     }
 
+    public void retrieveMaxWorkoutID(){
+        mHkrHealthRepository.retrieveMaxWorkoutID().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                if (integer == null){
+                    mWorkoutID = 0;
+                }else {
+                    mWorkoutID = integer;
+                    Log.d(TAG, "onChanged: workoutID: " + mWorkoutID);
+                }
+
+            }
+        });
+    }
+
+    public void insertFirstExerciseToDatabase(int workoutID){
+        try {
+            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetOneReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExOneSetOneWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetTwoReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExOneSetTwoWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetThreeReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExOneSetThreeWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet = 1;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+        }catch (Exception e){
+            Log.d(TAG, "insertFirstExerciseToDatabase: error: " + e);
+        }
+    }
+
+    public void insertSecondExerciseToDatabase(int workoutID){
+        try {
+            mExerciseName = String.valueOf(mHeaderTwo.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetOneReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExTwoSetOneWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderTwo.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetTwoReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExTwoSetTwoWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderTwo.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetThreeReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExTwoSetThreeWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet = 1;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+        }catch (Exception e){
+            Log.d(TAG, "insertSecondExerciseToDatabase: error: " + e);
+        }
+    }
+
+    public void insertThirdExerciseToDatabase(int workoutID){
+        try {
+            mExerciseName = String.valueOf(mHeaderThree.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetOneReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExThreeSetOneWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderThree.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetTwoReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExThreeSetTwoWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderThree.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetThreeReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExThreeSetThreeWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet = 1;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+        }catch (Exception e){
+            Log.d(TAG, "insertThirdExerciseToDatabase: error: " + e);
+        }
+    }
+
+    public void insertFourthExerciseToDatabase(int workoutID){
+        try {
+            mExerciseName = String.valueOf(mHeaderFour.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExFourSetOneReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExFourSetOneWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderFour.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExFourSetTwoReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExFourSetTwoWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderFour.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExFourSetThreeReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExFourSetThreeWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet = 1;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+        }catch (Exception e){
+            Log.d(TAG, "insertFourthExerciseToDatabase: error: " + e);
+        }
+    }
+
+    public void insertFifthExerciseToDatabase(int workoutID){
+        try {
+            mExerciseName = String.valueOf(mHeaderFive.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExFiveSetOneReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExFiveSetOneWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderFive.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExFiveSetTwoReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExFiveSetTwoWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderFive.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExFiveSetThreeReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExFiveSetThreeWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet = 1;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+        }catch (Exception e){
+            Log.d(TAG, "insertFifthExerciseToDatabase: error: " + e);
+        }
+    }
+
+    public void insertSixthExerciseToDatabase(int workoutID){
+        try {
+            mExerciseName = String.valueOf(mHeaderSix.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExSixSetOneReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExSixSetOneWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderSix.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExSixSetTwoReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExSixSetTwoWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet++;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+            mExerciseName = String.valueOf(mHeaderSix.getText());
+            mExerciseReps = Integer.parseInt(String.valueOf(mExSixSetThreeReps.getText()));
+            mExerciseWeight = Integer.parseInt(String.valueOf(mExSixSetThreeWeight.getText()));
+            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExerciseSet = 1;
+            mHkrHealthRepository.insertExercise(mExercise);
+
+        }catch (Exception e){
+            Log.d(TAG, "insertSixthExerciseToDatabase: error: " + e);
+        }
+    }
 }

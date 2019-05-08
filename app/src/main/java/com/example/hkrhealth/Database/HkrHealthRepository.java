@@ -1,7 +1,11 @@
 package com.example.hkrhealth.Database;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
+import com.example.hkrhealth.Async.InsertExerciseAsyncTask;
+import com.example.hkrhealth.Async.InsertHypertrophyWorkoutAsyncTask;
+import com.example.hkrhealth.Models.Exercise;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
 
 public class HkrHealthRepository {
@@ -13,12 +17,31 @@ public class HkrHealthRepository {
     }
 
     /*
-       ------ HYPERTROPHY WORKOUT QUERIES -----
+       ------ WORKOUT QUERIES -----
      */
 
     //Insert a single Hypertrophyworkout to the database.
     public void insertHypertrophyWorkout(HypertrophyWorkout hypertrophyWorkout){
-        mHkrHealthDatabase.getHypertrophyWorkoutDAO().insertHypertrophyWorkout(hypertrophyWorkout);
+       new InsertHypertrophyWorkoutAsyncTask(mHkrHealthDatabase.getHypertrophyWorkoutDAO()).execute(hypertrophyWorkout);
+    }
+
+    //Returns the biggest hypertrophy workout id.
+    public LiveData<Integer> retrieveMaxWorkoutID(){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().retrieveMaxWorkoutID();
+    }
+
+    /*
+      --------- EXERCISE QUERIES -------
+     */
+
+    //Insert a single exercise into the database
+    public void insertExercise(Exercise exercise){
+        new InsertExerciseAsyncTask(mHkrHealthDatabase.getExerciseDAO()).execute(exercise);
+    }
+
+    //Retrieves a specific exercise, parameter: the primary key value
+    public LiveData<Exercise> retrieveSpecificExercise(int exerciseID){
+        return mHkrHealthDatabase.getExerciseDAO().retrieveSpecificExercise(exerciseID);
     }
 
 

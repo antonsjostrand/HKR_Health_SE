@@ -5,6 +5,8 @@
     <string name="nav_workout_selection">Workouts</string>
 
     <!-- Strings used in all kinds of workout layouts -->
+    <string name="comment">Comment</string>
+    <string name="rating">Rating</string>
     <string name="save">Save</string>
     <string name="reps">Reps</string>
     <string name="sets">Set</string>

@@ -34,7 +34,7 @@ public class Exercise {
     @ColumnInfo(name = "exerciseSet")
     private int exerciseSet;
 
-    public Exercise(int id, int workoutID, @NonNull String exerciseName, int exerciseReps, double exerciseWeight, int exerciseSet) {
+    public Exercise(int workoutID, @NonNull String exerciseName, int exerciseReps, double exerciseWeight, int exerciseSet) {
         try {
             this.workoutID = workoutID;
             this.exerciseName = exerciseName;
