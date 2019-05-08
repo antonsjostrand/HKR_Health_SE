@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">HKR Health</string>
+
+    <!-- Strings used for navigation menu -->
+    <string name="nav_workout_selection">Workouts</string>
+
+    <!-- Strings used in all kinds of workout layouts -->
+    <string name="save">Save</string>
+    <string name="reps">Reps</string>
+    <string name="sets">Set</string>
+    <string name="weight">Weight</string>
+
+    <!-- Strings used in the different push workouts -->
+    <string name="bench_press">Bench press</string>
+    <string name="dumbell_press">Dumbell press</string>
+    <string name="incline_bench_press">Incline bench press</string>
+    <string name="incline_dumbell_press">Incline dumbell press</string>
+    <string name="flyes">Flyes</string>
+    <string name="dips">Dips</string>
+    <string name="shoulder_barbell_press">Shoulder barbell press</string>
+    <string name="shoulder_dumbell_press">Shoulder dumbell press</string>
+    <string name="shoulder_side_raises">Side raises</string>
+    <string name="pushdown">Pushdown</string>
+    <string name="french_press">French press</string>
+
+
+
 </resources>

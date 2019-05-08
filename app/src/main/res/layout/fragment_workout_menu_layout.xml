@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/hyperAButton"
+        android:layout_margin="20dp"
+        android:text="HYPER A"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/hyperBButton"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/hyperBButton"
+        android:layout_margin="20dp"
+        android:text="HYPER B"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/hyperAButton"
+        app:layout_constraintRight_toLeftOf="@id/hyperCButton"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/hyperCButton"
+        android:layout_margin="20dp"
+        android:text="HYPER C"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/hyperBButton"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/strengthAButton"
+        android:layout_margin="20dp"
+        android:text="STRENGTH A"
+        app:layout_constraintTop_toBottomOf="@id/hyperAButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/strengthBButton"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/strengthBButton"
+        android:layout_margin="20dp"
+        android:text="STRENGTH B"
+        app:layout_constraintTop_toBottomOf="@id/hyperAButton"
+        app:layout_constraintLeft_toRightOf="@id/strengthAButton"
+        app:layout_constraintRight_toLeftOf="@id/strengthCButton"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/strengthCButton"
+        android:layout_margin="20dp"
+        android:text="STRENGTH C"
+        app:layout_constraintTop_toBottomOf="@id/hyperCButton"
+        app:layout_constraintLeft_toRightOf="@id/strengthBButton"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:id="@+id/hiitButton"
+        android:layout_margin="20dp"
+        android:text="HIIT"
+        app:layout_constraintTop_toBottomOf="@id/strengthAButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

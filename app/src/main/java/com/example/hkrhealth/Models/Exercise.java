@@ -30,12 +30,17 @@ public class Exercise {
     @ColumnInfo(name = "exerciseWeight")
     private double exerciseWeight;
 
-    public Exercise(int id, int workoutID, @NonNull String exerciseName, int exerciseReps, double exerciseWeight) {
+    @NonNull
+    @ColumnInfo(name = "exerciseSet")
+    private int exerciseSet;
+
+    public Exercise(int id, int workoutID, @NonNull String exerciseName, int exerciseReps, double exerciseWeight, int exerciseSet) {
         try {
             this.workoutID = workoutID;
             this.exerciseName = exerciseName;
             this.exerciseReps = exerciseReps;
             this.exerciseWeight = exerciseWeight;
+            this.exerciseSet = exerciseSet;
         } catch (Exception e) {
             Log.d(TAG, "Exercise: error: " + e);
         }
@@ -80,5 +85,13 @@ public class Exercise {
 
     public void setExerciseWeight(double exerciseWeight) {
         this.exerciseWeight = exerciseWeight;
+    }
+
+    public int getExerciseSet() {
+        return exerciseSet;
+    }
+
+    public void setExerciseSet(int exerciseSet) {
+        this.exerciseSet = exerciseSet;
     }
 }
