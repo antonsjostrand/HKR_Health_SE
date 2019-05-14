@@ -3,14 +3,20 @@
 
     <!-- Strings used for navigation menu -->
     <string name="nav_workout_selection">Workouts</string>
+    <string name="nav_workout_history">Workout History</string>
 
     <!-- Strings used in all kinds of workout layouts -->
+    <string name="exercise">Exercise</string>
     <string name="comment">Comment</string>
     <string name="rating">Rating</string>
     <string name="save">Save</string>
     <string name="reps">Reps</string>
     <string name="sets">Set</string>
     <string name="weight">Weight</string>
+    <string name="hypertrophy">Hypertrophy</string>
+    <string name="strength">Strength</string>
+    <string name="cardio">Cardio</string>
+    <string name="lean">lean</string>
 
     <!-- Strings used in the different push workouts -->
     <string name="bench_press">Bench press</string>

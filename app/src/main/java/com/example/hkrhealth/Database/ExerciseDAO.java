@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import com.example.hkrhealth.Models.Exercise;
 
+import java.util.List;
+
 @Dao
 public interface ExerciseDAO {
 
@@ -15,4 +17,7 @@ public interface ExerciseDAO {
 
     @Query("SELECT * FROM exercises WHERE id = :exerciseID")
     LiveData<Exercise> retrieveSpecificExercise(int exerciseID);
+
+    @Query("SELECT * FROM exercises WHERE workoutID = :workoutID")
+    LiveData<List<Exercise>> getAllExercisesForSpecificWorkout(int workoutID);
 }

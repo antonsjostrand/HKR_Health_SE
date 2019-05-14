@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
+import com.example.hkrhealth.Fragments.WorkoutHistoryFragment;
 import com.example.hkrhealth.Fragments.WorkoutMenuFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,6 +75,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ft.commit();
 
                     break;
+                case R.id.nav_workout_history:
+                    Log.d(TAG, "onNavigationItemSelected: Workout history pressed");
+
+                    WorkoutHistoryFragment workoutHistoryFragment = new WorkoutHistoryFragment();
+                    ft.replace(R.id.fragment_container, workoutHistoryFragment);
+                    ft.commit();
+
+                    break;
+
             }
 
         }catch (Exception e){

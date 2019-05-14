@@ -8,6 +8,8 @@ import com.example.hkrhealth.Async.InsertHypertrophyWorkoutAsyncTask;
 import com.example.hkrhealth.Models.Exercise;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
 
+import java.util.List;
+
 public class HkrHealthRepository {
 
     private HkrHealthDatabase mHkrHealthDatabase;
@@ -30,6 +32,10 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getHypertrophyWorkoutDAO().retrieveMaxWorkoutID();
     }
 
+    public LiveData<List<HypertrophyWorkout>> getAllHypertrophyWorkouts(){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getAllHypertrophyWorkouts();
+    }
+
     /*
       --------- EXERCISE QUERIES -------
      */
@@ -44,5 +50,8 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getExerciseDAO().retrieveSpecificExercise(exerciseID);
     }
 
+    public LiveData<List<Exercise>> getAllExercisesForSpecificWorkout(int workoutID){
+        return mHkrHealthDatabase.getExerciseDAO().getAllExercisesForSpecificWorkout(workoutID);
+    }
 
 }

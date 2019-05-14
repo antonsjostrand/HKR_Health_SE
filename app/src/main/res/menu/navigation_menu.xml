@@ -6,8 +6,8 @@
         android:icon="@drawable/ic_android_black_24dp"
         />
 
-    <item android:id="@+id/nav_workout_test"
-        android:title="test"
+    <item android:id="@+id/nav_workout_history"
+        android:title="@string/nav_workout_history"
         android:icon="@drawable/ic_android_black_24dp"
         />
 
