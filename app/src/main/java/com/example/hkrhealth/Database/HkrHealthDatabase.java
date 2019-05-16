@@ -31,4 +31,6 @@ public abstract class HkrHealthDatabase extends RoomDatabase {
 
     public abstract ExerciseDAO getExerciseDAO();
 
+   // public abstract GoalSettingDAO getGoalSettingDAO();
+
 }

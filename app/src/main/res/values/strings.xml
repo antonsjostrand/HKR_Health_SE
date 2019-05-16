@@ -25,6 +25,14 @@
     <string name="pushdown">Pushdown</string>
     <string name="french_press">French press</string>
 
+    <!-- Strings used in goalsetting -->
+    <string name="weightGoal">Weight Goal</string>
+    <string name="currentWeight">Insert Current Weight</string>
+    <string name="yourCurrentGoal">Your Current Goal: </string>
+
+    <string name="popUp">Go to Goal Setting and enter your weight!</string>
+
+
 
 
 </resources>

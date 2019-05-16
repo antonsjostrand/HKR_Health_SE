@@ -1,12 +1,10 @@
 package com.example.hkrhealth;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.NonNull;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +13,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
+import com.example.hkrhealth.Fragments.GoalsFragment;
 import com.example.hkrhealth.Fragments.WorkoutMenuFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mHkrHealthRepository = new HkrHealthRepository(this);
 
         mDrawerLayout = findViewById(R.id.main_menu_drawerlayout);
+        popUpWindow();
         setNavigationMenuListener();
 
 
@@ -74,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ft.commit();
 
                     break;
+
+                case R.id.nav_goalsetting:
+                    Log.d(TAG, "onNavigationItemSelected: Goal Setting selection pressed");
+
+                    GoalsFragment goalsFragment = new GoalsFragment();
+                    ft.replace(R.id.fragment_container, goalsFragment);
+                    ft.commit();
+
+                    break;
             }
 
         }catch (Exception e){
@@ -81,4 +90,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
+    public void popUpWindow(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Information");
+        builder.setMessage("Go to Goal Settings and enter your weight");
+        builder.setCancelable(true);
+        builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
+    }
+
+
 }
