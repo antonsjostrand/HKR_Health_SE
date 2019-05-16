@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     GoalsFragment goalsFragment = new GoalsFragment();
                     ft.replace(R.id.fragment_container, goalsFragment);
+                    ft.commit();
+                    
+                    break;
 
                 case R.id.nav_workout_history:
                     Log.d(TAG, "onNavigationItemSelected: Workout history pressed");
