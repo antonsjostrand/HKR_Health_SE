@@ -40,7 +40,7 @@ public class HypertrophyWorkoutHistoryFragment extends Fragment implements Hyper
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.workout_hypertrophy_history_fragment_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_workout_hypertrophy_history_layout, container, false);
         try {
             mRecyclerView = view.findViewById(R.id.recyclerView);
             mHkrHealthRepository = new HkrHealthRepository(getActivity());

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
+import com.example.hkrhealth.Fragments.StatisticsFragment;
 import com.example.hkrhealth.Fragments.WorkoutHistoryFragment;
 import com.example.hkrhealth.Fragments.WorkoutMenuFragment;
 
@@ -83,7 +84,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ft.commit();
 
                     break;
+                case R.id.nav_statistics:
+                    Log.d(TAG, "onNavigationItemSelected: Statistics pressed");
 
+                    StatisticsFragment statisticsFragment = new StatisticsFragment();
+                    ft.replace(R.id.fragment_container, statisticsFragment);
+                    ft.commit();
+
+                    break;
             }
 
         }catch (Exception e){

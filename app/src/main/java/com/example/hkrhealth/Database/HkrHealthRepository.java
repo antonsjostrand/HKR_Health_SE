@@ -54,4 +54,27 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getExerciseDAO().getAllExercisesForSpecificWorkout(workoutID);
     }
 
+    public LiveData<List<Exercise>> getAllExercisesByNameAndReps(String exerciseName, int exerciseReps){
+        return mHkrHealthDatabase.getExerciseDAO().getAllExercisesByNameAndReps(exerciseName, exerciseReps);
+    }
+
+    public LiveData<Double> getMaximumLiftFromExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getMaximumLiftFromExerciseByName(exerciseName);
+    }
+
+    public LiveData<Double> getTotalAmountOfWeightLiftedExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalAmountOfWeightLiftedExerciseByName(exerciseName);
+    }
+
+    public LiveData<Integer> getTotalAmountOfRepsExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalAmountOfRepsExerciseByName(exerciseName);
+    }
+
+    public LiveData<Double> getSmallest1RmForExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getSmallest1RmPerformedExerciseByName(exerciseName);
+    }
+
+    public LiveData<Double> getBiggest1RmForExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getBiggest1RmPerformedExerciseByName(exerciseName);
+    }
 }
