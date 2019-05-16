@@ -111,18 +111,13 @@ public class StatisticsFragment extends Fragment {
 
     public void confirmButtonPressed(String exerciseName){
         try {
+            Log.d(TAG, "confirmButtonPressed: getting information for exercise: " + exerciseName);
             clearLineChart();
             clearFields();
+            getBiggestAndSmallest1RmForExerciseByName(exerciseName);
             getMaximumLiftFromExerciseByName(exerciseName);
             getTotalAmountOfRepsForExerciseByName(exerciseName);
             getTotalWeightLiftedForExerciseByName(exerciseName);
-            getSmallest1RmForExerciseByName(exerciseName);
-            getBiggest1RmForExerciseByName(exerciseName);
-
-            Log.d(TAG, "confirmButtonPressed: smallest weight 1rm: " + mSmallest1Rm);
-            Log.d(TAG, "confirmButtonPressed: biggest weight 1rm: " + mBiggest1Rm);
-
-            calculateAndSetPercentualIncrease(mSmallest1Rm, mBiggest1Rm);
 
         }catch (Exception e){
             Log.d(TAG, "confirmButtonPressed: error: " + e);
@@ -194,27 +189,29 @@ public class StatisticsFragment extends Fragment {
         });
     }
 
-    public void getSmallest1RmForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getSmallest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == null){
-                    mIncreaseTV.setText("0%");
-                }else{
-                    mSmallest1Rm = aDouble;
-                }
-            }
-        });
-    }
-
-    public void getBiggest1RmForExerciseByName(String exerciseName){
+    public void getBiggestAndSmallest1RmForExerciseByName(String exerciseName){
+        final String name = exerciseName;
         mHkrHealthRepository.getBiggest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
             @Override
             public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == null){
-                    mIncreaseTV.setText("0%");
-                }else{
+                Log.d(TAG, "onChanged: biggest value: " + aDouble);
+                if (aDouble != null){
                     mBiggest1Rm = aDouble;
+                    Log.d(TAG, "onChanged: biggest value: " + mBiggest1Rm);
+
+                    mHkrHealthRepository.getSmallest1RmForExerciseByName(name).observe(getActivity(), new Observer<Double>() {
+                        @Override
+                        public void onChanged(@Nullable Double aDouble) {
+                            Log.d(TAG, "onChanged: smallest value: " + aDouble);
+                            if (aDouble != null) {
+                                mSmallest1Rm = aDouble;
+                                Log.d(TAG, "onChanged: smallest value: " + mSmallest1Rm);
+
+                                calculateAndSetPercentualIncrease(mSmallest1Rm, mBiggest1Rm);
+                            }
+                        }
+                    });
+
                 }
             }
         });
@@ -222,13 +219,15 @@ public class StatisticsFragment extends Fragment {
 
     public void calculateAndSetPercentualIncrease(double smallest, double biggest){
         try {
+            Log.d(TAG, "calculateAndSetPercentualIncrease: calculating percent");
             double percentualIncrease;
             String percent;
 
             percentualIncrease = biggest / smallest;
             percent = String.valueOf(percentualIncrease);
             percent = percent.substring(1, 3);
-            mIncreaseTV.setText(percent + "%");
+            mIncreaseTV.setText(String.valueOf(percent) + "%");
+            Log.d(TAG, "calculateAndSetPercentualIncrease: percent set, value: " + String.valueOf(percent));
         }catch (Exception e){
             Log.d(TAG, "calculateAndSetPercentualIncrease: error: " + e);
         }
