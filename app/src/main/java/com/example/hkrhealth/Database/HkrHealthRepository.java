@@ -8,6 +8,8 @@ import com.example.hkrhealth.Async.InsertHypertrophyWorkoutAsyncTask;
 import com.example.hkrhealth.Models.Exercise;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
 
+import java.util.List;
+
 public class HkrHealthRepository {
 
     private HkrHealthDatabase mHkrHealthDatabase;
@@ -30,6 +32,10 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getHypertrophyWorkoutDAO().retrieveMaxWorkoutID();
     }
 
+    public LiveData<List<HypertrophyWorkout>> getAllHypertrophyWorkouts(){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getAllHypertrophyWorkouts();
+    }
+
     /*
       --------- EXERCISE QUERIES -------
      */
@@ -44,5 +50,31 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getExerciseDAO().retrieveSpecificExercise(exerciseID);
     }
 
+    public LiveData<List<Exercise>> getAllExercisesForSpecificWorkout(int workoutID){
+        return mHkrHealthDatabase.getExerciseDAO().getAllExercisesForSpecificWorkout(workoutID);
+    }
 
+    public LiveData<List<Exercise>> getAllExercisesByNameAndReps(String exerciseName, int exerciseReps){
+        return mHkrHealthDatabase.getExerciseDAO().getAllExercisesByNameAndReps(exerciseName, exerciseReps);
+    }
+
+    public LiveData<Double> getMaximumLiftFromExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getMaximumLiftFromExerciseByName(exerciseName);
+    }
+
+    public LiveData<Double> getTotalAmountOfWeightLiftedExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalAmountOfWeightLiftedExerciseByName(exerciseName);
+    }
+
+    public LiveData<Integer> getTotalAmountOfRepsExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalAmountOfRepsExerciseByName(exerciseName);
+    }
+
+    public LiveData<Double> getSmallest1RmForExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getSmallest1RmPerformedExerciseByName(exerciseName);
+    }
+
+    public LiveData<Double> getBiggest1RmForExerciseByName(String exerciseName){
+        return mHkrHealthDatabase.getExerciseDAO().getBiggest1RmPerformedExerciseByName(exerciseName);
+    }
 }

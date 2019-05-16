@@ -81,6 +81,7 @@ public class HyperAWorkoutFragment extends Fragment {
             int rating = Integer.parseInt(String.valueOf(mRatingET.getText()));
             String comment = String.valueOf(mCommentET.getText());
             mHypertrophyWorkout = new HypertrophyWorkout(date, rating, comment, mWorkoutType);
+            mWorkoutID++;
 
             //Inserts all the exercises to the database.
             insertFirstExerciseToDatabase(mWorkoutID);

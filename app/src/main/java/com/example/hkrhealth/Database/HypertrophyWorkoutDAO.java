@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import com.example.hkrhealth.Models.HypertrophyWorkout;
 
+import java.util.List;
+
 @Dao
 public interface HypertrophyWorkoutDAO {
 
@@ -15,6 +17,9 @@ public interface HypertrophyWorkoutDAO {
 
     @Query("SELECT MAX(workoutID) FROM hypertrophy_workout")
     LiveData<Integer> retrieveMaxWorkoutID();
+
+    @Query("SELECT * FROM hypertrophy_workout")
+    LiveData<List<HypertrophyWorkout>> getAllHypertrophyWorkouts();
 
     }
 

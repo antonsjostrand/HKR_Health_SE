@@ -14,6 +14,8 @@ import android.view.WindowManager;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Fragments.GoalsFragment;
+import com.example.hkrhealth.Fragments.StatisticsFragment;
+import com.example.hkrhealth.Fragments.WorkoutHistoryFragment;
 import com.example.hkrhealth.Fragments.WorkoutMenuFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -75,11 +77,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     break;
 
+
                 case R.id.nav_goalsetting:
                     Log.d(TAG, "onNavigationItemSelected: Goal Setting selection pressed");
 
                     GoalsFragment goalsFragment = new GoalsFragment();
                     ft.replace(R.id.fragment_container, goalsFragment);
+
+                case R.id.nav_workout_history:
+                    Log.d(TAG, "onNavigationItemSelected: Workout history pressed");
+
+                    WorkoutHistoryFragment workoutHistoryFragment = new WorkoutHistoryFragment();
+                    ft.replace(R.id.fragment_container, workoutHistoryFragment);
+                    ft.commit();
+
+                    break;
+                case R.id.nav_statistics:
+                    Log.d(TAG, "onNavigationItemSelected: Statistics pressed");
+
+                    StatisticsFragment statisticsFragment = new StatisticsFragment();
+                    ft.replace(R.id.fragment_container, statisticsFragment);
+
                     ft.commit();
 
                     break;

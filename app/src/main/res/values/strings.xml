@@ -3,14 +3,26 @@
 
     <!-- Strings used for navigation menu -->
     <string name="nav_workout_selection">Workouts</string>
+    <string name="nav_workout_history">Workout History</string>
+    <string name="nav_statistics">Statistics</string>
 
     <!-- Strings used in all kinds of workout layouts -->
+    <string name="exercise">Exercise</string>
     <string name="comment">Comment</string>
     <string name="rating">Rating</string>
     <string name="save">Save</string>
     <string name="reps">Reps</string>
     <string name="sets">Set</string>
     <string name="weight">Weight</string>
+    <string name="hypertrophy">Hypertrophy</string>
+    <string name="strength">Strength</string>
+    <string name="cardio">Cardio</string>
+    <string name="lean">lean</string>
+    <string name="heaviest_weight">Heaviest weight</string>
+    <string name="total_amount_reps">Total reps</string>
+    <string name="total_weight_lifted">Total weight lifted</string>
+    <string name="zero">0</string>
+    <string name="percentual_increase_header">Increase in weight lifted since you started:</string>
 
     <!-- Strings used in the different push workouts -->
     <string name="bench_press">Bench press</string>
@@ -25,6 +37,7 @@
     <string name="pushdown">Pushdown</string>
     <string name="french_press">French press</string>
 
+
     <!-- Strings used in goalsetting -->
     <string name="weightGoal">Weight Goal</string>
     <string name="currentWeight">Insert Current Weight</string>
@@ -32,6 +45,27 @@
 
     <string name="popUp">Go to Goal Setting and enter your weight!</string>
 
+
+
+    <!-- Strings used in statistics fragment -->
+    <string name="ACTV_hint">Enter a exercise..</string>
+    <string name="ACTV_reps_hint">Enter a number..</string>
+    <string name="confirm">Confirm</string>
+
+    <!-- String array containing all exercises -->
+    <string-array name="array_exercises">
+        <item name="bench_press">Bench press</item>
+        <item name="dumbell_press">Dumbell press</item>
+        <item name="incline_bench_press">Incline bench press</item>
+        <item name="incline_dumbell_press">Incline dumbell press</item>
+        <item name="flyes">Flyes</item>
+        <item name="dips">Dips</item>
+        <item name="shoulder_barbell_press">Shoulder barbell press</item>
+        <item name="shoulder_dumbell_press">Shoulder dumbell press</item>
+        <item name="shoulder_side_raises">Side raises</item>
+        <item name="pushdown">Pushdown</item>
+        <item name="french_press">French press</item>
+    </string-array>
 
 
 
