@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.hkrhealth.Database.GoalSettingDAO;
 
-public class UpdateGoalSettingAsyncTask extends AsyncTask<Integer, Void, Void> {
+public class UpdateGoalSettingAsyncTask extends AsyncTask<Double, Void, Void> {
 
     private GoalSettingDAO mGoalSettingDAO;
 
@@ -13,8 +13,8 @@ public class UpdateGoalSettingAsyncTask extends AsyncTask<Integer, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Integer... ints) {
-        mGoalSettingDAO.updateGoal(ints);
+    protected Void doInBackground(Double... doubles) {
+        mGoalSettingDAO.updateGoal(doubles);
         return null;
     }
 }

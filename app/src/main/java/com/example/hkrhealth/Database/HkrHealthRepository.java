@@ -97,13 +97,20 @@ public class HkrHealthRepository {
           return mHkrHealthDatabase.getGoalSettingDAO().getAllGoals();
       }
 
-      public void updateGoal(Integer weight){
+      public void updateGoal(Double weight){
           new UpdateGoalSettingAsyncTask(mHkrHealthDatabase.getGoalSettingDAO()).execute(weight);
       }
 
-      public LiveData<Integer> getCurrentGoal(){
+      public LiveData<Double> getCurrentGoal(){
           return mHkrHealthDatabase.getGoalSettingDAO().getCurrentGoal();
       }
 
+      public LiveData<Integer> getMaxIdGoal(){
+          return mHkrHealthDatabase.getGoalSettingDAO().retrieveMaxIdGoalSetting();
+      }
+
+      public LiveData<GoalSetting> getLatestGoalSetting(int id){
+          return mHkrHealthDatabase.getGoalSettingDAO().getLatestGoalSetting(id);
+      }
 
 }

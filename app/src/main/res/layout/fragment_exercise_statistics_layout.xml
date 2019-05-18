@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <AutoCompleteTextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:id="@+id/searchFieldACTV"
+        android:hint="@string/ACTV_hint"
+        android:completionThreshold="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirmButton"
+        android:layout_margin="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/searchFieldACTV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/searchFieldACTV"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/statisticsExerciseHeaderTV"
+        android:layout_margin="20dp"
+        android:text="@string/exercise"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/searchFieldACTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/heaviestLiftHeader"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/heaviest_weight"
+        app:layout_constraintTop_toBottomOf="@id/statisticsExerciseHeaderTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalWeightLiftHeader"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/total_weight_lifted"
+        app:layout_constraintTop_toBottomOf="@id/statisticsExerciseHeaderTV"
+        app:layout_constraintLeft_toRightOf="@id/heaviestLiftHeader"
+        app:layout_constraintRight_toLeftOf="@+id/totalRepsHeader"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalRepsHeader"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/total_amount_reps"
+        app:layout_constraintTop_toBottomOf="@id/statisticsExerciseHeaderTV"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/heaviestLiftTV"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/zero"
+        app:layout_constraintTop_toBottomOf="@id/heaviestLiftHeader"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/heaviestLiftHeader"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalWeightTV"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/zero"
+        app:layout_constraintTop_toBottomOf="@id/totalWeightLiftHeader"
+        app:layout_constraintLeft_toLeftOf="@id/totalWeightLiftHeader"
+        app:layout_constraintRight_toRightOf="@id/totalWeightLiftHeader"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalRepsTV"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/zero"
+        app:layout_constraintTop_toBottomOf="@id/totalRepsHeader"
+        app:layout_constraintLeft_toLeftOf="@id/totalRepsHeader"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/increaseLiftHeader"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:text="@string/percentual_increase_header"
+        app:layout_constraintTop_toBottomOf="@id/heaviestLiftTV"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/percentualIncreaseTV"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/zero"
+        app:layout_constraintTop_toTopOf="@id/increaseLiftHeader"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/increaseLiftHeader"
+        app:layout_constraintBottom_toBottomOf="@id/increaseLiftHeader"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repsChoiceET"
+        android:layout_margin="20dp"
+        android:hint="@string/ACTV_reps_hint"
+        app:layout_constraintTop_toBottomOf="@id/increaseLiftHeader"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/repsConfirmButton"
+        android:layout_margin="20dp"
+        android:text="@string/confirm"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/repsChoiceET"
+        app:layout_constraintBottom_toBottomOf="@id/repsChoiceET"
+        />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/exerciseLineChart"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+    </com.github.mikephil.charting.charts.LineChart>
+
+
+</android.support.constraint.ConstraintLayout>

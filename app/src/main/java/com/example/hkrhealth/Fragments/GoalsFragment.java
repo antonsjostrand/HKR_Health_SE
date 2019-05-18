@@ -27,7 +27,7 @@ public class GoalsFragment extends Fragment {
 
     //Variables
     private GoalSetting mGoalSetting;
-    private int mCuGoal;
+    private double mCuGoal;
 
     //UI
     private TextView mGoalsettingTV;
@@ -74,7 +74,7 @@ public class GoalsFragment extends Fragment {
     public void saveGoalSettingButtonPressed(){
         try {
             String date = String.valueOf(Calendar.getInstance().getTime());
-            int goalWeight = Integer.parseInt(String.valueOf(mWeightGoalET.getText()));
+            double goalWeight = Double.parseDouble(String.valueOf(mWeightGoalET.getText()));
 
             mGoalSetting = new GoalSetting(date, goalWeight);
             
@@ -93,7 +93,7 @@ public class GoalsFragment extends Fragment {
     public void saveCurrentWeightButtonPressed(){
         try {
             String date = String.valueOf(Calendar.getInstance().getTime());
-            int weight = Integer.parseInt(String.valueOf(mCurrentWeightET.getText()));
+            double weight = Double.parseDouble(String.valueOf(mCurrentWeightET.getText()));
 
             mGoalSetting = new GoalSetting(date, weight);
 
@@ -118,11 +118,11 @@ public class GoalsFragment extends Fragment {
     }
 
     public void getCurrentGoal(){
-        mHkrHealthRepository.getCurrentGoal().observe(getActivity(), new Observer<Integer>() {
+        mHkrHealthRepository.getCurrentGoal().observe(getActivity(), new Observer<Double>() {
             @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer != null){
-                    mCuGoal = integer;
+            public void onChanged(@Nullable Double dub) {
+                if (dub != null){
+                    mCuGoal = dub;
                     mCurrentGoalShown.setText(String.valueOf(mCuGoal));
                 }else{
                     mCuGoal = 0;

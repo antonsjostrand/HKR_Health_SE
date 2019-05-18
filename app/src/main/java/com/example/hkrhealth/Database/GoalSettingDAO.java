@@ -20,8 +20,14 @@ public interface GoalSettingDAO {
     LiveData<List<GoalSetting>> getAllGoals();
 
     @Query("UPDATE goal_setting SET weight = :goalWeight WHERE id = 1")
-    void updateGoal(Integer... goalWeight);
+    void updateGoal(Double... goalWeight);
 
     @Query("SELECT weight FROM goal_setting WHERE id = 1")
-    LiveData<Integer> getCurrentGoal();
+    LiveData<Double> getCurrentGoal();
+
+    @Query("SELECT MAX(id) FROM goal_setting")
+    LiveData<Integer> retrieveMaxIdGoalSetting();
+
+    @Query("SELECT * FROM goal_setting WHERE id = :id")
+    LiveData<GoalSetting> getLatestGoalSetting(int id);
 }

@@ -12,6 +12,7 @@ public class GoalSetting {
     private static final String TAG = "GoalSetting";
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
     @NonNull
@@ -20,10 +21,10 @@ public class GoalSetting {
 
     @NonNull
     @ColumnInfo(name = "weight")
-    private int weight;
+    private double weight;
 
     //Constructor
-    public GoalSetting(@NonNull String date, int weight) {
+    public GoalSetting(@NonNull String date, double weight) {
         try {
             this.date=date;
             this.weight=weight;
@@ -42,9 +43,9 @@ public class GoalSetting {
         this.date = date;
     }
 
-    public int getWeight() { return  weight; }
+    public double getWeight() { return  weight; }
 
-    public void setWeight (int weight){ this.weight = weight; }
+    public void setWeight (double weight){ this.weight = weight; }
 
     public int getId() {
         return id;
