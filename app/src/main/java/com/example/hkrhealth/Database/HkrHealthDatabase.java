@@ -6,10 +6,11 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.hkrhealth.Models.Exercise;
+import com.example.hkrhealth.Models.GoalSetting;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
 import com.example.hkrhealth.Models.StrengthWorkout;
 
-@Database(entities = {Exercise.class, HypertrophyWorkout.class, StrengthWorkout.class}, version = 1)
+@Database(entities = {Exercise.class, HypertrophyWorkout.class, StrengthWorkout.class, GoalSetting.class}, version = 1)
 public abstract class HkrHealthDatabase extends RoomDatabase {
 
     private static final String TAG = "HkrHealthDatabase";
@@ -31,6 +32,6 @@ public abstract class HkrHealthDatabase extends RoomDatabase {
 
     public abstract ExerciseDAO getExerciseDAO();
 
-   // public abstract GoalSettingDAO getGoalSettingDAO();
+    public abstract GoalSettingDAO getGoalSettingDAO();
 
 }

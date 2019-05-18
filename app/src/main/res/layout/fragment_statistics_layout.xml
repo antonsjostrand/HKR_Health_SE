@@ -157,7 +157,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/repsChoiceET"
         android:layout_margin="20dp"
-        android:hint="@string/ACTV_hint"
+        android:hint="@string/ACTV_reps_hint"
         app:layout_constraintTop_toBottomOf="@id/increaseLiftHeader"
         app:layout_constraintLeft_toLeftOf="parent"
 

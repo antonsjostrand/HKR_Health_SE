@@ -15,10 +15,6 @@ public class GoalSetting {
     private int id;
 
     @NonNull
-    @ColumnInfo(name ="goalSettingID")
-    private int goalSettingId;
-
-    @NonNull
     @ColumnInfo(name = "date")
     private String date;
 
@@ -26,20 +22,11 @@ public class GoalSetting {
     @ColumnInfo(name = "weight")
     private int weight;
 
-    @NonNull
-    @ColumnInfo(name = "currentWeight")
-    private int currentWeight;
-
-
-
     //Constructor
-    public GoalSetting(int goalSettingId, @NonNull String date, int weight, int currentWeight) {
+    public GoalSetting(@NonNull String date, int weight) {
         try {
-            this.goalSettingId=goalSettingId;
             this.date=date;
             this.weight=weight;
-            this.currentWeight=currentWeight;
-
 
         }catch (Exception e){
             Log.d(TAG, "GoalSetting: Constructor error: " + e);
@@ -58,14 +45,6 @@ public class GoalSetting {
     public int getWeight() { return  weight; }
 
     public void setWeight (int weight){ this.weight = weight; }
-
-    public int getGoalSettingId() { return goalSettingId; }
-
-    public void setGoalSettingId(int goalSettingId) { this.goalSettingId = goalSettingId; }
-
-    public int getCurrentWeight() { return currentWeight; }
-
-    public void setCurrentWeight(int currentWeight) { this.currentWeight = currentWeight; }
 
     public int getId() {
         return id;

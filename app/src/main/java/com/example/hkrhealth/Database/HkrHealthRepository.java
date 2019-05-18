@@ -4,8 +4,11 @@ import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
 import com.example.hkrhealth.Async.InsertExerciseAsyncTask;
+import com.example.hkrhealth.Async.InsertGoalSettingAsyncTask;
 import com.example.hkrhealth.Async.InsertHypertrophyWorkoutAsyncTask;
+import com.example.hkrhealth.Async.UpdateGoalSettingAsyncTask;
 import com.example.hkrhealth.Models.Exercise;
+import com.example.hkrhealth.Models.GoalSetting;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
 
 import java.util.List;
@@ -34,6 +37,10 @@ public class HkrHealthRepository {
 
     public LiveData<List<HypertrophyWorkout>> getAllHypertrophyWorkouts(){
         return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getAllHypertrophyWorkouts();
+    }
+
+    public LiveData<HypertrophyWorkout> getHypertrophyWorkoutByID(int workoutID){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getHypertrophyWorkoutByID(workoutID);
     }
 
     /*
@@ -77,4 +84,26 @@ public class HkrHealthRepository {
     public LiveData<Double> getBiggest1RmForExerciseByName(String exerciseName){
         return mHkrHealthDatabase.getExerciseDAO().getBiggest1RmPerformedExerciseByName(exerciseName);
     }
+
+      /*
+      --------- GOAL QUERIES -------
+     */
+
+      public void insertGoal(GoalSetting goal){
+          new InsertGoalSettingAsyncTask(mHkrHealthDatabase.getGoalSettingDAO()).execute(goal);
+      }
+
+      public LiveData<List<GoalSetting>> getAllGoals(){
+          return mHkrHealthDatabase.getGoalSettingDAO().getAllGoals();
+      }
+
+      public void updateGoal(Integer weight){
+          new UpdateGoalSettingAsyncTask(mHkrHealthDatabase.getGoalSettingDAO()).execute(weight);
+      }
+
+      public LiveData<Integer> getCurrentGoal(){
+          return mHkrHealthDatabase.getGoalSettingDAO().getCurrentGoal();
+      }
+
+
 }

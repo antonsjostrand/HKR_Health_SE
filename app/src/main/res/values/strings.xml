@@ -51,6 +51,7 @@
     <string name="ACTV_hint">Enter a exercise..</string>
     <string name="ACTV_reps_hint">Enter a number..</string>
     <string name="confirm">Confirm</string>
+    <string name="no_data_found">No data found</string>
 
     <!-- String array containing all exercises -->
     <string-array name="array_exercises">

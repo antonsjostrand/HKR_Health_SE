@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Models.Exercise;
+import com.example.hkrhealth.Models.HypertrophyWorkout;
 import com.example.hkrhealth.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -37,9 +38,10 @@ public class StatisticsFragment extends Fragment {
 
     //Variables
     private ArrayList<Exercise> mExercises = new ArrayList<>();
+    private ArrayList<HypertrophyWorkout> mWorkouts = new ArrayList<>();
+    private ArrayList<String> mDates = new ArrayList<>();
     private String mChosenReps;
     private Double mSmallest1Rm, mBiggest1Rm;
-
 
     //UI
     private AutoCompleteTextView mSearchFieldACTV;
@@ -99,11 +101,9 @@ public class StatisticsFragment extends Fragment {
 
     public void confirmRepsButtonPressed(String exerciseName, int exerciseReps){
         try {
+            Log.d(TAG, "confirmRepsButtonPressed: starting");
             clearLineChart();
             getAllExercisesBySearchedNameAndReps(exerciseName, exerciseReps);
-            if (mExercises.size() > 0) {
-                drawLineChart();
-            }
         }catch (Exception e){
             Log.d(TAG, "confirmRepsButtonPressed: error: " + e);
         }
@@ -131,6 +131,8 @@ public class StatisticsFragment extends Fragment {
     }
 
     public void clearLineChart(){
+        Log.d(TAG, "clearLineChart: clearing linechart");
+        mLineChart.invalidate();
         mLineChart.clear();
     }
 
@@ -143,24 +145,31 @@ public class StatisticsFragment extends Fragment {
                 }
                 if (exercises != null){
                     mExercises.addAll(exercises);
-                }else{
-                    mEnterRepsET.setText("No data for this number of repetitions.");
+                    if (mExercises.size() > 0){
+                        drawLineChart();
+                    }else{
+                        mEnterRepsET.setText(R.string.no_data_found);
+                    }
                 }
             }
         });
     }
 
     public void getMaximumLiftFromExerciseByName(String exericseName){
-        mHkrHealthRepository.getMaximumLiftFromExerciseByName(exericseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == 0){
-                    mMaxLiftTV.setText("0");
-                }else {
-                    mMaxLiftTV.setText(String.valueOf(aDouble + " kg"));
+        try {
+            mHkrHealthRepository.getMaximumLiftFromExerciseByName(exericseName).observe(getActivity(), new Observer<Double>() {
+                @Override
+                public void onChanged(@Nullable Double aDouble) {
+                    if (aDouble == 0) {
+                        mMaxLiftTV.setText("0");
+                    } else {
+                        mMaxLiftTV.setText(String.valueOf(aDouble + " kg"));
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getMaximumLiftFromExerciseByName: error: " + e);
+        }
     }
 
     public void getTotalAmountOfRepsForExerciseByName(String exerciseName){
@@ -194,7 +203,6 @@ public class StatisticsFragment extends Fragment {
         mHkrHealthRepository.getBiggest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
             @Override
             public void onChanged(@Nullable Double aDouble) {
-                Log.d(TAG, "onChanged: biggest value: " + aDouble);
                 if (aDouble != null){
                     mBiggest1Rm = aDouble;
                     Log.d(TAG, "onChanged: biggest value: " + mBiggest1Rm);
@@ -202,7 +210,6 @@ public class StatisticsFragment extends Fragment {
                     mHkrHealthRepository.getSmallest1RmForExerciseByName(name).observe(getActivity(), new Observer<Double>() {
                         @Override
                         public void onChanged(@Nullable Double aDouble) {
-                            Log.d(TAG, "onChanged: smallest value: " + aDouble);
                             if (aDouble != null) {
                                 mSmallest1Rm = aDouble;
                                 Log.d(TAG, "onChanged: smallest value: " + mSmallest1Rm);
@@ -220,13 +227,15 @@ public class StatisticsFragment extends Fragment {
     public void calculateAndSetPercentualIncrease(double smallest, double biggest){
         try {
             Log.d(TAG, "calculateAndSetPercentualIncrease: calculating percent");
-            double percentualIncrease;
-            String percent;
+            Log.d(TAG, "calculateAndSetPercentualIncrease: biggest value: " + biggest);
+            Log.d(TAG, "calculateAndSetPercentualIncrease: smallest value: " + smallest);
 
-            percentualIncrease = biggest / smallest;
-            percent = String.valueOf(percentualIncrease);
-            percent = percent.substring(1, 3);
-            mIncreaseTV.setText(String.valueOf(percent) + "%");
+            double percentualIncrease;
+
+            percentualIncrease = ((biggest-smallest) / smallest)*100;
+            String percent = String.valueOf(percentualIncrease);
+            mIncreaseTV.setText(percent + "%");
+
             Log.d(TAG, "calculateAndSetPercentualIncrease: percent set, value: " + String.valueOf(percent));
         }catch (Exception e){
             Log.d(TAG, "calculateAndSetPercentualIncrease: error: " + e);
@@ -236,37 +245,51 @@ public class StatisticsFragment extends Fragment {
 
     public void drawLineChart() {
         try {
-            ArrayList<Entry> yAxesWeight = new ArrayList<>();
-            ArrayList<String> xAxes = new ArrayList<>();
-
+            ArrayList<Entry> yAxisWeight = new ArrayList<>();
 
             for (int i = 0; i < mExercises.size(); i++) {
 
-                Entry entry = new Entry(Float.parseFloat(String.valueOf(mExercises.get(i).getExerciseWeight())), i);
-                yAxesWeight.add(entry);
+                float weight = (float) mExercises.get(i).getExerciseWeight();
+                Entry entry = new Entry(i, weight);
+                yAxisWeight.add(entry);
 
-                xAxes.add(i, String.valueOf(i));
             }
 
-            String[] xAxesFinal = new String[xAxes.size()];
-            for (int i = 0; i < xAxes.size(); i++) {
-                xAxesFinal[i] = xAxes.get(i);
-            }
+            ArrayList<ILineDataSet> lineDataSets = new ArrayList<>();
 
-            ArrayList<LineDataSet> lineDataSets = new ArrayList<>();
-
-            LineDataSet lineDataSet = new LineDataSet(yAxesWeight, "weight");
+            LineDataSet lineDataSet = new LineDataSet(yAxisWeight, "weight");
             lineDataSet.setDrawCircles(false);
             lineDataSet.setColor(Color.BLUE);
+            lineDataSet.setFillAlpha(110);
 
             lineDataSets.add(lineDataSet);
 
             LineData lineData = new LineData(lineDataSet);
 
+
             mLineChart.setData(lineData);
             Log.d(TAG, "drawLineChart: linechart drawn.");
         } catch (Exception e) {
             Log.d(TAG, "drawLineChart: error: " + e);
+        }
+    }
+
+    public void calculateDates(){
+        Log.d(TAG, "calculateDates: called");
+        int index = mWorkouts.size() - 1;
+
+        String date = mWorkouts.get(index).getDate();
+        String year = date.substring(24,28);
+        String day = date.substring(8,10);
+        String month = date.substring(4,7);
+
+        String mergedDate = day + "-" + month + "-" + year;
+        mDates.add(mergedDate);
+
+        mWorkouts.clear();
+
+        if (mDates.size() == mExercises.size()){
+            drawLineChart();
         }
     }
 }
