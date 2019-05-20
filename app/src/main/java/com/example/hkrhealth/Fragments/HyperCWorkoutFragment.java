@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,15 +22,15 @@ import com.example.hkrhealth.R;
 
 import java.util.Calendar;
 
-public class HyperAWorkoutFragment extends Fragment {
+public class HyperCWorkoutFragment extends Fragment {
 
-    private static final String TAG = "HyperAWorkoutFragment";
+    private static final String TAG = "HyperCWorkoutFragment";
 
     //Database
     private HkrHealthRepository mHkrHealthRepository;
 
     //Variables
-    private final String mWorkoutType = "A";
+    private final String mWorkoutType = "C";
     private int mWorkoutID;
     private HypertrophyWorkout mHypertrophyWorkout;
     private Exercise mExercise;
@@ -42,7 +43,6 @@ public class HyperAWorkoutFragment extends Fragment {
     private Button mSaveWorkoutButton, mYouTubeButton1, mYouTubeButton2,
             mYouTubeButton3, mYouTubeButton4,
             mYouTubeButton5, mYouTubeButton6;
-
     private EditText mRatingET, mCommentET;
     private TextView mHeaderOne, mHeaderTwo, mHeaderThree, mHeaderFour, mHeaderFive, mHeaderSix;
     private EditText mExOneSetOneReps, mExOneSetTwoReps, mExOneSetThreeReps;
@@ -58,9 +58,10 @@ public class HyperAWorkoutFragment extends Fragment {
     private EditText mExSixSetOneReps, mExSixSetTwoReps, mExSixSetThreeReps;
     private EditText mExSixSetOneWeight, mExSixSetTwoWeight, mExSixSetThreeWeight;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hyper_a_workout_layout, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_hyper_c_workout_layout, container, false);
 
         mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
@@ -69,6 +70,7 @@ public class HyperAWorkoutFragment extends Fragment {
         retrieveMaxWorkoutID();
         youTubeButtons(view);
 
+
         mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
         mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +78,8 @@ public class HyperAWorkoutFragment extends Fragment {
                 saveWorkoutButtonPressed();
             }
         });
-
         return view;
+
     }
 
     public void saveWorkoutButtonPressed(){
@@ -106,53 +108,53 @@ public class HyperAWorkoutFragment extends Fragment {
     }
 
     public void initalizeTextViews(View view){
-        mHeaderOne = view.findViewById(R.id.benchPressHeaderTW);
-        mHeaderTwo = view.findViewById(R.id.InclineBenchPressHeaderTW);
-        mHeaderThree = view.findViewById(R.id.exerciseThreeHeaderTW);
-        mHeaderFour = view.findViewById(R.id.exerciseFourHeaderTW);
-        mHeaderFive = view.findViewById(R.id.exerciseFiveHeaderTW);
-        mHeaderSix = view.findViewById(R.id.exerciseSixHeaderTW);
+        mHeaderOne = view.findViewById(R.id.squatHeaderTW);
+        mHeaderTwo = view.findViewById(R.id.legPressHeaderTW);
+        mHeaderThree = view.findViewById(R.id.romanianDeadliftHeaderTW);
+        mHeaderFour = view.findViewById(R.id.legCurlHeaderTW);
+        mHeaderFive = view.findViewById(R.id.lyingLegCurlHeaderTW);
+        mHeaderSix = view.findViewById(R.id.standingCalfRaiseHeaderTW);
     }
 
     public void initalizeEditTexts(View view){
         mCommentET = view.findViewById(R.id.commentET);
         mRatingET = view.findViewById(R.id.ratingET);
-        mExOneSetOneReps = view.findViewById(R.id.benchPressSetOneRepsET);
-        mExOneSetTwoReps = view.findViewById(R.id.benchPressSetTwoRepsET);
-        mExOneSetThreeReps = view.findViewById(R.id.benchPressSetThreeRepsET);
-        mExOneSetOneWeight = view.findViewById(R.id.benchPressSetOneWeightET);
-        mExOneSetTwoWeight = view.findViewById(R.id.benchPressSetTwoWeightET);
-        mExOneSetThreeWeight = view.findViewById(R.id.benchPressSetThreeWeightET);
-        mExTwoSetOneReps = view.findViewById(R.id.inclineBenchPressSetOneRepsET);
-        mExTwoSetTwoReps = view.findViewById(R.id.inclineBenchPressSetTwoRepsET);
-        mExTwoSetThreeReps = view.findViewById(R.id.inclineBenchPressSetThreeRepsET);
-        mExTwoSetOneWeight = view.findViewById(R.id.inclineBenchPressSetOneWeightET);
-        mExTwoSetTwoWeight = view.findViewById(R.id.inclineBenchPressSetTwoWeightET);
-        mExTwoSetThreeWeight = view.findViewById(R.id.inclineBenchPressSetThreeWeightET);
-        mExThreeSetOneReps = view.findViewById(R.id.exerciseThreeSetOneRepsET);
-        mExThreeSetTwoReps = view.findViewById(R.id.exerciseThreeSetTwoRepsET);
-        mExThreeSetThreeReps = view.findViewById(R.id.exerciseThreeSetThreeRepsET);
-        mExThreeSetOneWeight = view.findViewById(R.id.exerciseThreeSetOneWeightET);
-        mExThreeSetTwoWeight = view.findViewById(R.id.exerciseThreeSetTwoWeightET);
-        mExThreeSetThreeWeight = view.findViewById(R.id.exerciseThreeSetThreeWeightET);
-        mExFourSetOneReps = view.findViewById(R.id.exerciseFourSetOneRepsET);
-        mExFourSetTwoReps = view.findViewById(R.id.exerciseFourSetTwoRepsET);
-        mExFourSetThreeReps = view.findViewById(R.id.exerciseFourSetThreeRepsET);
-        mExFourSetOneWeight = view.findViewById(R.id.exerciseFourSetOneWeightET);
-        mExFourSetTwoWeight = view.findViewById(R.id.exerciseFourSetTwoWeightET);
-        mExFourSetThreeWeight = view.findViewById(R.id.exerciseFourSetThreeWeightET);
-        mExFiveSetOneReps = view.findViewById(R.id.exerciseFiveSetOneRepsET);
-        mExFiveSetTwoReps = view.findViewById(R.id.exerciseFiveSetTwoRepsET);
-        mExFiveSetThreeReps = view.findViewById(R.id.exerciseFiveSetThreeRepsET);
-        mExFiveSetOneWeight = view.findViewById(R.id.exerciseFiveSetOneWeightET);
-        mExFiveSetTwoWeight = view.findViewById(R.id.exerciseFiveSetTwoWeightET);
-        mExFiveSetThreeWeight = view.findViewById(R.id.exerciseFiveSetThreeWeightET);
-        mExSixSetOneReps = view.findViewById(R.id.exerciseSixSetOneRepsET);
-        mExSixSetTwoReps = view.findViewById(R.id.exerciseSixSetTwoRepsET);
-        mExSixSetThreeReps = view.findViewById(R.id.exerciseSixSetThreeRepsET);
-        mExSixSetOneWeight = view.findViewById(R.id.exerciseSixSetOneWeightET);
-        mExSixSetTwoWeight = view.findViewById(R.id.exerciseSixSetTwoWeightET);
-        mExSixSetThreeWeight = view.findViewById(R.id.exerciseSixSetThreeWeightET);
+        mExOneSetOneReps = view.findViewById(R.id.squatSetOneRepsET);
+        mExOneSetTwoReps = view.findViewById(R.id.squatSetTwoRepsET);
+        mExOneSetThreeReps = view.findViewById(R.id.squatSetThreeRepsET);
+        mExOneSetOneWeight = view.findViewById(R.id.squatSetOneWeightET);
+        mExOneSetTwoWeight = view.findViewById(R.id.squatSetTwoWeightET);
+        mExOneSetThreeWeight = view.findViewById(R.id.squatSetThreeWeightET);
+        mExTwoSetOneReps = view.findViewById(R.id.legPressSetOneRepsET);
+        mExTwoSetTwoReps = view.findViewById(R.id.legPressSetTwoRepsET);
+        mExTwoSetThreeReps = view.findViewById(R.id.legPressSetThreeRepsET);
+        mExTwoSetOneWeight = view.findViewById(R.id.legPressSetOneWeightET);
+        mExTwoSetTwoWeight = view.findViewById(R.id.legPressSetTwoWeightET);
+        mExTwoSetThreeWeight = view.findViewById(R.id.legPressSetThreeWeightET);
+        mExThreeSetOneReps = view.findViewById(R.id.romanianDeadliftSetOneRepsET);
+        mExThreeSetTwoReps = view.findViewById(R.id.romanianDeadliftSetTwoRepsET);
+        mExThreeSetThreeReps = view.findViewById(R.id.romanianDeadliftSetThreeRepsET);
+        mExThreeSetOneWeight = view.findViewById(R.id.romanianDeadliftSetOneWeightET);
+        mExThreeSetTwoWeight = view.findViewById(R.id.romanianDeadliftSetTwoWeightET);
+        mExThreeSetThreeWeight = view.findViewById(R.id.romanianDeadliftSetThreeWeightET);
+        mExFourSetOneReps = view.findViewById(R.id.legCurlSetOneRepsET);
+        mExFourSetTwoReps = view.findViewById(R.id.legCurlSetTwoRepsET);
+        mExFourSetThreeReps = view.findViewById(R.id.legCurlSetThreeRepsET);
+        mExFourSetOneWeight = view.findViewById(R.id.legCurlSetOneWeightET);
+        mExFourSetTwoWeight = view.findViewById(R.id.legCurlSetTwoWeightET);
+        mExFourSetThreeWeight = view.findViewById(R.id.legCurlSetThreeWeightET);
+        mExFiveSetOneReps = view.findViewById(R.id.lyingLegCurlSetOneRepsET);
+        mExFiveSetTwoReps = view.findViewById(R.id.lyingLegCurlSetTwoRepsET);
+        mExFiveSetThreeReps = view.findViewById(R.id.lyingLegCurlSetThreeRepsET);
+        mExFiveSetOneWeight = view.findViewById(R.id.lyingLegCurlSetOneWeightET);
+        mExFiveSetTwoWeight = view.findViewById(R.id.lyingLegCurlSetTwoWeightET);
+        mExFiveSetThreeWeight = view.findViewById(R.id.lyingLegCurlSetThreeWeightET);
+        mExSixSetOneReps = view.findViewById(R.id.standingCalfRaiseSetOneRepsET);
+        mExSixSetTwoReps = view.findViewById(R.id.standingCalfRaiseSetTwoRepsET);
+        mExSixSetThreeReps = view.findViewById(R.id.standingCalfRaiseSetThreeRepsET);
+        mExSixSetOneWeight = view.findViewById(R.id.standingCalfRaiseSetOneWeightET);
+        mExSixSetTwoWeight = view.findViewById(R.id.standingCalfRaiseSetTwoWeightET);
+        mExSixSetThreeWeight = view.findViewById(R.id.standingCalfRaiseSetThreeWeightET);
     }
 
     public void retrieveMaxWorkoutID(){
@@ -339,62 +341,62 @@ public class HyperAWorkoutFragment extends Fragment {
     }
 
     public void youTubeButtons(View view){
-        mYouTubeButton1 = view.findViewById(R.id.goToBenchPressButton);
+        mYouTubeButton1 = view.findViewById(R.id.goToSquatButton);
         mYouTubeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=o6iMMdZSxB0"));
+                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=qz43Vtc7v4Q"));
                 startActivity(webLink);
             }
         });
 
-        mYouTubeButton2 = view.findViewById(R.id.goToInclineBenchPressButton);
+        mYouTubeButton2 = view.findViewById(R.id.goToLegPressButton);
         mYouTubeButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=wQTR3SN4htw"));
+                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=S6gNwZhxTW4"));
                 startActivity(webLink);
             }
         });
 
-        mYouTubeButton3 = view.findViewById(R.id.goToExerciseThreeButton);
+        mYouTubeButton3 = view.findViewById(R.id.goToRomanianDeadliftButton);
         mYouTubeButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=vmi-Xhxt-Ao"));
+                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=F8-LJWcEk1M"));
                 startActivity(webLink);
             }
         });
 
-        mYouTubeButton4 = view.findViewById(R.id.goToExerciseFourButton);
+        mYouTubeButton4 = view.findViewById(R.id.goToLegCurlButton);
         mYouTubeButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=bSJbQrZ5NZQ"));
+                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=Q303oFwI7Xk"));
                 startActivity(webLink);
             }
         });
 
-        mYouTubeButton5 = view.findViewById(R.id.goToExerciseFiveButton);
+        mYouTubeButton5 = view.findViewById(R.id.goToLyingLegCurlButton);
         mYouTubeButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=DrMtnfhH9Rk"));
+                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=A40C3d3UVFA"));
                 startActivity(webLink);
             }
         });
 
-        mYouTubeButton6 = view.findViewById(R.id.goToExerciseSixButton);
+        mYouTubeButton6 = view.findViewById(R.id.goToStandingCalfRaiseButton);
         mYouTubeButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=cTus_cugCSs"));
+                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=qBe3el4Xxm4"));
                 startActivity(webLink);
             }
         });
@@ -402,4 +404,5 @@ public class HyperAWorkoutFragment extends Fragment {
 
 
     }
+
 }
