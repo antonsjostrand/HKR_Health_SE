@@ -56,22 +56,27 @@ public class StrengthBWorkoutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_strength_a_workout_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_strength_b_workout_layout, container, false);
 
-        mHkrHealthRepository = new HkrHealthRepository(getActivity());
+        try {
+            mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
-        initalizeTextViews(view);
-        initalizeEditTexts(view);
-        retrieveMaxWorkoutID();
-        youTubeButtons(view);
+            initalizeTextViews(view);
+            initalizeEditTexts(view);
+            retrieveMaxWorkoutID();
+            youTubeButtons(view);
 
-        mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
-        mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveWorkoutButtonPressed();
-            }
-        });
+            mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
+            mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveWorkoutButtonPressed();
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+            e.printStackTrace();
+        }
 
         return view;
     }
@@ -102,8 +107,8 @@ public class StrengthBWorkoutFragment extends Fragment {
 
     public void initalizeTextViews(View view) {
         mHeaderOne = view.findViewById(R.id.squatStrTW);
-        mHeaderTwo = view.findViewById(R.id.benchPressStrHeaderTW);
-        mHeaderThree = view.findViewById(R.id.deadliftHeaderTW);
+        mHeaderTwo = view.findViewById(R.id.militaryPressStrHeaderTW);
+        mHeaderThree = view.findViewById(R.id.powerCleanStrHeaderTW);
         mHeaderOneInfo = view.findViewById(R.id.squatInfoTW);
         mHeaderTwoInfo = view.findViewById(R.id.benchPressStrInfoTW);
         mHeaderThreeInfo = view.findViewById(R.id.deadliftStrInfoTW);
@@ -123,27 +128,23 @@ public class StrengthBWorkoutFragment extends Fragment {
         mExOneSetFourWeight = view.findViewById(R.id.squatStrSetFourWeightET);
         mExOneSetFiveWeight = view.findViewById(R.id.squatStrSetFiveWeightET);
 
-        mExTwoSetOneReps = view.findViewById(R.id.benchPressStrSetOneRepsET);
-        mExTwoSetTwoReps = view.findViewById(R.id.benchPressStrSetTwoRepsET);
-        mExTwoSetThreeReps = view.findViewById(R.id.benchPressStrSetThreeRepsET);
-        mExTwoSetFourReps = view.findViewById(R.id.benchPressStrSetFourRepsET);
-        mExTwoSetFiveReps = view.findViewById(R.id.benchPressStrSetFiveRepsET);
-        mExTwoSetOneWeight = view.findViewById(R.id.benchPressStrSetOneWeightET);
-        mExTwoSetTwoWeight = view.findViewById(R.id.benchPressStrSetTwoWeightET);
-        mExTwoSetThreeWeight = view.findViewById(R.id.benchPressStrSetThreeWeightET);
-        mExTwoSetFourWeight = view.findViewById(R.id.benchPressStrSetFourWeightET);
-        mExTwoSetFiveWeight = view.findViewById(R.id.benchPressStrSetFiveWeightET);
+        mExTwoSetOneReps = view.findViewById(R.id.militaryPressStrSetOneRepsET);
+        mExTwoSetTwoReps = view.findViewById(R.id.militaryPressStrSetTwoRepsET);
+        mExTwoSetThreeReps = view.findViewById(R.id.militaryPressStrSetThreeRepsET);
+        mExTwoSetFourReps = view.findViewById(R.id.militaryPressStrSetFourRepsET);
+        mExTwoSetFiveReps = view.findViewById(R.id.militaryPressStrSetFiveRepsET);
+        mExTwoSetOneWeight = view.findViewById(R.id.militaryPressStrSetOneWeightET);
+        mExTwoSetTwoWeight = view.findViewById(R.id.militaryPressStrSetTwoWeightET);
+        mExTwoSetThreeWeight = view.findViewById(R.id.militaryPressStrSetThreeWeightET);
+        mExTwoSetFourWeight = view.findViewById(R.id.militaryPressStrSetFourWeightET);
+        mExTwoSetFiveWeight = view.findViewById(R.id.militaryPressStrSetFiveWeightET);
 
-        mExThreeSetOneReps = view.findViewById(R.id.deadliftStrSetOneRepsET);
-        mExThreeSetTwoReps = view.findViewById(R.id.deadliftStrSetTwoRepsET);
-        mExThreeSetThreeReps = view.findViewById(R.id.deadliftStrSetThreeRepsET);
-        mExThreeSetFourReps = view.findViewById(R.id.deadliftStrSetFourRepsET);
-        mExThreeSetFiveReps = view.findViewById(R.id.deadliftStrSetFiveRepsET);
-        mExThreeSetOneWeight = view.findViewById(R.id.deadliftStrSetOneWeightET);
-        mExThreeSetTwoWeight = view.findViewById(R.id.deadliftStrSetTwoWeightET);
-        mExThreeSetThreeWeight = view.findViewById(R.id.deadliftStrSetThreeWeightET);
-        mExThreeSetFourWeight = view.findViewById(R.id.deadliftStrSetFourWeightET);
-        mExThreeSetFiveWeight = view.findViewById(R.id.deadliftStrSetFiveWeightET);
+        mExThreeSetOneReps = view.findViewById(R.id.powerCleanStrSetOneRepsET);
+        mExThreeSetTwoReps = view.findViewById(R.id.powerCleanStrSetTwoRepsET);
+        mExThreeSetThreeReps = view.findViewById(R.id.powerCleanStrSetThreeRepsET);
+        mExThreeSetOneWeight = view.findViewById(R.id.powerCleanStrSetOneWeightET);
+        mExThreeSetTwoWeight = view.findViewById(R.id.powerCleanStrSetTwoWeightET);
+        mExThreeSetThreeWeight = view.findViewById(R.id.powerCleanStrSetThreeWeightET);
 
     }
 
@@ -227,14 +228,14 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
-            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetFourReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetFourWeight.getText()));
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
-            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetFiveReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetFiveWeight.getText()));
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
@@ -267,30 +268,17 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetThreeReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetThreeWeight.getText()));
             mExercise = new Exercise(workoutID,mWorkoutType,  mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
-            mExerciseSet++;
-            mHkrHealthRepository.insertExercise(mExercise);
-
-            mExerciseName = String.valueOf(mHeaderOne.getText());
-            mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetFourReps.getText()));
-            mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetFourWeight.getText()));
-            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
-            mExerciseSet++;
-            mHkrHealthRepository.insertExercise(mExercise);
-
-            mExerciseName = String.valueOf(mHeaderOne.getText());
-            mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetFiveReps.getText()));
-            mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetFiveWeight.getText()));
-            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
 
         } catch (Exception e) {
             Log.d(TAG, "insertThirdExerciseToDatabase: error: " + e);
+            e.printStackTrace();
         }
     }
 
     public void youTubeButtons(View view) {
-        mYouTubeButton1 = view.findViewById(R.id.goToSquatStrButton);
+        mYouTubeButton1 = view.findViewById(R.id.goToSquatButton);
         mYouTubeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -300,7 +288,7 @@ public class StrengthBWorkoutFragment extends Fragment {
             }
         });
 
-        mYouTubeButton2 = view.findViewById(R.id.goToBenchPressStrButton);
+        mYouTubeButton2 = view.findViewById(R.id.goToMilitaryPressStrButton);
         mYouTubeButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -310,7 +298,7 @@ public class StrengthBWorkoutFragment extends Fragment {
             }
         });
 
-        mYouTubeButton3 = view.findViewById(R.id.goTodeadliftStrButton);
+        mYouTubeButton3 = view.findViewById(R.id.goTopowerCleantrButton);
         mYouTubeButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

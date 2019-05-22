@@ -49,14 +49,16 @@ public class StrengthWorkout implements Parcelable{
         comment = in.readString();
         workoutType = in.readString();
     }
-    public static final Parcelable.Creator<StrengthWorkout> CREATOR = new Parcelable.Creator<StrengthWorkout>() {
+
+    public static final Creator<StrengthWorkout> CREATOR = new Creator<StrengthWorkout>() {
         @Override
         public StrengthWorkout createFromParcel(Parcel in) {
             return new StrengthWorkout(in);
         }
 
         @Override
-        public StrengthWorkout[] newArray(int size) { return new StrengthWorkout[size];
+        public StrengthWorkout[] newArray(int size) {
+            return new StrengthWorkout[size];
         }
     };
 
