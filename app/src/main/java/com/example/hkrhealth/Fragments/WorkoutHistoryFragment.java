@@ -77,6 +77,11 @@ public class WorkoutHistoryFragment extends Fragment {
 
     public void strengthButtonPressed(){
         try{
+            ft = fm.beginTransaction();
+
+            StrengthWorkoutHistoryFragment strengthWorkoutHistoryFragment = new StrengthWorkoutHistoryFragment();
+            ft.replace(R.id.fragment_container, strengthWorkoutHistoryFragment);
+            ft.commit();
 
         }catch (Exception e){
             Log.d(TAG, "strengthButtonPressed: error: " + e);
