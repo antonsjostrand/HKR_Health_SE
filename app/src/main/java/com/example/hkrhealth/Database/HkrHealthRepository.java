@@ -6,10 +6,12 @@ import android.content.Context;
 import com.example.hkrhealth.Async.InsertExerciseAsyncTask;
 import com.example.hkrhealth.Async.InsertGoalSettingAsyncTask;
 import com.example.hkrhealth.Async.InsertHypertrophyWorkoutAsyncTask;
+import com.example.hkrhealth.Async.InsertStrengthWorkoutAsyncTask;
 import com.example.hkrhealth.Async.UpdateGoalSettingAsyncTask;
 import com.example.hkrhealth.Models.Exercise;
 import com.example.hkrhealth.Models.GoalSetting;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
+import com.example.hkrhealth.Models.StrengthWorkout;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class HkrHealthRepository {
     }
 
     /*
-       ------ WORKOUT QUERIES -----
+       ------ HYPERTROPHY WORKOUT QUERIES -----
      */
 
     //Insert a single Hypertrophyworkout to the database.
@@ -41,6 +43,28 @@ public class HkrHealthRepository {
 
     public LiveData<HypertrophyWorkout> getHypertrophyWorkoutByID(int workoutID){
         return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getHypertrophyWorkoutByID(workoutID);
+    }
+
+    /*
+      ----------- STRENGTH WORKOUT QUERIES ---------
+     */
+
+    //Insert a single Hypertrophyworkout to the database.
+    public void insertStrengthWorkout(StrengthWorkout strengthWorkout){
+       new InsertStrengthWorkoutAsyncTask(mHkrHealthDatabase.getStrengthWorkoutDAO()).execute(strengthWorkout);
+    }
+
+    //Returns the biggest hypertrophy workout id.
+    public LiveData<Integer> retrieveMaxWorkoutIDStrength(){
+        return mHkrHealthDatabase.getStrengthWorkoutDAO().retrieveMaxWorkoutIDStrength();
+    }
+
+    public LiveData<List<StrengthWorkout>> getAllStrengthWorkouts(){
+        return mHkrHealthDatabase.getStrengthWorkoutDAO().getAllStrengthWorkouts();
+    }
+
+    public LiveData<StrengthWorkout> getStrengthWorkoutByID(int workoutID){
+        return mHkrHealthDatabase.getStrengthWorkoutDAO().getStrengthWorkoutByID(workoutID);
     }
 
     /*
