@@ -99,6 +99,12 @@
         "\n" Push-ups with wide rotation "\n" Side planks
         "\n" "\n" <b>Rest for 10 seconds between moves.</b> </string>
 
+    <!-- Strings used for Strength Workout -->
+    <string name="military_press">Military Press</string>
+    <string name="repInfo1">3 reps for 5 sets</string>
+    <string name="repInfo2">1 reps for 5 sets</string>
+    <string name="repInfo3">5 reps for 3 sets</string>
+    <string name="power_clean">Power clean</string>
 
 
 </resources>

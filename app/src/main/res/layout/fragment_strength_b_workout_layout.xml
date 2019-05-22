@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrTW"
+            android:text="@string/squat"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/youtube_example"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/squatStrTW"
+            android:id="@+id/goToSquatButton"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatInfoTW"
+            android:text="@string/repInfo1"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            app:layout_constraintTop_toBottomOf="@id/squatStrTW"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetOneWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/squatInfoTW"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetOneRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/squatInfoTW"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetTwoWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetOneWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetTwoRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetOneRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetThreeWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetTwoWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetThreeRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetTwoRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetFourWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetThreeWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetFourRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetThreeRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetFiveWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetFourWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/squatStrSetFiveRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetFourRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrHeaderTW"
+            android:text="@string/military_press"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetFiveWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/youtube_example"
+            app:layout_constraintTop_toTopOf="@id/militaryPressStrHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/militaryPressStrHeaderTW"
+            android:id="@+id/goToMilitaryPressStrButton"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrInfoTW"
+            android:text="@string/repInfo1"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrHeaderTW"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetOneWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrInfoTW"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetOneRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrInfoTW"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetTwoWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetOneWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetTwoRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetOneRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetThreeWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetTwoWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetThreeRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetTwoRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetFourWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetThreeWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetFourRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetThreeRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetFiveWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetFourWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/militaryPressStrSetFiveRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetFourRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrHeaderTW"
+            android:text="@string/power_clean"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            app:layout_constraintTop_toBottomOf="@id/militaryPressStrSetFiveWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/youtube_example"
+            app:layout_constraintTop_toTopOf="@id/powerCleanStrHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/powerCleanStrHeaderTW"
+            android:id="@+id/goTopowerCleantrButton"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrInfoTW"
+            android:text="@string/repInfo3"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrHeaderTW"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrSetOneWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrInfoTW"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrSetOneRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrInfoTW"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrSetTwoWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrSetOneWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrSetTwoRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrSetOneRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrSetThreeWeightET"
+            android:textAlignment="center"
+            android:hint="@string/weight"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrSetTwoWeightET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/powerCleanStrSetThreeRepsET"
+            android:textAlignment="center"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrSetTwoRepsET"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentET"
+            android:hint="@string/comment"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/powerCleanStrSetThreeRepsET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ratingET"
+            />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingET"
+            android:hint="@string/rating"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@color/green"
+            app:layout_constraintTop_toBottomOf="@id/commentET"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/saveWorkoutButton"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saveWorkoutButton"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:layout_margin="20dp"
+            app:layout_constraintTop_toBottomOf="@id/ratingET"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+

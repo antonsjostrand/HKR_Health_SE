@@ -141,10 +141,30 @@ public class WorkoutMenuFragment extends Fragment {
     }
 
     public void strengthAButtonPressed(){
+        try {
+            fm = getActivity().getSupportFragmentManager();
+            ft = fm.beginTransaction();
+
+            StrengthAWorkoutFragment strengthAWorkoutFragment = new StrengthAWorkoutFragment();
+            ft.replace(R.id.fragment_container, strengthAWorkoutFragment);
+            ft.commit();
+        }catch (Exception e){
+            Log.d(TAG, "StrengthAButtonPressed: error: " + e);
+        }
 
     }
 
     public void strengthBButtonPressed(){
+        try {
+            fm = getActivity().getSupportFragmentManager();
+            ft = fm.beginTransaction();
+
+            StrengthBWorkoutFragment strengthBWorkoutFragment = new StrengthBWorkoutFragment();
+            ft.replace(R.id.fragment_container, strengthBWorkoutFragment);
+            ft.commit();
+        }catch (Exception e){
+            Log.d(TAG, "StrengthBButtonPressed: error: " + e);
+        }
 
     }
 
