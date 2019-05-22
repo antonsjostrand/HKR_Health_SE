@@ -109,6 +109,14 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getExerciseDAO().getBiggest1RmPerformedExerciseByName(exerciseName);
     }
 
+    public LiveData<List<Exercise>> getAllExercisesForSpecificStrengthWorkout(int workoutID){
+        return mHkrHealthDatabase.getExerciseDAO().getAllExercisesForSpecificStrengthWorkout(workoutID);
+    }
+
+    public LiveData<List<Exercise>> getAllExercisesForSpecificHypertrophyWorkout(int workoutID){
+        return mHkrHealthDatabase.getExerciseDAO().getAllExercisesForSpecificHypertrophyWorkout(workoutID);
+    }
+
       /*
       --------- GOAL QUERIES -------
      */

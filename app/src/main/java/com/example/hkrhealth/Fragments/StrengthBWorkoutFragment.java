@@ -92,7 +92,8 @@ public class StrengthBWorkoutFragment extends Fragment {
 
 
             //Finally inserts the saved workout
-            //mHkrHealthRepository.insertStrengthWorkout(mStrengthWorkout);
+            mHkrHealthRepository.insertStrengthWorkout(mStrengthWorkout);
+
             Log.d(TAG, "saveWorkoutButtonPressed: insertion succesful!");
         } catch (Exception e) {
             Log.d(TAG, "saveWorkoutButtonPressed: error: " + e);
@@ -147,7 +148,7 @@ public class StrengthBWorkoutFragment extends Fragment {
     }
 
     public void retrieveMaxWorkoutID() {
-        mHkrHealthRepository.retrieveMaxWorkoutID().observe(this, new Observer<Integer>() {
+        mHkrHealthRepository.retrieveMaxWorkoutIDStrength().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
                 if (integer == null) {
@@ -166,35 +167,35 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetOneWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetTwoReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetTwoWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetThreeReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetThreeWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetFourReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetFourWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetFiveReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetFiveWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID,mWorkoutType,  mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
 
@@ -208,35 +209,35 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetOneWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetTwoReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetTwoWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetThreeReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetThreeWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetFourReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetFourWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetFiveReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetFiveWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
 
@@ -251,35 +252,35 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseName = String.valueOf(mHeaderThree.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetOneWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderThree.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetTwoReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetTwoWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderThree.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetThreeReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetThreeWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID,mWorkoutType,  mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetFourReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetFourWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetFiveReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetFiveWeight.getText()));
-            mExercise = new Exercise(workoutID, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
+            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
 

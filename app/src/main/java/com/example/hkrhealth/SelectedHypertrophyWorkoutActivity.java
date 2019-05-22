@@ -70,12 +70,17 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
     }
 
     public void initRecyclerView(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
-        mRecyclerView.addItemDecoration(itemDecorator);
-        mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
-        mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
+        try {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+            VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+            mRecyclerView.addItemDecoration(itemDecorator);
+            mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
+            mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
+        }catch (Exception e){
+            Log.d(TAG, "initRecyclerView: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void initializeTextViews(){
@@ -91,7 +96,7 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
 
     public void getAllExercises(int workoutID){
         try{
-            mHkrHealthRepository.getAllExercisesForSpecificWorkout(workoutID).observe(this, new Observer<List<Exercise>>() {
+            mHkrHealthRepository.getAllExercisesForSpecificHypertrophyWorkout(workoutID).observe(this, new Observer<List<Exercise>>() {
                 @Override
                 public void onChanged(@Nullable List<Exercise> exercises) {
                     if (mExercises.size() > 0){
@@ -106,6 +111,7 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
 
         }catch (Exception e){
             Log.d(TAG, "getAllExercises: error: " + e);
+            e.printStackTrace();
         }
 
 

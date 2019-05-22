@@ -21,6 +21,12 @@ public interface ExerciseDAO {
     @Query("SELECT * FROM exercises WHERE workoutID = :workoutID")
     LiveData<List<Exercise>> getAllExercisesForSpecificWorkout(int workoutID);
 
+    @Query("SELECT * FROM exercises WHERE workoutID = :workoutID AND (workoutType = 'Push' OR workoutType = 'Pull' OR workoutType = 'Legs')")
+    LiveData<List<Exercise>> getAllExercisesForSpecificHypertrophyWorkout(int workoutID);
+
+    @Query("SELECT * FROM exercises WHERE workoutID = :workoutID AND (workoutType = 'A' OR workoutType = 'B')")
+    LiveData<List<Exercise>> getAllExercisesForSpecificStrengthWorkout(int workoutID);
+
     @Query("SELECT * FROM exercises WHERE exerciseName = :exerciseName AND exerciseReps = :exerciseReps")
     LiveData<List<Exercise>> getAllExercisesByNameAndReps(String exerciseName, int exerciseReps);
 
