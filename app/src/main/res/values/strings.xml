@@ -1,10 +1,15 @@
 <resources>
     <string name="app_name">HKR Health</string>
+    <string name="app_description">Your pocket personal trainer</string>
+
 
     <!-- Strings used for navigation menu -->
     <string name="nav_workout_selection">Workouts</string>
     <string name="nav_workout_history">Workout History</string>
     <string name="nav_statistics">Statistics</string>
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+
 
     <!-- Strings used in all kinds of workout layouts -->
     <string name="exercise">Exercise</string>
@@ -90,6 +95,12 @@
         <item name="pushdown">Pushdown</item>
         <item name="french_press">French press</item>
     </string-array>
+
+    <!-- Strings used in workoutdesign -->
+    <string name="hyperworkout_a">Workout A</string>
+    <string name="hyperworkout_b">Workout B</string>
+    <string name="hyperworkout_c">Workout C</string>
+    <string name="hyperworkout_d">Workout D</string>
 
 
     <!-- Strings used for HIIT workout -->

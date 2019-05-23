@@ -59,20 +59,25 @@ public class StrengthAWorkoutFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_strength_a_workout_layout, container, false);
 
-        mHkrHealthRepository = new HkrHealthRepository(getActivity());
+        try {
+            mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
-        initalizeTextViews(view);
-        initalizeEditTexts(view);
-        retrieveMaxWorkoutID();
-        youTubeButtons(view);
+            initalizeTextViews(view);
+            initalizeEditTexts(view);
+            retrieveMaxWorkoutID();
+            youTubeButtons(view);
 
-        mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
-        mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveWorkoutButtonPressed();
-            }
-        });
+            mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
+            mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveWorkoutButtonPressed();
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+            e.printStackTrace();
+        }
 
         return view;
     }
@@ -103,7 +108,7 @@ public class StrengthAWorkoutFragment extends Fragment {
     public void initalizeTextViews(View view) {
         mHeaderOne = view.findViewById(R.id.squatStrTW);
         mHeaderTwo = view.findViewById(R.id.benchPressStrHeaderTW);
-        mHeaderThree = view.findViewById(R.id.deadliftHeaderTW);
+        mHeaderThree = view.findViewById(R.id.deadliftStrHeaderTW);
         mHeaderOneInfo = view.findViewById(R.id.squatInfoTW);
         mHeaderTwoInfo = view.findViewById(R.id.benchPressStrInfoTW);
         mHeaderThreeInfo = view.findViewById(R.id.deadliftStrInfoTW);
@@ -201,7 +206,6 @@ public class StrengthAWorkoutFragment extends Fragment {
             mHkrHealthRepository.insertExercise(mExercise);
 
 
-
         } catch (Exception e) {
             Log.d(TAG, "insertSecondExerciseToDatabase: error: " + e);
         }
@@ -218,6 +222,7 @@ public class StrengthAWorkoutFragment extends Fragment {
 
         } catch (Exception e) {
             Log.d(TAG, "insertThirdExerciseToDatabase: error: " + e);
+            e.printStackTrace();
         }
     }
 

@@ -56,22 +56,27 @@ public class StrengthBWorkoutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_strength_a_workout_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_strength_b_workout_layout, container, false);
 
-        mHkrHealthRepository = new HkrHealthRepository(getActivity());
+        try {
+            mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
-        initalizeTextViews(view);
-        initalizeEditTexts(view);
-        retrieveMaxWorkoutID();
-        youTubeButtons(view);
+            initalizeTextViews(view);
+            initalizeEditTexts(view);
+            retrieveMaxWorkoutID();
+            youTubeButtons(view);
 
-        mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
-        mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveWorkoutButtonPressed();
-            }
-        });
+            mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
+            mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveWorkoutButtonPressed();
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+            e.printStackTrace();
+        }
 
         return view;
     }
@@ -131,6 +136,7 @@ public class StrengthBWorkoutFragment extends Fragment {
         mExThreeSetThreeReps = view.findViewById(R.id.powerCleanStrSetThreeRepsET);
         mExThreeSetFourReps = view.findViewById(R.id.powerCleanStrSetFourRepsET);
         mExThreeSetFiveReps = view.findViewById(R.id.powerCleanStrSetFiveRepsET);
+
         mExThreeSetOneWeight = view.findViewById(R.id.powerCleanStrSetOneWeightET);
         mExThreeSetTwoWeight = view.findViewById(R.id.powerCleanStrSetTwoWeightET);
         mExThreeSetThreeWeight = view.findViewById(R.id.powerCleanStrSetThreeWeightET);
@@ -250,11 +256,12 @@ public class StrengthBWorkoutFragment extends Fragment {
 
         } catch (Exception e) {
             Log.d(TAG, "insertThirdExerciseToDatabase: error: " + e);
+            e.printStackTrace();
         }
     }
 
     public void youTubeButtons(View view) {
-        mYouTubeButton1 = view.findViewById(R.id.goToSquatStrButton);
+        mYouTubeButton1 = view.findViewById(R.id.goToSquatButton);
         mYouTubeButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,7 +271,7 @@ public class StrengthBWorkoutFragment extends Fragment {
             }
         });
 
-        mYouTubeButton2 = view.findViewById(R.id.goToBenchPressStrButton);
+        mYouTubeButton2 = view.findViewById(R.id.goToMilitaryPressStrButton);
         mYouTubeButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -274,7 +281,7 @@ public class StrengthBWorkoutFragment extends Fragment {
             }
         });
 
-        mYouTubeButton3 = view.findViewById(R.id.goTodeadliftStrButton);
+        mYouTubeButton3 = view.findViewById(R.id.goTopowerCleantrButton);
         mYouTubeButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

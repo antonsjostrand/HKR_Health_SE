@@ -82,7 +82,7 @@ public class SelectedStrengthWorkoutActivity extends AppCompatActivity {
 
     public void getAllExercises(int workoutID){
         try{
-            mHkrHealthRepository.getAllExercisesForSpecificWorkout(workoutID).observe(this, new Observer<List<Exercise>>() {
+            mHkrHealthRepository.getAllExercisesForSpecificStrengthWorkout(workoutID).observe(this, new Observer<List<Exercise>>() {
                 @Override
                 public void onChanged(@Nullable List<Exercise> exercises) {
                     if (mExercises.size() > 0){
