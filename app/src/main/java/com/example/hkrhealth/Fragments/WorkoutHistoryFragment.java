@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,8 @@ public class WorkoutHistoryFragment extends Fragment {
     private static final String TAG = "WorkoutHistoryFragment";
 
     //UI
-    private Button mHypertrophyButton, mStrengthButton, mLeanButton;
+   // private Button mHypertrophyButton, mStrengthButton, mLeanButton;
+    private CardView mHypertrophyHistoryButton, mStrengthHistoryButton, mLeanButton;
 
     //Fragment
     private FragmentManager fm;
@@ -30,20 +32,24 @@ public class WorkoutHistoryFragment extends Fragment {
 
             fm = getActivity().getSupportFragmentManager();
 
-            mHypertrophyButton = view.findViewById(R.id.hypertrophyHistoryButton);
-            mStrengthButton = view.findViewById(R.id.strengthHistoryButton);
+            mHypertrophyHistoryButton = view.findViewById(R.id.hypertrophyHistoryButton);
+            mStrengthHistoryButton = view.findViewById(R.id.strengthHistoryButton);
             mLeanButton = view.findViewById(R.id.leanHistoryButton);
 
-            mHypertrophyButton.setOnClickListener(new View.OnClickListener() {
+
+            mHypertrophyHistoryButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "onClick: Hypeworkout A: Pressed");
                     hypertrophyButtonPressed();
                 }
             });
 
-            mStrengthButton.setOnClickListener(new View.OnClickListener() {
+            mStrengthHistoryButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "onClick: Hypeworkout B: Pressed");
+
                     strengthButtonPressed();
                 }
             });
@@ -51,6 +57,8 @@ public class WorkoutHistoryFragment extends Fragment {
             mLeanButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG, "onClick: Hypeworkout A: Pressed");
+
                     leanButtonPressed();
                 }
             });

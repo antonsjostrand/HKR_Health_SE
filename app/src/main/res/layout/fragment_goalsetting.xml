@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/goalSettingTV"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="172dp"
+            android:background="@color/green"
             android:text="Weight Goal"
             android:textAlignment="center"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:background="@color/green"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <EditText
@@ -31,90 +34,95 @@
             android:layout_height="wrap_content"
             android:hint="@string/weightGoal"
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/goalSettingTV"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/goalSettingTV" />
 
         <TextView
             android:id="@+id/currentGoalWeightTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
-            android:layout_marginRight="52dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="272dp"
             android:hint="@string/yourCurrentGoal"
             android:textSize="15sp"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weigtGoalET" />
 
         <TextView
+            android:id="@+id/currentGoalShownTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/currentGoalShownTV"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="@id/currentGoalWeightTV"
             app:layout_constraintRight_toRightOf="@id/currentGoalWeightTV"
-            app:layout_constraintTop_toBottomOf="@id/currentGoalWeightTV"
-            />
-
+            app:layout_constraintTop_toBottomOf="@id/currentGoalWeightTV" />
 
 
         <Button
+            android:id="@+id/saveGoalWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/saveGoalWeight"
-            android:textAlignment="center"
+            android:layout_marginStart="160dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Save"
+            android:textAlignment="center"
             android:textSize="20sp"
-            android:layout_margin="20dp"
-            app:layout_constraintTop_toBottomOf="@id/weigtGoalET"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.006"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52" />
 
 
         <TextView
+            android:id="@+id/currentWeightTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/currentWeightTV"
+            android:layout_marginTop="80dp"
+            android:background="@color/green"
             android:text="Current Weight"
             android:textAlignment="center"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/saveGoalWeight"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saveGoalWeight" />
 
         <EditText
+            android:id="@+id/currentWeightET"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/currentWeightET"
-            android:textAlignment="center"
             android:hint="@string/currentWeight"
-            app:layout_constraintTop_toBottomOf="@id/currentWeightTV"
+            android:textAlignment="center"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            />
-
-
+            app:layout_constraintTop_toBottomOf="@id/currentWeightTV" />
 
 
         <Button
+            android:id="@+id/saveCurrentWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/saveCurrentWeight"
-            android:textAlignment="center"
-            android:text="Save"
-            android:textSize="20sp"
             android:layout_margin="20dp"
-            app:layout_constraintTop_toBottomOf="@id/currentWeightET"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="Save"
+            android:textAlignment="center"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentWeightET"
+            app:layout_constraintVertical_bias="1.0" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
