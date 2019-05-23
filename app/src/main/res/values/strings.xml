@@ -118,5 +118,12 @@
     <string name="repInfo3">3 reps for 5 sets</string>
     <string name="power_clean">Power clean</string>
 
+    <!-- Strings used in workout statistics -->
+    <string name="push">Push</string>
+    <string name="pull">Pull</string>
+    <string name="legs">Legs</string>
+    <string name="A">A</string>
+    <string name="B">B</string>
+    <string name="total_weight_lifted_all_workouts">The total weight you have lifted: </string>
 
 </resources>
