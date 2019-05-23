@@ -104,45 +104,7 @@
             app:layout_constraintRight_toRightOf="parent"
             />
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/squatStrSetFourWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/squatStrSetThreeWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/squatStrSetFourRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/squatStrSetThreeRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/squatStrSetFiveWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/squatStrSetFourWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/squatStrSetFiveRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/squatStrSetFourRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
 
         <TextView
             android:layout_width="match_parent"
@@ -153,7 +115,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/squatStrSetFiveWeightET"
+            app:layout_constraintTop_toBottomOf="@id/squatStrSetThreeWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -237,45 +199,6 @@
             app:layout_constraintRight_toRightOf="parent"
             />
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/benchPressStrSetFourWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/benchPressStrSetThreeWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/benchPressStrSetFourRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/benchPressStrSetThreeRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/benchPressStrSetFiveWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/benchPressStrSetFourWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/benchPressStrSetFiveRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/benchPressStrSetFourRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
 
         <TextView
             android:layout_width="match_parent"
@@ -286,7 +209,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/benchPressStrSetFiveWeightET"
+            app:layout_constraintTop_toBottomOf="@id/benchPressStrSetThreeWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -330,85 +253,7 @@
             app:layout_constraintRight_toRightOf="parent"
             />
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetTwoWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetOneWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
 
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetTwoRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetOneRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetThreeWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetTwoWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetThreeRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetTwoRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetFourWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetThreeWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetFourRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetThreeRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetFiveWeightET"
-            android:textAlignment="center"
-            android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetFourWeightET"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/deadliftStrSetFiveRepsET"
-            android:textAlignment="center"
-            android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetFourRepsET"
-            app:layout_constraintRight_toRightOf="parent"
-            />
 
         <EditText
             android:layout_width="wrap_content"
@@ -419,7 +264,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetFiveRepsET"
+            app:layout_constraintTop_toBottomOf="@id/deadliftStrSetOneRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@id/ratingET"

@@ -45,10 +45,10 @@ public class StrengthBWorkoutFragment extends Fragment {
 
     private EditText mRatingET, mCommentET;
     private TextView mHeaderOne, mHeaderTwo, mHeaderThree, mHeaderOneInfo, mHeaderTwoInfo, mHeaderThreeInfo;
-    private EditText mExOneSetOneReps, mExOneSetTwoReps, mExOneSetThreeReps, mExOneSetFourReps, mExOneSetFiveReps;
-    private EditText mExOneSetOneWeight, mExOneSetTwoWeight, mExOneSetThreeWeight, mExOneSetFourWeight, mExOneSetFiveWeight;
-    private EditText mExTwoSetOneReps, mExTwoSetTwoReps, mExTwoSetThreeReps, mExTwoSetFourReps, mExTwoSetFiveReps;
-    private EditText mExTwoSetOneWeight, mExTwoSetTwoWeight, mExTwoSetThreeWeight, mExTwoSetFourWeight, mExTwoSetFiveWeight;
+    private EditText mExOneSetOneReps, mExOneSetTwoReps, mExOneSetThreeReps;
+    private EditText mExOneSetOneWeight, mExOneSetTwoWeight, mExOneSetThreeWeight;
+    private EditText mExTwoSetOneReps, mExTwoSetTwoReps, mExTwoSetThreeReps;
+    private EditText mExTwoSetOneWeight, mExTwoSetTwoWeight, mExTwoSetThreeWeight;
     private EditText mExThreeSetOneReps, mExThreeSetTwoReps, mExThreeSetThreeReps, mExThreeSetFourReps, mExThreeSetFiveReps;
     private EditText mExThreeSetOneWeight, mExThreeSetTwoWeight, mExThreeSetThreeWeight, mExThreeSetFourWeight, mExThreeSetFiveWeight;
 
@@ -102,11 +102,11 @@ public class StrengthBWorkoutFragment extends Fragment {
 
     public void initalizeTextViews(View view) {
         mHeaderOne = view.findViewById(R.id.squatStrTW);
-        mHeaderTwo = view.findViewById(R.id.benchPressStrHeaderTW);
-        mHeaderThree = view.findViewById(R.id.deadliftHeaderTW);
+        mHeaderTwo = view.findViewById(R.id.militaryPressStrHeaderTW);
+        mHeaderThree = view.findViewById(R.id.powerCleanStrHeaderTW);
         mHeaderOneInfo = view.findViewById(R.id.squatInfoTW);
-        mHeaderTwoInfo = view.findViewById(R.id.benchPressStrInfoTW);
-        mHeaderThreeInfo = view.findViewById(R.id.deadliftStrInfoTW);
+        mHeaderTwoInfo = view.findViewById(R.id.militaryPressStrInfoTW);
+        mHeaderThreeInfo = view.findViewById(R.id.powerCleanStrInfoTW);
     }
 
     public void initalizeEditTexts(View view) {
@@ -115,35 +115,27 @@ public class StrengthBWorkoutFragment extends Fragment {
         mExOneSetOneReps = view.findViewById(R.id.squatStrSetOneRepsET);
         mExOneSetTwoReps = view.findViewById(R.id.squatStrSetTwoRepsET);
         mExOneSetThreeReps = view.findViewById(R.id.squatStrSetThreeRepsET);
-        mExOneSetFourReps = view.findViewById(R.id.squatStrSetFourRepsET);
-        mExOneSetFiveReps = view.findViewById(R.id.squatStrSetFiveRepsET);
         mExOneSetOneWeight = view.findViewById(R.id.squatStrSetOneWeightET);
         mExOneSetTwoWeight = view.findViewById(R.id.squatStrSetTwoWeightET);
         mExOneSetThreeWeight = view.findViewById(R.id.squatStrSetThreeWeightET);
-        mExOneSetFourWeight = view.findViewById(R.id.squatStrSetFourWeightET);
-        mExOneSetFiveWeight = view.findViewById(R.id.squatStrSetFiveWeightET);
 
-        mExTwoSetOneReps = view.findViewById(R.id.benchPressStrSetOneRepsET);
-        mExTwoSetTwoReps = view.findViewById(R.id.benchPressStrSetTwoRepsET);
-        mExTwoSetThreeReps = view.findViewById(R.id.benchPressStrSetThreeRepsET);
-        mExTwoSetFourReps = view.findViewById(R.id.benchPressStrSetFourRepsET);
-        mExTwoSetFiveReps = view.findViewById(R.id.benchPressStrSetFiveRepsET);
-        mExTwoSetOneWeight = view.findViewById(R.id.benchPressStrSetOneWeightET);
-        mExTwoSetTwoWeight = view.findViewById(R.id.benchPressStrSetTwoWeightET);
-        mExTwoSetThreeWeight = view.findViewById(R.id.benchPressStrSetThreeWeightET);
-        mExTwoSetFourWeight = view.findViewById(R.id.benchPressStrSetFourWeightET);
-        mExTwoSetFiveWeight = view.findViewById(R.id.benchPressStrSetFiveWeightET);
+        mExTwoSetOneReps = view.findViewById(R.id.militaryPressStrSetOneRepsET);
+        mExTwoSetTwoReps = view.findViewById(R.id.militaryPressStrSetTwoRepsET);
+        mExTwoSetThreeReps = view.findViewById(R.id.militaryPressStrSetThreeRepsET);
+        mExTwoSetOneWeight = view.findViewById(R.id.militaryPressStrSetOneWeightET);
+        mExTwoSetTwoWeight = view.findViewById(R.id.militaryPressStrSetTwoWeightET);
+        mExTwoSetThreeWeight = view.findViewById(R.id.militaryPressStrSetThreeWeightET);
 
-        mExThreeSetOneReps = view.findViewById(R.id.deadliftStrSetOneRepsET);
-        mExThreeSetTwoReps = view.findViewById(R.id.deadliftStrSetTwoRepsET);
-        mExThreeSetThreeReps = view.findViewById(R.id.deadliftStrSetThreeRepsET);
-        mExThreeSetFourReps = view.findViewById(R.id.deadliftStrSetFourRepsET);
-        mExThreeSetFiveReps = view.findViewById(R.id.deadliftStrSetFiveRepsET);
-        mExThreeSetOneWeight = view.findViewById(R.id.deadliftStrSetOneWeightET);
-        mExThreeSetTwoWeight = view.findViewById(R.id.deadliftStrSetTwoWeightET);
-        mExThreeSetThreeWeight = view.findViewById(R.id.deadliftStrSetThreeWeightET);
-        mExThreeSetFourWeight = view.findViewById(R.id.deadliftStrSetFourWeightET);
-        mExThreeSetFiveWeight = view.findViewById(R.id.deadliftStrSetFiveWeightET);
+        mExThreeSetOneReps = view.findViewById(R.id.powerCleanStrSetOneRepsET);
+        mExThreeSetTwoReps = view.findViewById(R.id.powerCleanStrSetTwoRepsET);
+        mExThreeSetThreeReps = view.findViewById(R.id.powerCleanStrSetThreeRepsET);
+        mExThreeSetFourReps = view.findViewById(R.id.powerCleanStrSetFourRepsET);
+        mExThreeSetFiveReps = view.findViewById(R.id.powerCleanStrSetFiveRepsET);
+        mExThreeSetOneWeight = view.findViewById(R.id.powerCleanStrSetOneWeightET);
+        mExThreeSetTwoWeight = view.findViewById(R.id.powerCleanStrSetTwoWeightET);
+        mExThreeSetThreeWeight = view.findViewById(R.id.powerCleanStrSetThreeWeightET);
+        mExThreeSetFourWeight = view.findViewById(R.id.powerCleanStrSetFourWeightET);
+        mExThreeSetFiveWeight = view.findViewById(R.id.powerCleanStrSetFiveWeightET);
 
     }
 
@@ -182,20 +174,6 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetThreeReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetThreeWeight.getText()));
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
-            mExerciseSet++;
-            mHkrHealthRepository.insertExercise(mExercise);
-
-            mExerciseName = String.valueOf(mHeaderOne.getText());
-            mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetFourReps.getText()));
-            mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetFourWeight.getText()));
-            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
-            mExerciseSet++;
-            mHkrHealthRepository.insertExercise(mExercise);
-
-            mExerciseName = String.valueOf(mHeaderOne.getText());
-            mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetFiveReps.getText()));
-            mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetFiveWeight.getText()));
-            mExercise = new Exercise(workoutID,mWorkoutType,  mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
 
@@ -223,20 +201,6 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetThreeReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetThreeWeight.getText()));
-            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
-            mExerciseSet++;
-            mHkrHealthRepository.insertExercise(mExercise);
-
-            mExerciseName = String.valueOf(mHeaderOne.getText());
-            mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetFourReps.getText()));
-            mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetFourWeight.getText()));
-            mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
-            mExerciseSet++;
-            mHkrHealthRepository.insertExercise(mExercise);
-
-            mExerciseName = String.valueOf(mHeaderOne.getText());
-            mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetFiveReps.getText()));
-            mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetFiveWeight.getText()));
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
@@ -270,14 +234,14 @@ public class StrengthBWorkoutFragment extends Fragment {
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
-            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseName = String.valueOf(mHeaderThree.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetFourReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetFourWeight.getText()));
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet++;
             mHkrHealthRepository.insertExercise(mExercise);
 
-            mExerciseName = String.valueOf(mHeaderOne.getText());
+            mExerciseName = String.valueOf(mHeaderThree.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetFiveReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetFiveWeight.getText()));
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);

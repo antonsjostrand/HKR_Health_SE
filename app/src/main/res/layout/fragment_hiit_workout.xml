@@ -61,9 +61,7 @@
             android:id="@+id/instructionsTV"
             android:text="@string/row1"
             android:lines="17"
-
-
-            />
+            android:textStyle="italic" />
     </ScrollView>
 
 </RelativeLayout>

@@ -93,7 +93,8 @@
 
 
     <!-- Strings used for HIIT workout -->
-    <string name="row1"><b>For 30 seconds each, do:</b> "\n" "\n" Jumping jacks "\n" Wall sit "\n" Push-ups "\n" Crunches "\n"
+    <string name="row1"><b>For 30 seconds each, do:</b> "\n" "\n" Jumping jacks
+        "\n" Wall sit "\n" Push-ups "\n" Crunches
         "\n" Chair step-ups "\n" Squats "\n" Tricep dips
         "\n" Planks "\n" Run on the spot "\n" Lunges
         "\n" Push-ups with wide rotation "\n" Side planks
@@ -101,9 +102,9 @@
 
     <!-- Strings used for Strength Workout -->
     <string name="military_press">Military Press</string>
-    <string name="repInfo1">3 reps for 5 sets</string>
-    <string name="repInfo2">1 reps for 5 sets</string>
-    <string name="repInfo3">5 reps for 3 sets</string>
+    <string name="repInfo1">5 reps for 3 sets</string>
+    <string name="repInfo2">5 reps for 1 set</string>
+    <string name="repInfo3">3 reps for 5 sets</string>
     <string name="power_clean">Power clean</string>
 
 
