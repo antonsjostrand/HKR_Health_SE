@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -13,8 +13,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressHeaderTW"
-            android:text="@string/bench_press"
+            android:id="@+id/deadliftHeaderTW"
+            android:text="@string/deadlift"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textColor="@color/white"
@@ -28,80 +28,79 @@
             android:layout_height="wrap_content"
             android:text="@string/youtube_example"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/benchPressHeaderTW"
-            android:id="@+id/goToBenchPressButton"/>
-
+            app:layout_constraintLeft_toLeftOf="@id/deadliftHeaderTW"
+            android:id="@+id/goToDeadliftButton"/>
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressSetOneWeightET"
+            android:id="@+id/deadliftSetOneWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/benchPressHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/deadliftHeaderTW"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressSetOneRepsET"
+            android:id="@+id/deadliftSetOneRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/benchPressHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/deadliftHeaderTW"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressSetTwoWeightET"
+            android:id="@+id/deadliftSetTwoWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/benchPressSetOneWeightET"
+            app:layout_constraintTop_toBottomOf="@id/deadliftSetOneWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressSetTwoRepsET"
+            android:id="@+id/deadliftSetTwoRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/benchPressSetOneRepsET"
+            app:layout_constraintTop_toBottomOf="@id/deadliftSetOneRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressSetThreeWeightET"
+            android:id="@+id/deadliftSetThreeWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/benchPressSetTwoWeightET"
+            app:layout_constraintTop_toBottomOf="@id/deadliftSetTwoWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/benchPressSetThreeRepsET"
+            android:id="@+id/deadliftSetThreeRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/benchPressSetTwoRepsET"
+            app:layout_constraintTop_toBottomOf="@id/deadliftSetTwoRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/InclineBenchPressHeaderTW"
-            android:text="@string/incline_bench_press"
+            android:id="@+id/barbellRowHeaderTW"
+            android:text="@string/barbell_row"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/benchPressSetThreeWeightET"
+            app:layout_constraintTop_toBottomOf="@id/deadliftSetThreeRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -109,80 +108,80 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/youtube_example"
-            app:layout_constraintTop_toTopOf="@id/InclineBenchPressHeaderTW"
-            app:layout_constraintLeft_toLeftOf="@id/InclineBenchPressHeaderTW"
-            android:id="@+id/goToInclineBenchPressButton"/>
+            app:layout_constraintTop_toTopOf="@id/barbellRowHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/barbellRowHeaderTW"
+            android:id="@+id/goToBarbellRowButton"/>
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/inclineBenchPressSetOneWeightET"
+            android:id="@+id/barbellRowSetOneWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/InclineBenchPressHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowHeaderTW"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/inclineBenchPressSetOneRepsET"
+            android:id="@+id/barbellRowSetOneRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/InclineBenchPressHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowHeaderTW"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/inclineBenchPressSetTwoWeightET"
+            android:id="@+id/barbellRowSetTwoWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/inclineBenchPressSetOneWeightET"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowSetOneWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/inclineBenchPressSetTwoRepsET"
+            android:id="@+id/barbellRowSetTwoRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/inclineBenchPressSetOneRepsET"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowSetOneRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/inclineBenchPressSetThreeWeightET"
+            android:id="@+id/barbellRowSetThreeWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/inclineBenchPressSetTwoWeightET"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowSetTwoWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/inclineBenchPressSetThreeRepsET"
+            android:id="@+id/barbellRowSetThreeRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/inclineBenchPressSetTwoRepsET"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowSetTwoRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeHeaderTW"
-            android:text="@string/shoulder_barbell_press"
+            android:id="@+id/chinUpHeaderTW"
+            android:text="@string/chin_up"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/inclineBenchPressSetThreeRepsET"
+            app:layout_constraintTop_toBottomOf="@id/barbellRowSetThreeRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -190,80 +189,81 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/youtube_example"
-            app:layout_constraintTop_toTopOf="@id/exerciseThreeHeaderTW"
-            app:layout_constraintLeft_toLeftOf="@id/exerciseThreeHeaderTW"
-            android:id="@+id/goToExerciseThreeButton"/>
+            app:layout_constraintTop_toTopOf="@id/chinUpHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/chinUpHeaderTW"
+            android:id="@+id/goToChinUpButton"/>
+
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeSetOneWeightET"
+            android:id="@+id/chinUpSetOneWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/chinUpHeaderTW"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeSetOneRepsET"
+            android:id="@+id/chinUpSetOneRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/chinUpHeaderTW"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeSetTwoWeightET"
+            android:id="@+id/chinUpSetTwoWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeSetOneWeightET"
+            app:layout_constraintTop_toBottomOf="@id/chinUpSetOneWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeSetTwoRepsET"
+            android:id="@+id/chinUpSetTwoRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeSetOneRepsET"
+            app:layout_constraintTop_toBottomOf="@id/chinUpSetOneRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeSetThreeWeightET"
+            android:id="@+id/chinUpSetThreeWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeSetTwoWeightET"
+            app:layout_constraintTop_toBottomOf="@id/chinUpSetTwoWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseThreeSetThreeRepsET"
+            android:id="@+id/chinUpSetThreeRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeSetTwoRepsET"
+            app:layout_constraintTop_toBottomOf="@id/chinUpSetTwoRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourHeaderTW"
-            android:text="@string/shoulder_side_raises"
+            android:id="@+id/oneArmDumbellRowHeaderTW"
+            android:text="@string/one_arm_dumbbell_row"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/exerciseThreeSetThreeRepsET"
+            app:layout_constraintTop_toBottomOf="@id/chinUpSetThreeRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -271,80 +271,82 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/youtube_example"
-            app:layout_constraintTop_toTopOf="@id/exerciseFourHeaderTW"
-            app:layout_constraintLeft_toLeftOf="@id/exerciseFourHeaderTW"
-            android:id="@+id/goToExerciseFourButton"/>
+            app:layout_constraintTop_toTopOf="@id/oneArmDumbellRowHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/oneArmDumbellRowHeaderTW"
+            android:id="@+id/goToOneArmDumbellButton"/>
+
+
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourSetOneWeightET"
+            android:id="@+id/oneArmDumbellRowSetOneWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowHeaderTW"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourSetOneRepsET"
+            android:id="@+id/oneArmDumbellRowSetOneRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowHeaderTW"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourSetTwoWeightET"
+            android:id="@+id/oneArmDumbellRowSetTwoWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourSetOneWeightET"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowSetOneWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourSetTwoRepsET"
+            android:id="@+id/oneArmDumbellRowSetTwoRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourSetOneRepsET"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowSetOneRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourSetThreeWeightET"
+            android:id="@+id/oneArmDumbellRowSetThreeWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourSetTwoWeightET"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowSetTwoWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFourSetThreeRepsET"
+            android:id="@+id/oneArmDumbellRowSetThreeRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourSetTwoRepsET"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowSetTwoRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveHeaderTW"
-            android:text="@string/french_press"
+            android:id="@+id/bentOverLateralRaiseHeaderTW"
+            android:text="@string/bent_over_lateral_raise"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFourSetThreeRepsET"
+            app:layout_constraintTop_toBottomOf="@id/oneArmDumbellRowSetThreeRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -352,80 +354,81 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/youtube_example"
-            app:layout_constraintTop_toTopOf="@id/exerciseFiveHeaderTW"
-            app:layout_constraintLeft_toLeftOf="@id/exerciseFiveHeaderTW"
-            android:id="@+id/goToExerciseFiveButton"/>
+            app:layout_constraintTop_toTopOf="@id/bentOverLateralRaiseHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/bentOverLateralRaiseHeaderTW"
+            android:id="@+id/goToBentOverLateralRaiseButton"/>
+
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveSetOneWeightET"
+            android:id="@+id/bentOverLateralRaiseSetOneWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseHeaderTW"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveSetOneRepsET"
+            android:id="@+id/bentOverLateralRaiseSetOneRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseHeaderTW"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveSetTwoWeightET"
+            android:id="@+id/bentOverLateralRaiseSetTwoWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveSetOneWeightET"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseSetOneWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveSetTwoRepsET"
+            android:id="@+id/bentOverLateralRaiseSetTwoRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveSetOneRepsET"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseSetOneRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveSetThreeWeightET"
+            android:id="@+id/bentOverLateralRaiseSetThreeWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveSetTwoWeightET"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseSetTwoWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseFiveSetThreeRepsET"
+            android:id="@+id/bentOverLateralRaiseSetThreeRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveSetTwoRepsET"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseSetTwoRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixHeaderTW"
-            android:text="@string/pushdown"
+            android:id="@+id/inclineDumbbellCurlHeaderTW"
+            android:text="@string/incline_dumbell_curl"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@color/green"
-            app:layout_constraintTop_toBottomOf="@id/exerciseFiveSetThreeRepsET"
+            app:layout_constraintTop_toBottomOf="@id/bentOverLateralRaiseSetThreeRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
@@ -433,67 +436,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/youtube_example"
-            app:layout_constraintTop_toTopOf="@id/exerciseSixHeaderTW"
-            app:layout_constraintLeft_toLeftOf="@id/exerciseSixHeaderTW"
-            android:id="@+id/goToExerciseSixButton"/>
+            app:layout_constraintTop_toTopOf="@id/inclineDumbbellCurlHeaderTW"
+            app:layout_constraintLeft_toLeftOf="@id/inclineDumbbellCurlHeaderTW"
+            android:id="@+id/goToInclineDumbbellCurlButton"/>
+
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixSetOneWeightET"
+            android:id="@+id/inclineDumbbellCurlSetOneWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlHeaderTW"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixSetOneRepsET"
+            android:id="@+id/inclineDumbbellCurlSetOneRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixHeaderTW"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlHeaderTW"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixSetTwoWeightET"
+            android:id="@+id/inclineDumbbellCurlSetTwoWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixSetOneWeightET"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlSetOneWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixSetTwoRepsET"
+            android:id="@+id/inclineDumbbellCurlSetTwoRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixSetOneRepsET"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlSetOneRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixSetThreeWeightET"
+            android:id="@+id/inclineDumbbellCurlSetThreeWeightET"
             android:textAlignment="center"
             android:hint="@string/weight"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixSetTwoWeightET"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlSetTwoWeightET"
             app:layout_constraintLeft_toLeftOf="parent"
             />
 
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/exerciseSixSetThreeRepsET"
+            android:id="@+id/inclineDumbbellCurlSetThreeRepsET"
             android:textAlignment="center"
             android:hint="@string/reps"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixSetTwoRepsET"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlSetTwoRepsET"
             app:layout_constraintRight_toRightOf="parent"
             />
 
@@ -506,7 +510,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/exerciseSixSetThreeRepsET"
+            app:layout_constraintTop_toBottomOf="@id/inclineDumbbellCurlSetThreeRepsET"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@id/ratingET"
@@ -544,5 +548,4 @@
             />
 
     </android.support.constraint.ConstraintLayout>
-
 </ScrollView>

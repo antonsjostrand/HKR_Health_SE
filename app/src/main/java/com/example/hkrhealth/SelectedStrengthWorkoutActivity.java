@@ -12,22 +12,22 @@ import android.widget.TextView;
 import com.example.hkrhealth.Adapters.ExerciseRecyclerAdapter;
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Models.Exercise;
-import com.example.hkrhealth.Models.HypertrophyWorkout;
+import com.example.hkrhealth.Models.StrengthWorkout;
 import com.example.hkrhealth.Util.VerticalSpacingItemDecorator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
+public class SelectedStrengthWorkoutActivity extends AppCompatActivity {
 
-    private static final String TAG = "SelectedHypertrophyWork";
+    private static final String TAG = "SelectedStrengthWork";
 
     //UI
     private TextView mWorkoutType, mDate, mComment, mRating;
     private RecyclerView mRecyclerView;
 
     //Variables
-    private HypertrophyWorkout mHypertrophyWorkout;
+    private StrengthWorkout mStrengthWorkout;
     private String mModifiedDate;
     private ArrayList<Exercise> mExercises = new ArrayList<>();
     private ExerciseRecyclerAdapter mExerciseRecyclerAdapter;
@@ -38,57 +38,43 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selected_hypertrophy_workout);
+        setContentView(R.layout.activity_selected_strength_workout);
 
         try{
             mHkrHealthRepository = new HkrHealthRepository(this);
-            mRecyclerView = findViewById(R.id.hypertrophyHistoryRecyclerview);
+            mRecyclerView = findViewById(R.id.strengthHistoryRecyclerview);
 
             mWorkoutType = findViewById(R.id.workoutTypeTV);
             mDate = findViewById(R.id.workoutDateTV);
             mComment = findViewById(R.id.workoutCommentTV);
             mRating = findViewById(R.id.workoutRatingTV);
 
-
-
-            mHypertrophyWorkout = getIntent().getParcelableExtra("hypertrophy_workout");
-            Log.d(TAG, "onCreate: TESTING WORKOUTID: " + mHypertrophyWorkout.getWorkoutID());
-
+            mStrengthWorkout = getIntent().getParcelableExtra("strength_workout");
+            Log.d(TAG, "onCreate: TESTING WORKOUTID: " + mStrengthWorkout.getWorkoutID());
 
             initializeTextViews();
-
             initRecyclerView();
-            getAllExercises(mHypertrophyWorkout.getWorkoutID());
-
-
+            getAllExercises(mStrengthWorkout.getWorkoutID());
 
 
         }catch (Exception e){
             Log.d(TAG, "onCreate: error: " + e);
         }
-
     }
-
     public void initRecyclerView(){
-        try {
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.setLayoutManager(linearLayoutManager);
-            VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
-            mRecyclerView.addItemDecoration(itemDecorator);
-            mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
-            mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
-        }catch (Exception e){
-            Log.d(TAG, "initRecyclerView: error: " + e);
-            e.printStackTrace();
-        }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+        mRecyclerView.addItemDecoration(itemDecorator);
+        mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
+        mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
     }
-
     public void initializeTextViews(){
-        mWorkoutType.setText(mHypertrophyWorkout.getWorkoutType());
-        mRating.setText(String.valueOf(mHypertrophyWorkout.getRating()));
-        mComment.setText(mHypertrophyWorkout.getComment());
+        mWorkoutType.setText(mStrengthWorkout.getWorkoutType());
+        mRating.setText(String.valueOf(mStrengthWorkout.getRating()));
+        mComment.setText(mStrengthWorkout.getComment());
 
-        mModifiedDate = mHypertrophyWorkout.getDate();
+        mModifiedDate = mStrengthWorkout.getDate();
         mModifiedDate = mModifiedDate.substring(0,16);
 
         mDate.setText(mModifiedDate);
@@ -96,7 +82,7 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
 
     public void getAllExercises(int workoutID){
         try{
-            mHkrHealthRepository.getAllExercisesForSpecificHypertrophyWorkout(workoutID).observe(this, new Observer<List<Exercise>>() {
+            mHkrHealthRepository.getAllExercisesForSpecificStrengthWorkout(workoutID).observe(this, new Observer<List<Exercise>>() {
                 @Override
                 public void onChanged(@Nullable List<Exercise> exercises) {
                     if (mExercises.size() > 0){
@@ -111,11 +97,9 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
 
         }catch (Exception e){
             Log.d(TAG, "getAllExercises: error: " + e);
-            e.printStackTrace();
         }
 
 
     }
-
 
 }

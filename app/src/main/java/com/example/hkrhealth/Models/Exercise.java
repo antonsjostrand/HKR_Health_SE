@@ -19,6 +19,10 @@ public class Exercise {
     private int workoutID;
 
     @NonNull
+    @ColumnInfo(name = "workoutType")
+    private String workoutType;
+
+    @NonNull
     @ColumnInfo(name = "exerciseName")
     private String exerciseName;
 
@@ -34,9 +38,10 @@ public class Exercise {
     @ColumnInfo(name = "exerciseSet")
     private int exerciseSet;
 
-    public Exercise(int workoutID, @NonNull String exerciseName, int exerciseReps, double exerciseWeight, int exerciseSet) {
+    public Exercise(int workoutID, String workoutType, @NonNull String exerciseName, int exerciseReps, double exerciseWeight, int exerciseSet) {
         try {
             this.workoutID = workoutID;
+            this.workoutType = workoutType;
             this.exerciseName = exerciseName;
             this.exerciseReps = exerciseReps;
             this.exerciseWeight = exerciseWeight;
@@ -93,5 +98,14 @@ public class Exercise {
 
     public void setExerciseSet(int exerciseSet) {
         this.exerciseSet = exerciseSet;
+    }
+
+    @NonNull
+    public String getWorkoutType() {
+        return workoutType;
+    }
+
+    public void setWorkoutType(@NonNull String workoutType) {
+        this.workoutType = workoutType;
     }
 }

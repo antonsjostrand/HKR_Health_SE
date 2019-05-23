@@ -19,7 +19,7 @@ public class WorkoutHistoryFragment extends Fragment {
 
     //UI
    // private Button mHypertrophyButton, mStrengthButton, mLeanButton;
-    private CardView mHypertrophyHistoryButton, mStrengthHistoryButton, mLeanButton;
+    private CardView mHypertrophyHistoryCardView, mStrengthHistoryCardView, mLeanCardView;
 
     //Fragment
     private FragmentManager fm;
@@ -32,12 +32,12 @@ public class WorkoutHistoryFragment extends Fragment {
 
             fm = getActivity().getSupportFragmentManager();
 
-            mHypertrophyHistoryButton = view.findViewById(R.id.hypertrophyHistoryButton);
-            mStrengthHistoryButton = view.findViewById(R.id.strengthHistoryButton);
-            mLeanButton = view.findViewById(R.id.leanHistoryButton);
+            mHypertrophyHistoryCardView = view.findViewById(R.id.hypertrophyHistoryButton);
+             //mStrengthHistoryCardView = view.findViewById(R.id.strengthHistoryButton);
+              //mLeanCardView = view.findViewById(R.id.leanHistoryButton);
 
 
-            mHypertrophyHistoryButton.setOnClickListener(new View.OnClickListener() {
+            mHypertrophyHistoryCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: Hypeworkout A: Pressed");
@@ -45,7 +45,7 @@ public class WorkoutHistoryFragment extends Fragment {
                 }
             });
 
-            mStrengthHistoryButton.setOnClickListener(new View.OnClickListener() {
+            mStrengthHistoryCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: Hypeworkout B: Pressed");
@@ -54,7 +54,7 @@ public class WorkoutHistoryFragment extends Fragment {
                 }
             });
 
-            mLeanButton.setOnClickListener(new View.OnClickListener() {
+            mLeanCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: Hypeworkout A: Pressed");
@@ -66,6 +66,7 @@ public class WorkoutHistoryFragment extends Fragment {
 
         }catch (Exception e){
             Log.d(TAG, "onCreateView: Error: " + e);
+            e.printStackTrace();
         }
         return view;
     }
@@ -79,15 +80,22 @@ public class WorkoutHistoryFragment extends Fragment {
             ft.commit();
 
         }catch (Exception e){
-            Log.d(TAG, "hypertrophyButtonPressed: error: " +e);
+            Log.d(TAG, "hypertrophyButtonPressed: error: " + e);
+            e.printStackTrace();
         }
     }
 
     public void strengthButtonPressed(){
         try{
+            ft = fm.beginTransaction();
+
+            StrengthWorkoutHistoryFragment strengthWorkoutHistoryFragment = new StrengthWorkoutHistoryFragment();
+            ft.replace(R.id.fragment_container, strengthWorkoutHistoryFragment);
+            ft.commit();
 
         }catch (Exception e){
             Log.d(TAG, "strengthButtonPressed: error: " + e);
+            e.printStackTrace();
         }
     }
 
@@ -96,6 +104,7 @@ public class WorkoutHistoryFragment extends Fragment {
 
         }catch (Exception e){
             Log.d(TAG, "leanButtonPressed: error: " + e);
+            e.printStackTrace();
         }
     }
 

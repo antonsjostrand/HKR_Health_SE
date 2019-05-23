@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //UI
     private NavigationView mNavigationMenu;
     private DrawerLayout mDrawerLayout;
-    private Toolbar toolbar;
 
     //Fragment variables
     private FragmentManager fm;
@@ -42,16 +40,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-        try {
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close);
-            mDrawerLayout.addDrawerListener(toggle);
-            toggle.syncState();
-        } catch (NullPointerException ex) {
-            ex.printStackTrace();
-        }
 
         mDrawerLayout = findViewById(R.id.main_menu_drawerlayout);
         popUpWindow();

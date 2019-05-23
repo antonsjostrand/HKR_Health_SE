@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Models.Exercise;
+import com.example.hkrhealth.Models.HypertrophyWorkout;
 import com.example.hkrhealth.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -35,59 +38,41 @@ public class StatisticsFragment extends Fragment {
     //Database
     private HkrHealthRepository mHkrHealthRepository;
 
-    //Variables
-    private ArrayList<Exercise> mExercises = new ArrayList<>();
-    private String mChosenReps;
-    private Double mSmallest1Rm, mBiggest1Rm;
-
+    //Fragment handlers
+    private FragmentTransaction ft;
+    private FragmentManager fm;
 
     //UI
-    private AutoCompleteTextView mSearchFieldACTV;
-    private TextView mMaxLiftTV, mTotalRepsTV, mTotalWeightTV, mIncreaseTV;
-    private LineChart mLineChart;
-    private Button mConfirmButton, mConfirmRepsButton;
-    private EditText mEnterRepsET;
-
+    private Button mExerciseStatisticsButton, mGoalSettingStatisticsButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistics_layout, container, false);
 
         try {
+            fm = getActivity().getSupportFragmentManager();
             mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
-            mIncreaseTV = view.findViewById(R.id.percentualIncreaseTV);
-            mConfirmRepsButton = view.findViewById(R.id.repsConfirmButton);
-            mEnterRepsET = view.findViewById(R.id.repsChoiceET);
-            mTotalWeightTV = view.findViewById(R.id.totalWeightTV);
-            mConfirmButton = view.findViewById(R.id.confirmButton);
-            mSearchFieldACTV = view.findViewById(R.id.searchFieldACTV);
-            mMaxLiftTV = view.findViewById(R.id.heaviestLiftTV);
-            mTotalRepsTV = view.findViewById(R.id.totalRepsTV);
-            mLineChart = view.findViewById(R.id.exerciseLineChart);
+            mExerciseStatisticsButton = view.findViewById(R.id.exerciseStatisticsButton);
+            mGoalSettingStatisticsButton = view.findViewById(R.id.goalsettingStatisticsButton);
 
-            //Initialize ACTV
-            List<String> exerciseList = Arrays.asList(getResources().getStringArray(R.array.array_exercises));
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, exerciseList);
-            mSearchFieldACTV.setAdapter(adapter);
-
-            //Set on click listener
-            mConfirmButton.setOnClickListener(new View.OnClickListener() {
+            mExerciseStatisticsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    confirmButtonPressed(String.valueOf(mSearchFieldACTV.getText()));
+                    ft = fm.beginTransaction();
+                    ExerciseStatisticsFragment exerciseStatisticsFragment = new ExerciseStatisticsFragment();
+                    ft.replace(R.id.fragment_container, exerciseStatisticsFragment);
+                    ft.commit();
                 }
             });
 
-            mConfirmRepsButton.setOnClickListener(new View.OnClickListener() {
+            mGoalSettingStatisticsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try{
-                        mChosenReps = String.valueOf(mEnterRepsET.getText());
-                        confirmRepsButtonPressed(String.valueOf(mSearchFieldACTV.getText()), Integer.parseInt(mChosenReps));
-                    }catch (Exception e){
-                        Log.d(TAG, "onClick: mConfirmRepsButton: " + e);
-                    }
+                    ft = fm.beginTransaction();
+                    GoalSettingStatisticsFragment goalSettingStatisticsFragment = new GoalSettingStatisticsFragment();
+                    ft.replace(R.id.fragment_container, goalSettingStatisticsFragment);
+                    ft.commit();
                 }
             });
 
@@ -97,177 +82,5 @@ public class StatisticsFragment extends Fragment {
         return view;
     }
 
-    public void confirmRepsButtonPressed(String exerciseName, int exerciseReps){
-        try {
-            clearLineChart();
-            getAllExercisesBySearchedNameAndReps(exerciseName, exerciseReps);
-            if (mExercises.size() > 0) {
-                drawLineChart();
-            }
-        }catch (Exception e){
-            Log.d(TAG, "confirmRepsButtonPressed: error: " + e);
-        }
-    }
 
-    public void confirmButtonPressed(String exerciseName){
-        try {
-            clearLineChart();
-            clearFields();
-            getMaximumLiftFromExerciseByName(exerciseName);
-            getTotalAmountOfRepsForExerciseByName(exerciseName);
-            getTotalWeightLiftedForExerciseByName(exerciseName);
-            getSmallest1RmForExerciseByName(exerciseName);
-            getBiggest1RmForExerciseByName(exerciseName);
-
-            Log.d(TAG, "confirmButtonPressed: smallest weight 1rm: " + mSmallest1Rm);
-            Log.d(TAG, "confirmButtonPressed: biggest weight 1rm: " + mBiggest1Rm);
-
-            calculateAndSetPercentualIncrease(mSmallest1Rm, mBiggest1Rm);
-
-        }catch (Exception e){
-            Log.d(TAG, "confirmButtonPressed: error: " + e);
-        }
-    }
-
-    public void clearFields(){
-        mMaxLiftTV.setText("");
-        mTotalRepsTV.setText("");
-        mTotalWeightTV.setText("");
-    }
-
-    public void clearLineChart(){
-        mLineChart.clear();
-    }
-
-    public void getAllExercisesBySearchedNameAndReps(String exerciseName, int exerciseReps){
-        mHkrHealthRepository.getAllExercisesByNameAndReps(exerciseName, exerciseReps).observe(getActivity(), new Observer<List<Exercise>>() {
-            @Override
-            public void onChanged(@Nullable List<Exercise> exercises) {
-                if (mExercises.size() > 0){
-                    mExercises.clear();
-                }
-                if (exercises != null){
-                    mExercises.addAll(exercises);
-                }else{
-                    mEnterRepsET.setText("No data for this number of repetitions.");
-                }
-            }
-        });
-    }
-
-    public void getMaximumLiftFromExerciseByName(String exericseName){
-        mHkrHealthRepository.getMaximumLiftFromExerciseByName(exericseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == 0){
-                    mMaxLiftTV.setText("0");
-                }else {
-                    mMaxLiftTV.setText(String.valueOf(aDouble + " kg"));
-                }
-            }
-        });
-    }
-
-    public void getTotalAmountOfRepsForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getTotalAmountOfRepsExerciseByName(exerciseName).observe(getActivity(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer == 0){
-                    mTotalRepsTV.setText("0");
-                }else {
-                    mTotalRepsTV.setText(String.valueOf(integer + " reps"));
-                }
-            }
-        });
-    }
-
-    public void getTotalWeightLiftedForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getTotalAmountOfWeightLiftedExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == 0){
-                    mTotalWeightTV.setText("0");
-                }else {
-                    mTotalWeightTV.setText(String.valueOf(aDouble / 1000 + " ton"));
-                }
-            }
-        });
-    }
-
-    public void getSmallest1RmForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getSmallest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == null){
-                    mIncreaseTV.setText("0%");
-                }else{
-                    mSmallest1Rm = aDouble;
-                }
-            }
-        });
-    }
-
-    public void getBiggest1RmForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getBiggest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == null){
-                    mIncreaseTV.setText("0%");
-                }else{
-                    mBiggest1Rm = aDouble;
-                }
-            }
-        });
-    }
-
-    public void calculateAndSetPercentualIncrease(double smallest, double biggest){
-        try {
-            double percentualIncrease;
-            String percent;
-
-            percentualIncrease = biggest / smallest;
-            percent = String.valueOf(percentualIncrease);
-            percent = percent.substring(1, 3);
-            mIncreaseTV.setText(percent + "%");
-        }catch (Exception e){
-            Log.d(TAG, "calculateAndSetPercentualIncrease: error: " + e);
-        }
-
-    }
-
-    public void drawLineChart() {
-        try {
-            ArrayList<Entry> yAxesWeight = new ArrayList<>();
-            ArrayList<String> xAxes = new ArrayList<>();
-
-
-            for (int i = 0; i < mExercises.size(); i++) {
-
-                Entry entry = new Entry(Float.parseFloat(String.valueOf(mExercises.get(i).getExerciseWeight())), i);
-                yAxesWeight.add(entry);
-
-                xAxes.add(i, String.valueOf(i));
-            }
-
-            String[] xAxesFinal = new String[xAxes.size()];
-            for (int i = 0; i < xAxes.size(); i++) {
-                xAxesFinal[i] = xAxes.get(i);
-            }
-
-            ArrayList<LineDataSet> lineDataSets = new ArrayList<>();
-
-            LineDataSet lineDataSet = new LineDataSet(yAxesWeight, "weight");
-            lineDataSet.setDrawCircles(false);
-            lineDataSet.setColor(Color.BLUE);
-
-            lineDataSets.add(lineDataSet);
-
-            LineData lineData = new LineData(lineDataSet);
-
-            mLineChart.setData(lineData);
-            Log.d(TAG, "drawLineChart: linechart drawn.");
-        } catch (Exception e) {
-            Log.d(TAG, "drawLineChart: error: " + e);
-        }
-    }
 }

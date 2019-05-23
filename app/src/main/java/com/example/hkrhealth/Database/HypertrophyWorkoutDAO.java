@@ -21,6 +21,9 @@ public interface HypertrophyWorkoutDAO {
     @Query("SELECT * FROM hypertrophy_workout")
     LiveData<List<HypertrophyWorkout>> getAllHypertrophyWorkouts();
 
+    @Query("SELECT * FROM hypertrophy_workout WHERE workoutID = :workoutID")
+    LiveData<HypertrophyWorkout> getHypertrophyWorkoutByID(int workoutID);
+
     }
 
 

@@ -3,11 +3,13 @@ package com.example.hkrhealth.Models;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 @Entity(tableName = "strength_workout")
-public class StrengthWorkout {
+public class StrengthWorkout implements Parcelable{
 
     private static final String TAG = "StrengthWorkout";
 
@@ -40,6 +42,25 @@ public class StrengthWorkout {
             Log.d(TAG, "StrengthWorkout: Constructor error: " + e);
         }
     }
+    protected StrengthWorkout(Parcel in) {
+        workoutID = in.readInt();
+        date = in.readString();
+        rating = in.readInt();
+        comment = in.readString();
+        workoutType = in.readString();
+    }
+
+    public static final Creator<StrengthWorkout> CREATOR = new Creator<StrengthWorkout>() {
+        @Override
+        public StrengthWorkout createFromParcel(Parcel in) {
+            return new StrengthWorkout(in);
+        }
+
+        @Override
+        public StrengthWorkout[] newArray(int size) {
+            return new StrengthWorkout[size];
+        }
+    };
 
     public int getWorkoutID() {
         return workoutID;
@@ -82,5 +103,19 @@ public class StrengthWorkout {
 
     public void setWorkoutType(@NonNull String workoutType) {
         this.workoutType = workoutType;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(workoutID);
+        dest.writeString(date);
+        dest.writeInt(rating);
+        dest.writeString(comment);
+        dest.writeString(workoutType);
     }
 }

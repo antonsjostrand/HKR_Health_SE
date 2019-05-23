@@ -42,6 +42,24 @@
     <string name="pushdown">Pushdown</string>
     <string name="french_press">French press</string>
 
+    <!-- Strings used in the different pull(B) workouts -->
+    <string name="deadlift">Deadlift</string>
+    <string name="barbell_row">Barbell row</string>
+    <string name="chin_up">Chin-up</string>
+    <string name="one_arm_dumbbell_row">One Arm dumbbell row</string>
+    <string name="bent_over_lateral_raise">Bent-over lateral raise</string>
+    <string name="incline_dumbell_curl">Incline dumbbell curl</string>
+    
+    <!-- Strings used in the different legs(C) workouts -->
+    <string name="squat">Squats</string>
+    <string name="leg_press">Leg press</string>
+    <string name="romanian_deadlift">Romanian deadlift</string>
+    <string name="leg_curl">Leg curl</string>
+    <string name="standing_calf_raise">Standing calf raise</string>
+    <string name="lying_leg_curl">Hamstring curl</string>
+    
+    <!-- Strings for youtube -->
+    <string name="youtube_example">Example</string>
 
     <!-- Strings used in goalsetting -->
     <string name="weightGoal">Weight Goal</string>
@@ -56,6 +74,12 @@
     <string name="ACTV_hint">Enter a exercise..</string>
     <string name="ACTV_reps_hint">Enter a number..</string>
     <string name="confirm">Confirm</string>
+    <string name="no_data_found">No data found</string>
+    <string name="exercise_statistics">Exercise statistics</string>
+    <string name="goalsetting_statistics">Goal setting statistics</string>
+    <string name="goalsetting_goal_comment">Current goal weight is: </string>
+    <string name="goalsetting_current_comment">Latest reported weight: </string>
+    <string name="goalsetting_reach_goal_comment">To reach your goal you need to lose: </string>
 
     <!-- String array containing all exercises -->
     <string-array name="array_exercises">
@@ -78,6 +102,20 @@
     <string name="hyperworkout_c">Workout C</string>
     <string name="hyperworkout_d">Workout D</string>
 
+
+    <!-- Strings used for HIIT workout -->
+    <string name="row1"><b>For 30 seconds each, do:</b> "\n" "\n" Jumping jacks "\n" Wall sit "\n" Push-ups "\n" Crunches "\n"
+        "\n" Chair step-ups "\n" Squats "\n" Tricep dips
+        "\n" Planks "\n" Run on the spot "\n" Lunges
+        "\n" Push-ups with wide rotation "\n" Side planks
+        "\n" "\n" <b>Rest for 10 seconds between moves.</b> </string>
+
+    <!-- Strings used for Strength Workout -->
+    <string name="military_press">Military Press</string>
+    <string name="repInfo1">3 reps for 5 sets</string>
+    <string name="repInfo2">1 reps for 5 sets</string>
+    <string name="repInfo3">5 reps for 3 sets</string>
+    <string name="power_clean">Power clean</string>
 
 
 </resources>
