@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,12 +40,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mHkrHealthRepository = new HkrHealthRepository(this);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
 
         mDrawerLayout = findViewById(R.id.main_menu_drawerlayout);
         popUpWindow();
         setNavigationMenuListener();
 
+
+        mHkrHealthRepository = new HkrHealthRepository(this);
 
         //adjust the keyboard so it doesn't disturb the layouts.
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -60,6 +66,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.d(TAG, "setNavigationMenuListener: ERROR");
             Log.d(TAG, "setNavigationMenuListener: " + e);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+
     }
 
     @Override

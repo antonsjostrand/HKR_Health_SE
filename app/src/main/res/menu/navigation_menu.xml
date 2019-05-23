@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_workout_selection"
-        android:title="@string/nav_workout_selection"
-        android:icon="@drawable/ic_android_black_24dp"
-        />
+    <group> android:checkableBehavior="single">
+        <item android:id="@+id/nav_workout_selection"
+            android:title="@string/nav_workout_selection"
+            android:icon="@drawable/icons8weightlift" />
+        <item android:id="@+id/nav_workout_history"
+            android:title="@string/nav_workout_history"
+            android:icon="@drawable/icons8_historical" />
+    </group>
 
-    <item android:id="@+id/nav_workout_history"
-        android:title="@string/nav_workout_history"
-        android:icon="@drawable/ic_android_black_24dp"
-        />
+    <item android:title="Overview">
+        <menu>
+            <item android:id="@+id/nav_statistics"
+                android:title="@string/nav_statistics"
+                android:icon="@drawable/icons8_normal_distribution_histogram"
+                />
+            <item android:id="@+id/nav_goalsetting"
+                android:icon="@drawable/icons8_trophy_2"
+                android:title="Goal settings"
+                />
+        </menu>
+    </item>
 
-    <item android:id="@+id/nav_statistics"
-        android:title="@string/nav_statistics"
-        android:icon="@drawable/ic_android_black_24dp"
-        />
-    <item android:id="@+id/nav_goalsetting"
-        android:title="Goal settings"
-        />
 
 </menu>
