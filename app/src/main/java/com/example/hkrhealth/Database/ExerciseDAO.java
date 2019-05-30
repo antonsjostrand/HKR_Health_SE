@@ -44,4 +44,17 @@ public interface ExerciseDAO {
 
     @Query("SELECT MAX(exerciseWeight) FROM exercises WHERE exerciseReps =  1 AND exerciseName = :exerciseName")
     LiveData<Double> getBiggest1RmPerformedExerciseByName(String exerciseName);
+
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutType = 'Push'")
+    LiveData<Integer> getTotalWeightForPushHypertrophyWorkout();
+
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutType = 'Pull'")
+    LiveData<Integer> getTotalWeightForPullHypertrophyWorkout();
+
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutType = 'Legs'")
+    LiveData<Integer> getTotalWeightForLegsHypertrophyWorkout();
+
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutID = :workoutID AND (workoutType = 'Push' OR workoutType = 'Pull' OR workoutType = 'Legs')")
+    LiveData<Integer> getTotalWeightForSpecificHypertrophyWorkout(int workoutID);
+
 }

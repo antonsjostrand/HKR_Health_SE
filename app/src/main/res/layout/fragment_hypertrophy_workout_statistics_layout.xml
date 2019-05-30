@@ -76,6 +76,7 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:text="@string/zero"
+        android:id="@+id/stat_totalWeightLiftedTV"
         app:layout_constraintLeft_toRightOf="@id/stat_totalWeightHeader"
         app:layout_constraintTop_toTopOf="@id/stat_totalWeightHeader"
         app:layout_constraintBottom_toBottomOf="@id/stat_totalWeightHeader"
