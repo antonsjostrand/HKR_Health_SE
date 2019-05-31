@@ -23,4 +23,10 @@ public interface StrengthWorkoutDAO {
 
     @Query("SELECT * FROM strength_workout WHERE workoutID = :workoutID")
     LiveData<StrengthWorkout> getStrengthWorkoutByID(int workoutID);
+
+    @Query("SELECT * FROM strength_workout WHERE workout_type = 'A'")
+    LiveData<List<StrengthWorkout>> getAllStrengthWorkoutsTypeA();
+
+    @Query("SELECT * FROM strength_workout WHERE workout_type = 'B'")
+    LiveData<List<StrengthWorkout>> getAllStrengthWorkoutsTypeB();
 }

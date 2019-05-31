@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/stat_strength_aButton"
+        android:text="@string/A"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/stat_strength_bButton"
+        android:text="@string/B"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/stat_strength_bButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="50dp"
+        android:id="@+id/stat_strength_lineChart"
+        app:layout_constraintTop_toBottomOf="@id/stat_strength_aButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        >
+    </com.github.mikephil.charting.charts.LineChart>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/stat_strength_totalWeightHeader"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="@string/total_weight_lifted_all_workouts"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stat_strength_lineChart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:text="@string/zero"
+        android:id="@+id/stat_strength_totalWeightLiftedTV"
+        app:layout_constraintLeft_toRightOf="@id/stat_strength_totalWeightHeader"
+        app:layout_constraintTop_toTopOf="@id/stat_strength_totalWeightHeader"
+        app:layout_constraintBottom_toBottomOf="@id/stat_strength_totalWeightHeader"
+        />
+
+
+</android.support.constraint.ConstraintLayout>

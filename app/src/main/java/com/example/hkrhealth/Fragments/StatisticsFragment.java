@@ -88,6 +88,16 @@ public class StatisticsFragment extends Fragment {
                 }
             });
 
+            mStrengthWorkoutStatisticsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ft = fm.beginTransaction();
+                    StrengthWorkoutStatisticsFragment strengthWorkoutStatisticsFragment = new StrengthWorkoutStatisticsFragment();
+                    ft.replace(R.id.fragment_container, strengthWorkoutStatisticsFragment);
+                    ft.commit();
+                }
+            });
+
         }catch (Exception e){
             Log.d(TAG, "onCreateView: error: " + e);
         }
