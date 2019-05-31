@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Models.StrengthWorkout;
@@ -151,7 +152,7 @@ public class StrengthWorkoutStatisticsFragment extends Fragment {
                     }
                     if (strengthWorkouts != null) {
                         Log.d(TAG, "onChanged: Added all type B workouts.");
-                        mStrength_A_Workouts.addAll(strengthWorkouts);
+                        mStrength_B_Workouts.addAll(strengthWorkouts);
                         mWorkoutsTypeBAdded = true;
                     }
                 }
@@ -207,10 +208,15 @@ public class StrengthWorkoutStatisticsFragment extends Fragment {
             mHkrHealthRepository.getTotalWeightForStrengthWorkoutTypeA().observe(getActivity(), new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
-                    Log.d(TAG, "onChanged: added weight.");
-                    mLiftedWeight = integer;
-                    Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
-                    mLiftedWeightTV.setText(String.valueOf(mLiftedWeight));
+                    if (integer != null) {
+                        Log.d(TAG, "onChanged: added weight.");
+                        mLiftedWeight = integer;
+                        Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
+                        mLiftedWeightTV.setText(String.valueOf(mLiftedWeight));
+                    }else{
+                        Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
                 }
             });
         }catch (Exception e){
@@ -224,10 +230,15 @@ public class StrengthWorkoutStatisticsFragment extends Fragment {
             mHkrHealthRepository.getTotalWeightForStrengthWorkoutTypeB().observe(getActivity(), new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
-                    Log.d(TAG, "onChanged: added weight.");
-                    mLiftedWeight = integer;
-                    Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
-                    mLiftedWeightTV.setText(String.valueOf(mLiftedWeight));
+                    if (integer != null) {
+                        Log.d(TAG, "onChanged: added weight.");
+                        mLiftedWeight = integer;
+                        Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
+                        mLiftedWeightTV.setText(String.valueOf(mLiftedWeight));
+                    }else{
+                        Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
                 }
             });
         }catch (Exception e){
