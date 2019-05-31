@@ -33,7 +33,7 @@ public class WorkoutHistoryFragment extends Fragment {
             fm = getActivity().getSupportFragmentManager();
 
             mHypertrophyHistoryCardView = view.findViewById(R.id.hypertrophyHistoryButton);
-             //mStrengthHistoryCardView = view.findViewById(R.id.strengthHistoryButton);
+            mStrengthHistoryCardView = view.findViewById(R.id.strengthHistoryButton);
               //mLeanCardView = view.findViewById(R.id.leanHistoryButton);
 
 
@@ -101,6 +101,8 @@ public class WorkoutHistoryFragment extends Fragment {
 
     public void leanButtonPressed(){
         try{
+            //ft = fm.beginTransaction();
+
 
         }catch (Exception e){
             Log.d(TAG, "leanButtonPressed: error: " + e);

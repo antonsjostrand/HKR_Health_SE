@@ -106,17 +106,21 @@ public class HyperAWorkoutFragment extends Fragment {
     }
 
     public void initalizeTextViews(View view){
+
         mHeaderOne = view.findViewById(R.id.benchPressHeaderTW);
         mHeaderTwo = view.findViewById(R.id.InclineBenchPressHeaderTW);
         mHeaderThree = view.findViewById(R.id.exerciseThreeHeaderTW);
         mHeaderFour = view.findViewById(R.id.exerciseFourHeaderTW);
         mHeaderFive = view.findViewById(R.id.exerciseFiveHeaderTW);
         mHeaderSix = view.findViewById(R.id.exerciseSixHeaderTW);
+
     }
 
     public void initalizeEditTexts(View view){
         mCommentET = view.findViewById(R.id.commentET);
         mRatingET = view.findViewById(R.id.ratingET);
+
+
         mExOneSetOneReps = view.findViewById(R.id.benchPressSetOneRepsET);
         mExOneSetTwoReps = view.findViewById(R.id.benchPressSetTwoRepsET);
         mExOneSetThreeReps = view.findViewById(R.id.benchPressSetThreeRepsET);
@@ -153,6 +157,7 @@ public class HyperAWorkoutFragment extends Fragment {
         mExSixSetOneWeight = view.findViewById(R.id.exerciseSixSetOneWeightET);
         mExSixSetTwoWeight = view.findViewById(R.id.exerciseSixSetTwoWeightET);
         mExSixSetThreeWeight = view.findViewById(R.id.exerciseSixSetThreeWeightET);
+
     }
 
     public void retrieveMaxWorkoutID(){
@@ -338,16 +343,21 @@ public class HyperAWorkoutFragment extends Fragment {
         }
     }
 
+
     public void youTubeButtons(View view){
-        mYouTubeButton1 = view.findViewById(R.id.goToBenchPressButton);
-        mYouTubeButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=o6iMMdZSxB0"));
-                startActivity(webLink);
-            }
-        });
+        try {
+
+            mYouTubeButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent webLink = new Intent(Intent.ACTION_VIEW);
+                    webLink.setData(Uri.parse("https://www.youtube.com/watch?v=o6iMMdZSxB0"));
+                    startActivity(webLink);
+                }
+            });
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         mYouTubeButton2 = view.findViewById(R.id.goToInclineBenchPressButton);
         mYouTubeButton2.setOnClickListener(new View.OnClickListener() {
@@ -379,7 +389,7 @@ public class HyperAWorkoutFragment extends Fragment {
             }
         });
 
-        mYouTubeButton5 = view.findViewById(R.id.goToExerciseFiveButton);
+       mYouTubeButton5 = view.findViewById(R.id.goToExerciseFiveButton);
         mYouTubeButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -389,7 +399,7 @@ public class HyperAWorkoutFragment extends Fragment {
             }
         });
 
-        mYouTubeButton6 = view.findViewById(R.id.goToExerciseSixButton);
+       mYouTubeButton6 = view.findViewById(R.id.goToExerciseSixButton);
         mYouTubeButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

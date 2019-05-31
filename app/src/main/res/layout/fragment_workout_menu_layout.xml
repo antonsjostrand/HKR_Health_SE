@@ -1,207 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.CardView
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:layout_width="160dp"
-        android:layout_height="190dp"
-        android:layout_margin="10dp"
-        android:id="@+id/card_viewA"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/card_viewB"
-        app:layout_constraintBottom_toTopOf="@+id/card_viewC">
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#fcfcfc"
+    android:gravity="center"
+    android:id="@+id/ll">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/circlebackgroundpurple"
-                android:padding="10dp"
-                android:src="@drawable/icons8_curls_with_dumbbells" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_viewA"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toTopOf="@+id/card_viewC"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/card_viewB"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Ideas"
-                android:textStyle="bold" />
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@color/light_green" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/hyperworkout_a"
-                android:textColor="@android:color/darker_gray" />
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgroundpurple"
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_curls_with_dumbbells" />
 
-    <android.support.v7.widget.CardView
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:layout_width="160dp"
-        android:layout_height="190dp"
-        android:layout_margin="10dp"
-        android:id="@+id/card_viewB"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/card_viewA"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/card_viewC">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/PushPullLegs1"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/circlebackgroundpurple" />
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/circlebackgroundyellow"
-                android:padding="10dp"
-                android:src="@drawable/icons8_exercise" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/PPL1"
+                    android:textSize="8dp"
+                    android:textColor="@android:color/darker_gray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Ideas"
-                android:textStyle="bold" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <View
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_viewB"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toTopOf="@id/card_viewC"
+            app:layout_constraintLeft_toRightOf="@+id/card_viewA"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@color/light_green" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/hyperworkout_b"
-                android:textColor="@android:color/darker_gray" />
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgroundyellow"
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_exercise" />
 
-    <android.support.v7.widget.CardView
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:layout_width="160dp"
-        android:layout_height="190dp"
-        android:layout_margin="10dp"
-        android:id="@+id/card_viewC"
-        app:layout_constraintTop_toBottomOf="@id/card_viewA"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/card_viewD">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/PushPullLegs2"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/circlebackgroundyellow" />
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/circlebackgroundgreen"
-                android:padding="10dp"
-                android:src="@drawable/icons8_pullups" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="8dp"
+                    android:text="@string/PPL2"
+                    android:textColor="@android:color/darker_gray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Ideas"
-                android:textStyle="bold" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <View
+    </LinearLayout>
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_viewC"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/card_viewD"
+            app:layout_constraintTop_toBottomOf="@id/card_viewA">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@color/light_green" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/hyperworkout_c"
-                android:textColor="@android:color/darker_gray" />
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgroundtomato"
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_pullups" />
 
-    <android.support.v7.widget.CardView
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:layout_width="160dp"
-        android:layout_height="190dp"
-        android:layout_margin="10dp"
-        android:id="@+id/card_viewD"
-        app:layout_constraintTop_toBottomOf="@id/card_viewB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/card_viewC">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/PushPullLegs3"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/circlebackgroundtomato" />
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/circlebackgroundpink"
-                android:padding="10dp"
-                android:src="@drawable/icons8_exercise" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="8dp"
+                    android:text="@string/PPL3"
+                    android:textColor="@android:color/darker_gray" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Ideas"
-                android:textStyle="bold" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <View
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_viewD"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/card_viewC"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_viewB">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@color/light_green" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/hyperworkout_d"
-                android:textColor="@android:color/darker_gray" />
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgroundgreen"
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_exercise" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/strengthworkout_a"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/circlebackgroundgreen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="8dp"
+                    android:text="@string/strengthworkout_A_description"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_viewE"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/card_viewE"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_viewC">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgroundred"
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_exercise" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/strengthworkout_b"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/circlebackgroundred" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8dp"
+
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/strengthworkout_B_description"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_viewF"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/card_viewC"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_viewD">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circlebackgrounddarkblue"
+                    android:padding="10dp"
+                    android:src="@drawable/icons8_exercise" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/hitworkout_a"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/circlebackgrounddarkblue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:textSize="9dp"
+                    android:text="@string/Hiit_A"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+</ScrollView>

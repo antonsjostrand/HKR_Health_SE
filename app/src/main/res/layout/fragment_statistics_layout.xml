@@ -5,23 +5,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/exerciseStatisticsButton"
-        android:text="@string/exercise_statistics"
+        android:layout_width="238dp"
+        android:layout_height="80dp"
         android:layout_margin="20dp"
+        android:background="@color/deeppurple"
+        android:text="@string/exercise_statistics"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/goalsettingStatisticsButton"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/goalsettingStatisticsButton"
-        android:text="@string/goalsetting_statistics"
+        android:layout_width="240dp"
+        android:layout_height="98dp"
         android:layout_margin="20dp"
+        android:background="@color/deeppurple"
+        android:text="@string/goalsetting_statistics"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exerciseStatisticsButton"
-        />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exerciseStatisticsButton" />
 
 </android.support.constraint.ConstraintLayout>

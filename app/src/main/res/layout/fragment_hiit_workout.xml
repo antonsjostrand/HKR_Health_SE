@@ -6,62 +6,85 @@
     android:layout_height="match_parent"
     tools:context="com.example.hkrhealth.MainActivity" >
 
-    <TextView
-        android:id="@+id/timerTV"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/instructionsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="17"
+            android:text="@string/row1"
+            android:textSize="17sp"
+
+            android:textStyle="bold" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/timerTV"
+        android:layout_width="189dp"
+        android:layout_height="98dp"
         android:layout_below="@+id/goToYoutubeButton"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="145dp"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginLeft="129dp"
+        android:layout_marginTop="226dp"
         android:textColor="@color/black"
-        android:textSize="50sp"
+        android:textSize="70sp"
         tools:text="00:00" />
 
     <Button
         android:id="@+id/startCountDownButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
         android:layout_below="@id/timerTV"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginRight="119dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:textSize="30sp"
+
+        android:layout_marginTop="40dp"
+        android:background="@color/OrangeRed"
         android:text="Start" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/resetButton"
-        android:text="Reset"
-        android:layout_toLeftOf="@id/startCountDownButton"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
         android:layout_below="@+id/timerTV"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:background="@color/Gold"
+        android:textSize="30sp"
+
+        android:text="Reset"
         android:visibility="invisible"
-        tools:visibility="visible"
-        />
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/goToYoutubeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Example"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
-    
-    <ScrollView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/instructionsTV"
-            android:text="@string/row1"
-            android:lines="17"
-            android:textStyle="italic" />
-    </ScrollView>
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:background="@color/light_green"
+        android:text="Example" />
 
 </RelativeLayout>

@@ -22,7 +22,7 @@ public class WorkoutMenuFragment extends Fragment {
 
     //UI
     private Button mHyperAButton, mHyperBButton, mHyperCButton, mStrengthAButton, mStrengthBButton, mStrengthCButton, mHiitButton;
-    private CardView mCardViewA, mCardViewB, mCardViewC, mCardViewD;
+    private CardView mCardViewA, mCardViewB, mCardViewC, mCardViewD, mCardViewE, mCardViewF;
 
     //Database
     private HkrHealthRepository mHkrHealthRepository;
@@ -45,6 +45,8 @@ public class WorkoutMenuFragment extends Fragment {
         mCardViewB = view.findViewById(R.id.card_viewB);
         mCardViewC = view.findViewById(R.id.card_viewC);
         mCardViewD = view.findViewById(R.id.card_viewD);
+        mCardViewE = view.findViewById(R.id.card_viewE);
+        mCardViewF = view.findViewById(R.id.card_viewF);
 
 
 
@@ -77,6 +79,22 @@ public class WorkoutMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 cardViewDisPressed();
+                Log.d(TAG, "onClick: Cardview D: Pressed");
+            }
+        });
+
+        mCardViewE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardViewEisPressed();
+                Log.d(TAG, "onClick: Cardview D: Pressed");
+            }
+        });
+
+        mCardViewF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardViewFisPressed();
                 Log.d(TAG, "onClick: Cardview D: Pressed");
             }
         });
@@ -152,58 +170,21 @@ public class WorkoutMenuFragment extends Fragment {
     }
 
     public void hyperBButtonPressed(){
-        try {
-            fm = getActivity().getSupportFragmentManager();
-            ft = fm.beginTransaction();
-
-            HyperBWorkoutFragment hyperBWorkoutFragment = new HyperBWorkoutFragment();
-            ft.replace(R.id.fragment_container, hyperBWorkoutFragment);
-            ft.commit();
-        }catch (Exception e){
-            Log.d(TAG, "hyperBButtonPressed: error: " + e);
-        }
 
     }
 
     public void hyperCButtonPressed(){
-        try {
-            fm = getActivity().getSupportFragmentManager();
-            ft = fm.beginTransaction();
 
-            HyperCWorkoutFragment hyperCWorkoutFragment = new HyperCWorkoutFragment();
-            ft.replace(R.id.fragment_container, hyperCWorkoutFragment);
-            ft.commit();
-        }catch (Exception e){
-            Log.d(TAG, "hyperAButtonPressed: error: " + e);
-        }
 
     }
 
     public void strengthAButtonPressed(){
-        try {
-            fm = getActivity().getSupportFragmentManager();
-            ft = fm.beginTransaction();
 
-            StrengthAWorkoutFragment strengthAWorkoutFragment = new StrengthAWorkoutFragment();
-            ft.replace(R.id.fragment_container, strengthAWorkoutFragment);
-            ft.commit();
-        }catch (Exception e){
-            Log.d(TAG, "StrengthAButtonPressed: error: " + e);
-        }
 
     }
 
     public void strengthBButtonPressed(){
-        try {
-            fm = getActivity().getSupportFragmentManager();
-            ft = fm.beginTransaction();
 
-            StrengthBWorkoutFragment strengthBWorkoutFragment = new StrengthBWorkoutFragment();
-            ft.replace(R.id.fragment_container, strengthBWorkoutFragment);
-            ft.commit();
-        }catch (Exception e){
-            Log.d(TAG, "StrengthBButtonPressed: error: " + e);
-        }
 
     }
 
@@ -226,6 +207,14 @@ public class WorkoutMenuFragment extends Fragment {
     }
 
 
+
+
+
+
+
+
+
+
     public void cardViewAisPressed() {
         try {
             fm = getActivity().getSupportFragmentManager();
@@ -240,47 +229,73 @@ public class WorkoutMenuFragment extends Fragment {
     }
 
     public void cardViewBisPressed() {
-        /*
         try {
             fm = getActivity().getSupportFragmentManager();
             ft = fm.beginTransaction();
 
-            HyperAWorkoutFragment hyperAWorkoutFragment = new HyperAWorkoutFragment();
-            ft.replace(R.id.fragment_container, hyperAWorkoutFragment);
+            HyperBWorkoutFragment hyperBWorkoutFragment = new HyperBWorkoutFragment();
+            ft.replace(R.id.fragment_container, hyperBWorkoutFragment);
             ft.commit();
         }catch (Exception e){
             Log.d(TAG, "hyperBButtonPressed: error: " + e);
         }
-        */
     }
 
     public void cardViewCisPressed() {
-        /*
         try {
             fm = getActivity().getSupportFragmentManager();
             ft = fm.beginTransaction();
 
-            HyperAWorkoutFragment hyperAWorkoutFragment = new HyperAWorkoutFragment();
-            ft.replace(R.id.fragment_container, hyperAWorkoutFragment);
+            HyperCWorkoutFragment hyperCWorkoutFragment = new HyperCWorkoutFragment();
+            ft.replace(R.id.fragment_container, hyperCWorkoutFragment);
             ft.commit();
         }catch (Exception e){
-            Log.d(TAG, "hyperCButtonPressed: error: " + e);
+            Log.d(TAG, "hyperAButtonPressed: error: " + e);
         }
-        */
     }
 
     public void cardViewDisPressed() {
-        /*
+        // Strength A
         try {
             fm = getActivity().getSupportFragmentManager();
             ft = fm.beginTransaction();
 
-            HyperAWorkoutFragment hyperAWorkoutFragment = new HyperAWorkoutFragment();
-            ft.replace(R.id.fragment_container, hyperAWorkoutFragment);
+            StrengthAWorkoutFragment strengthAWorkoutFragment = new StrengthAWorkoutFragment();
+            ft.replace(R.id.fragment_container, strengthAWorkoutFragment);
             ft.commit();
         }catch (Exception e){
-            Log.d(TAG, "hyperDButtonPressed: error: " + e);
+            Log.d(TAG, "StrengthAButtonPressed: error: " + e);
         }
-        */
+
+    }
+
+    public void cardViewEisPressed() {
+        // Strength A
+        try {
+            fm = getActivity().getSupportFragmentManager();
+            ft = fm.beginTransaction();
+
+            StrengthBWorkoutFragment strengthBWorkoutFragment = new StrengthBWorkoutFragment();
+            ft.replace(R.id.fragment_container, strengthBWorkoutFragment);
+            ft.commit();
+        }catch (Exception e){
+            Log.d(TAG, "StrengthAButtonPressed: error: " + e);
+        }
+
+    }
+
+    public void cardViewFisPressed() {
+        // Strength B
+        try {
+            fm = getActivity().getSupportFragmentManager();
+            ft = fm.beginTransaction();
+
+            HiitWorkoutFragment hiitWorkoutFragment = new HiitWorkoutFragment();
+            ft.replace(R.id.fragment_container, hiitWorkoutFragment);
+            ft.commit();
+        }catch (Exception e){
+            Log.d(TAG, "hyperAButtonPressed: error: " + e);
+        }
+
     }
 }

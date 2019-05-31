@@ -13,8 +13,8 @@
 
     <!-- Strings used in all kinds of workout layouts -->
     <string name="exercise">Exercise</string>
-    <string name="comment">Comment</string>
-    <string name="rating">Rating</string>
+    <string name="comment">Write a comment</string>
+    <string name="rating">Rate this exercise</string>
     <string name="save">Save</string>
     <string name="reps">Reps</string>
     <string name="sets">Set</string>
@@ -22,7 +22,7 @@
     <string name="hypertrophy">Hypertrophy</string>
     <string name="strength">Strength</string>
     <string name="cardio">Cardio</string>
-    <string name="lean">lean</string>
+    <string name="lean">Lean</string>
     <string name="heaviest_weight">Heaviest weight</string>
     <string name="total_amount_reps">Total reps</string>
     <string name="total_weight_lifted">Total weight lifted</string>
@@ -101,6 +101,40 @@
     <string name="hyperworkout_b">Workout B</string>
     <string name="hyperworkout_c">Workout C</string>
     <string name="hyperworkout_d">Workout D</string>
+    <string name="hyperworkout_e">Workout E</string>
+    <string name="hyperworkout_f">Workout F</string>
+    <string name="workout_a">Pull exercises: 1/3</string>
+    <string name="workout_b">Push exercises: 2/3</string>
+    <string name="workout_c">3/3</string>
+    <string name="strengthworkout_a">Strengthworkout 1/2</string>
+    <string name="strengthworkout_b">Strengthworkout 2/2</string>
+    <string name="strengthworkout_A_description">Bench-press, dead-lift and squats. \n 5 reps 3 sets.</string>
+    <string name="strengthworkout_B_description">Military-press, power-clean and squats. \n 5 reps 3 sets.</string>
+    <string name="hitworkout_a">Hiit A</string>
+    <string name="view_history_hyper">View history</string>
+    <string name="view_history_streng">View strength history</string>
+    <string name="view_history_lean">View lean history</string>
+    <string name="PushPullLegs1">PPL 1/3</string>
+    <string name="PushPullLegs2">PPL 2/3</string>
+    <string name="PushPullLegs3">PPL 3/3</string>
+    <string name="PPL1">Here you perform chest, shoulder and triceps-exercises. 10-12 reps each.</string>
+    <string name="PPL2">Here you perform deadlift, dumbbell lifts and barbell rows. 10-12 reps each.</string>
+    <string name="PPL3">Here you perform legpress, squats and other leg-exercises. 10-12 reps each.</string>
+    <string name="Hiit_A">7-minute workout with different exercises</string>
+
+
+
+
+
+
+    <!-- String used in splash/welcome screen -->
+    <string name="eat">Eat</string>
+    <string name="sleep">Sleep</string>
+    <string name="workout">Exercise</string>
+    <string name="eat_information">Eat healthy to improve your fitness lifestyle. </string>
+    <string name="sleep_information">Boost your training with at least 7 hours of sleep. </string>
+    <string name="workout_information">Use HKR Health as your "personal trainer" to achieve maximum success! </string>
+
 
 
     <!-- Strings used for HIIT workout -->

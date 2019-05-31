@@ -12,10 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Fragments.GoalsFragment;
+import com.example.hkrhealth.Fragments.HyperAWorkoutFragment;
+import com.example.hkrhealth.Fragments.StartUpFragment;
 import com.example.hkrhealth.Fragments.StatisticsFragment;
 import com.example.hkrhealth.Fragments.WorkoutHistoryFragment;
 import com.example.hkrhealth.Fragments.WorkoutMenuFragment;
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //UI
     private NavigationView mNavigationMenu;
     private DrawerLayout mDrawerLayout;
+    private Button mGetStartedButton;
 
     //Fragment variables
     private FragmentManager fm;
@@ -44,10 +49,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //setSupportActionBar(toolbar);
 
 
+
+
         mDrawerLayout = findViewById(R.id.main_menu_drawerlayout);
         popUpWindow();
         setNavigationMenuListener();
 
+        ft = fm.beginTransaction();
+
+        StartUpFragment startUpFragment = new StartUpFragment();
+        ft.replace(R.id.fragment_container, startUpFragment);
+        ft.commit();
+
+        /*mGetStartedButton = findViewById(R.id.getStartedButton);
+
+        mGetStartedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onGetStartedButtonPressed();
+                Log.d(TAG, "onClick: getStarted Button: Pressed");
+            }
+        });*/
 
         mHkrHealthRepository = new HkrHealthRepository(this);
 
@@ -76,6 +98,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
 
+    }
+
+    public void onGetStartedButtonPressed() {
+        try {
+            fm = MainActivity.this.getSupportFragmentManager();
+            ft = fm.beginTransaction();
+
+            setContentView(R.layout.activity_main);
+            ft.commit();
+        }catch (Exception e){
+            Log.d(TAG, "getStarted button: error: " + e);
+        }
     }
 
     @Override
