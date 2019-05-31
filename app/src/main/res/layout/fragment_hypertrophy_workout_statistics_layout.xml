@@ -64,6 +64,8 @@
         android:id="@+id/stat_totalWeightHeader"
         android:textSize="20sp"
         android:textAlignment="center"
+        android:background="@color/green"
+
         android:textColor="@color/black"
         android:text="@string/total_weight_lifted_all_workouts"
         app:layout_constraintLeft_toLeftOf="parent"
