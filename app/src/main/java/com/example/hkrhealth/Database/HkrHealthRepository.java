@@ -45,6 +45,18 @@ public class HkrHealthRepository {
         return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getHypertrophyWorkoutByID(workoutID);
     }
 
+    public LiveData<List<HypertrophyWorkout>> getAllHypertrophyPushWorkouts(){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getAllHypertrophyPushWorkouts();
+    }
+
+    public LiveData<List<HypertrophyWorkout>> getAllHypertrophyPullWorkouts(){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getAllHypertrophyPullWorkouts();
+    }
+
+    public LiveData<List<HypertrophyWorkout>> getAllHypertrophyLegsWorkouts(){
+        return mHkrHealthDatabase.getHypertrophyWorkoutDAO().getAllHypertrophyLegsWorkouts();
+    }
+
     /*
       ----------- STRENGTH WORKOUT QUERIES ---------
      */
@@ -115,6 +127,22 @@ public class HkrHealthRepository {
 
     public LiveData<List<Exercise>> getAllExercisesForSpecificHypertrophyWorkout(int workoutID){
         return mHkrHealthDatabase.getExerciseDAO().getAllExercisesForSpecificHypertrophyWorkout(workoutID);
+    }
+
+    public LiveData<Integer> getTotalWeightForPushHypertrophyWorkout(){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalWeightForPushHypertrophyWorkout();
+    }
+
+    public LiveData<Integer> getTotalWeightForPullHypertrophyWorkout(){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalWeightForPullHypertrophyWorkout();
+    }
+
+    public LiveData<Integer> getTotalWeightForLegsHypertrophyWorkout(){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalWeightForLegsHypertrophyWorkout();
+    }
+
+    public LiveData<Integer> getTotalWeightForSpecificHypertrophyWorkout(int workoutID){
+        return mHkrHealthDatabase.getExerciseDAO().getTotalWeightForSpecificHypertrophyWorkout(workoutID);
     }
 
       /*

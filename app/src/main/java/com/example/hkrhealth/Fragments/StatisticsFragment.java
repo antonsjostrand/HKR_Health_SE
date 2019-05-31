@@ -43,7 +43,7 @@ public class StatisticsFragment extends Fragment {
     private FragmentManager fm;
 
     //UI
-    private Button mExerciseStatisticsButton, mGoalSettingStatisticsButton;
+    private Button mExerciseStatisticsButton, mGoalSettingStatisticsButton, mHyperWorkoutStatisticsButton, mStrengthWorkoutStatisticsButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +55,8 @@ public class StatisticsFragment extends Fragment {
 
             mExerciseStatisticsButton = view.findViewById(R.id.exerciseStatisticsButton);
             mGoalSettingStatisticsButton = view.findViewById(R.id.goalsettingStatisticsButton);
+            mHyperWorkoutStatisticsButton = view.findViewById(R.id.hyperWorkoutStatisticsButton);
+            mStrengthWorkoutStatisticsButton = view.findViewById(R.id.strengthWorkoutStatisticsButton);
 
             mExerciseStatisticsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,6 +74,16 @@ public class StatisticsFragment extends Fragment {
                     ft = fm.beginTransaction();
                     GoalSettingStatisticsFragment goalSettingStatisticsFragment = new GoalSettingStatisticsFragment();
                     ft.replace(R.id.fragment_container, goalSettingStatisticsFragment);
+                    ft.commit();
+                }
+            });
+
+            mHyperWorkoutStatisticsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ft = fm.beginTransaction();
+                    HypertrophyWorkoutStatisticsFragment hypertrophyWorkoutStatisticsFragment = new HypertrophyWorkoutStatisticsFragment();
+                    ft.replace(R.id.fragment_container, hypertrophyWorkoutStatisticsFragment);
                     ft.commit();
                 }
             });

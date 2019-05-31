@@ -30,4 +30,24 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exerciseStatisticsButton" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hyperWorkoutStatisticsButton"
+        android:text="@string/goalsetting_statistics"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/goalsettingStatisticsButton"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/strengthWorkoutStatisticsButton"
+        android:text="@string/goalsetting_statistics"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hyperWorkoutStatisticsButton"
+        />
+
 </android.support.constraint.ConstraintLayout>
