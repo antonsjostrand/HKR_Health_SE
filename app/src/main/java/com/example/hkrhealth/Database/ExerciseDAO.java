@@ -57,4 +57,12 @@ public interface ExerciseDAO {
     @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutID = :workoutID AND (workoutType = 'Push' OR workoutType = 'Pull' OR workoutType = 'Legs')")
     LiveData<Integer> getTotalWeightForSpecificHypertrophyWorkout(int workoutID);
 
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutID = :workoutID AND (workoutType = 'A' OR workoutType = 'B')")
+    LiveData<Integer> getTotalWeightForSpecificStrengthWorkout(int workoutID);
+
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutType = 'A'")
+    LiveData<Integer> getTotalWeightForStrengthWorkoutTypeA();
+
+    @Query("SELECT SUM(exerciseWeight) FROM exercises WHERE workoutType = 'B'")
+    LiveData<Integer> getTotalWeightForStrengthWorkoutTypeB();
 }

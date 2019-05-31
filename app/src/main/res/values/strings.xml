@@ -77,6 +77,8 @@
     <string name="no_data_found">No data found</string>
     <string name="exercise_statistics">Exercise statistics</string>
     <string name="goalsetting_statistics">Goal setting statistics</string>
+    <string name="hyper_statistics">Hypertrophy workout statistics</string>
+    <string name="strength_statistics">Strength workout statistics</string>
     <string name="goalsetting_goal_comment">Current goal weight is: </string>
     <string name="goalsetting_current_comment">Latest reported weight: </string>
     <string name="goalsetting_reach_goal_comment">To reach your goal you need to lose: </string>
