@@ -56,28 +56,37 @@ public class SelectedStrengthWorkoutActivity extends AppCompatActivity {
             initRecyclerView();
             getAllExercises(mStrengthWorkout.getWorkoutID());
 
-
         }catch (Exception e){
             Log.d(TAG, "onCreate: error: " + e);
         }
     }
+
     public void initRecyclerView(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
-        mRecyclerView.addItemDecoration(itemDecorator);
-        mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
-        mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
+        try {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+            VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+            mRecyclerView.addItemDecoration(itemDecorator);
+            mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
+            mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
+        }catch (Exception e){
+            Log.d(TAG, "initRecyclerView: error: " + e);
+        }
     }
+
     public void initializeTextViews(){
-        mWorkoutType.setText(mStrengthWorkout.getWorkoutType());
-        mRating.setText(String.valueOf(mStrengthWorkout.getRating()));
-        mComment.setText(mStrengthWorkout.getComment());
+        try {
+            mWorkoutType.setText(mStrengthWorkout.getWorkoutType());
+            mRating.setText("Rating: " + String.valueOf(mStrengthWorkout.getRating()));
+            mComment.setText(mStrengthWorkout.getComment());
 
-        mModifiedDate = mStrengthWorkout.getDate();
-        mModifiedDate = mModifiedDate.substring(0,16);
+            mModifiedDate = mStrengthWorkout.getDate();
+            mModifiedDate = mModifiedDate.substring(0, 16);
 
-        mDate.setText(mModifiedDate);
+            mDate.setText(mModifiedDate);
+        }catch (Exception e){
+            Log.d(TAG, "initializeTextViews: error: " + e);
+        }
     }
 
     public void getAllExercises(int workoutID){

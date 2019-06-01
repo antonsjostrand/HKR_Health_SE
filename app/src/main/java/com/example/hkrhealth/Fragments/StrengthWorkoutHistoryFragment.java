@@ -54,26 +54,35 @@ public class StrengthWorkoutHistoryFragment extends Fragment implements Strength
     }
 
     public void getAllWorkouts(){
-        mHkrHealthRepository.getAllStrengthWorkouts().observe(getActivity(), new Observer<List<StrengthWorkout>>() {
-            @Override
-            public void onChanged(@Nullable List<StrengthWorkout> strengthWorkouts) {
-                if (mStrengthWorkouts.size() > 0){
-                    mStrengthWorkouts.clear();
+        try {
+            mHkrHealthRepository.getAllStrengthWorkouts().observe(getActivity(), new Observer<List<StrengthWorkout>>() {
+                @Override
+                public void onChanged(@Nullable List<StrengthWorkout> strengthWorkouts) {
+                    if (mStrengthWorkouts.size() > 0) {
+                        mStrengthWorkouts.clear();
+                    }
+                    if (strengthWorkouts != null) {
+                        mStrengthWorkouts.addAll(strengthWorkouts);
+                    }
+                    mStrengthWorkoutRecyclerAdapter.notifyDataSetChanged();
                 }
-                if (strengthWorkouts != null){
-                    mStrengthWorkouts.addAll(strengthWorkouts);
-                }
-                mStrengthWorkoutRecyclerAdapter.notifyDataSetChanged();
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllWorkouts: error: " + e);
+        }
     }
+
     public void initRecyclerView(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
-        mRecyclerView.addItemDecoration(itemDecorator);
-        mStrengthWorkoutRecyclerAdapter = new StrengthWorkoutRecyclerAdapter(mStrengthWorkouts, this);
-        mRecyclerView.setAdapter(mStrengthWorkoutRecyclerAdapter);
+        try {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+            VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+            mRecyclerView.addItemDecoration(itemDecorator);
+            mStrengthWorkoutRecyclerAdapter = new StrengthWorkoutRecyclerAdapter(mStrengthWorkouts, this);
+            mRecyclerView.setAdapter(mStrengthWorkoutRecyclerAdapter);
+        }catch (Exception e){
+            Log.d(TAG, "initRecyclerView: error: " + e);
+        }
     }
 
     @Override

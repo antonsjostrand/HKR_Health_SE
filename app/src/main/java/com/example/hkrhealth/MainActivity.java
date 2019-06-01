@@ -45,21 +45,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        try {
+            mDrawerLayout = findViewById(R.id.main_menu_drawerlayout);
+            popUpWindow();
+            setNavigationMenuListener();
 
+            ft = fm.beginTransaction();
 
-
-
-        mDrawerLayout = findViewById(R.id.main_menu_drawerlayout);
-        popUpWindow();
-        setNavigationMenuListener();
-
-        ft = fm.beginTransaction();
-
-        StartUpFragment startUpFragment = new StartUpFragment();
-        ft.replace(R.id.fragment_container, startUpFragment);
-        ft.commit();
+            StartUpFragment startUpFragment = new StartUpFragment();
+            ft.replace(R.id.fragment_container, startUpFragment);
+            ft.commit();
 
         /*mGetStartedButton = findViewById(R.id.getStartedButton);
 
@@ -71,10 +66,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });*/
 
-        mHkrHealthRepository = new HkrHealthRepository(this);
+            mHkrHealthRepository = new HkrHealthRepository(this);
 
-        //adjust the keyboard so it doesn't disturb the layouts.
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+            //adjust the keyboard so it doesn't disturb the layouts.
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        }catch (Exception e){
+            Log.d(TAG, "onCreate: error: " + e);
+        }
     }
 
     public void setNavigationMenuListener(){
@@ -92,12 +90,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        try {
+            if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
+        }catch (Exception e){
+            Log.d(TAG, "onBackPressed: error: " + e);
         }
-
     }
 
     public void onGetStartedButtonPressed() {
@@ -163,18 +164,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void popUpWindow(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Information");
-        builder.setMessage("Go to Goal Settings and enter your weight");
-        builder.setCancelable(true);
-        builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.show();
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Information");
+            builder.setMessage("Go to Goal Settings and enter your weight");
+            builder.setCancelable(true);
+            builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //Toast.makeText(getApplicationContext(), " ", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.show();
+        }catch (Exception e){
+            Log.d(TAG, "popUpWindow: error: " + e);
+        }
     }
-
 
 }

@@ -93,6 +93,9 @@ public class StrengthWorkoutStatisticsFragment extends Fragment {
 
                 for (StrengthWorkout i : mStrength_A_Workouts){
                     getTotalWeightPerExerciseTypeA(i.getWorkoutID());
+
+                    Thread.sleep(1000);
+                    Log.d(TAG, "typeAButtonPressed: delay finished.");
                 }
             }
         }catch (Exception e){
@@ -113,6 +116,9 @@ public class StrengthWorkoutStatisticsFragment extends Fragment {
 
                 for (StrengthWorkout i : mStrength_B_Workouts){
                     getTotalWeightPerExerciseTypeB(i.getWorkoutID());
+
+                    Thread.sleep(1000);
+                    Log.d(TAG, "typeBButtonPressed: delay finished");
                 }
             }
         }catch (Exception e){

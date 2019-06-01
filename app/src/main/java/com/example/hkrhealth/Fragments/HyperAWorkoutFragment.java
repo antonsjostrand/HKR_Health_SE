@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Models.Exercise;
@@ -38,6 +41,11 @@ public class HyperAWorkoutFragment extends Fragment {
     private double mExerciseWeight;
     private int mExerciseSet = 1;
 
+    //Fragment handlers
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+
+
     //UI
     private Button mSaveWorkoutButton, mYouTubeButton1, mYouTubeButton2,
             mYouTubeButton3, mYouTubeButton4,
@@ -62,20 +70,24 @@ public class HyperAWorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hyper_a_workout_layout, container, false);
 
-        mHkrHealthRepository = new HkrHealthRepository(getActivity());
+        try {
+            mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
-        initalizeTextViews(view);
-        initalizeEditTexts(view);
-        retrieveMaxWorkoutID();
-        youTubeButtons(view);
+            initalizeTextViews(view);
+            initalizeEditTexts(view);
+            retrieveMaxWorkoutID();
+            youTubeButtons(view);
 
-        mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
-        mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveWorkoutButtonPressed();
-            }
-        });
+            mSaveWorkoutButton = view.findViewById(R.id.saveWorkoutButton);
+            mSaveWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveWorkoutButtonPressed();
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+        }
 
         return view;
     }
@@ -100,83 +112,106 @@ public class HyperAWorkoutFragment extends Fragment {
             //Finally inserts the saved workout
             mHkrHealthRepository.insertHypertrophyWorkout(mHypertrophyWorkout);
             Log.d(TAG, "saveWorkoutButtonPressed: insertion succesful!");
+            Toast savedToast = Toast.makeText(getActivity(), "Workout successfully saved.", Toast.LENGTH_LONG);
+            savedToast.show();
+
+            WorkoutMenuFragment workoutMenuFragment = new WorkoutMenuFragment();
+            fm = getActivity().getSupportFragmentManager();
+            ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_container, workoutMenuFragment);
+            ft.commit();
+
+
+        }catch (NumberFormatException ne){
+            Toast toast = Toast.makeText(getActivity(), "Only numbers except in comment field.", Toast.LENGTH_LONG);
+            toast.show();
         }catch (Exception e){
             Log.d(TAG, "saveWorkoutButtonPressed: error: " + e);
         }
     }
 
     public void initalizeTextViews(View view){
-
-        mHeaderOne = view.findViewById(R.id.benchPressHeaderTW);
-        mHeaderTwo = view.findViewById(R.id.InclineBenchPressHeaderTW);
-        mHeaderThree = view.findViewById(R.id.exerciseThreeHeaderTW);
-        mHeaderFour = view.findViewById(R.id.exerciseFourHeaderTW);
-        mHeaderFive = view.findViewById(R.id.exerciseFiveHeaderTW);
-        mHeaderSix = view.findViewById(R.id.exerciseSixHeaderTW);
-
+        try {
+            mHeaderOne = view.findViewById(R.id.benchPressHeaderTW);
+            mHeaderTwo = view.findViewById(R.id.InclineBenchPressHeaderTW);
+            mHeaderThree = view.findViewById(R.id.exerciseThreeHeaderTW);
+            mHeaderFour = view.findViewById(R.id.exerciseFourHeaderTW);
+            mHeaderFive = view.findViewById(R.id.exerciseFiveHeaderTW);
+            mHeaderSix = view.findViewById(R.id.exerciseSixHeaderTW);
+        }catch (Exception e){
+            Log.d(TAG, "initalizeTextViews: error: " + e);
+        }
     }
 
     public void initalizeEditTexts(View view){
-        mCommentET = view.findViewById(R.id.commentET);
-        mRatingET = view.findViewById(R.id.ratingET);
+        try {
+            mCommentET = view.findViewById(R.id.commentET);
+            mRatingET = view.findViewById(R.id.ratingET);
 
 
-        mExOneSetOneReps = view.findViewById(R.id.benchPressSetOneRepsET);
-        mExOneSetTwoReps = view.findViewById(R.id.benchPressSetTwoRepsET);
-        mExOneSetThreeReps = view.findViewById(R.id.benchPressSetThreeRepsET);
-        mExOneSetOneWeight = view.findViewById(R.id.benchPressSetOneWeightET);
-        mExOneSetTwoWeight = view.findViewById(R.id.benchPressSetTwoWeightET);
-        mExOneSetThreeWeight = view.findViewById(R.id.benchPressSetThreeWeightET);
-        mExTwoSetOneReps = view.findViewById(R.id.inclineBenchPressSetOneRepsET);
-        mExTwoSetTwoReps = view.findViewById(R.id.inclineBenchPressSetTwoRepsET);
-        mExTwoSetThreeReps = view.findViewById(R.id.inclineBenchPressSetThreeRepsET);
-        mExTwoSetOneWeight = view.findViewById(R.id.inclineBenchPressSetOneWeightET);
-        mExTwoSetTwoWeight = view.findViewById(R.id.inclineBenchPressSetTwoWeightET);
-        mExTwoSetThreeWeight = view.findViewById(R.id.inclineBenchPressSetThreeWeightET);
-        mExThreeSetOneReps = view.findViewById(R.id.exerciseThreeSetOneRepsET);
-        mExThreeSetTwoReps = view.findViewById(R.id.exerciseThreeSetTwoRepsET);
-        mExThreeSetThreeReps = view.findViewById(R.id.exerciseThreeSetThreeRepsET);
-        mExThreeSetOneWeight = view.findViewById(R.id.exerciseThreeSetOneWeightET);
-        mExThreeSetTwoWeight = view.findViewById(R.id.exerciseThreeSetTwoWeightET);
-        mExThreeSetThreeWeight = view.findViewById(R.id.exerciseThreeSetThreeWeightET);
-        mExFourSetOneReps = view.findViewById(R.id.exerciseFourSetOneRepsET);
-        mExFourSetTwoReps = view.findViewById(R.id.exerciseFourSetTwoRepsET);
-        mExFourSetThreeReps = view.findViewById(R.id.exerciseFourSetThreeRepsET);
-        mExFourSetOneWeight = view.findViewById(R.id.exerciseFourSetOneWeightET);
-        mExFourSetTwoWeight = view.findViewById(R.id.exerciseFourSetTwoWeightET);
-        mExFourSetThreeWeight = view.findViewById(R.id.exerciseFourSetThreeWeightET);
-        mExFiveSetOneReps = view.findViewById(R.id.exerciseFiveSetOneRepsET);
-        mExFiveSetTwoReps = view.findViewById(R.id.exerciseFiveSetTwoRepsET);
-        mExFiveSetThreeReps = view.findViewById(R.id.exerciseFiveSetThreeRepsET);
-        mExFiveSetOneWeight = view.findViewById(R.id.exerciseFiveSetOneWeightET);
-        mExFiveSetTwoWeight = view.findViewById(R.id.exerciseFiveSetTwoWeightET);
-        mExFiveSetThreeWeight = view.findViewById(R.id.exerciseFiveSetThreeWeightET);
-        mExSixSetOneReps = view.findViewById(R.id.exerciseSixSetOneRepsET);
-        mExSixSetTwoReps = view.findViewById(R.id.exerciseSixSetTwoRepsET);
-        mExSixSetThreeReps = view.findViewById(R.id.exerciseSixSetThreeRepsET);
-        mExSixSetOneWeight = view.findViewById(R.id.exerciseSixSetOneWeightET);
-        mExSixSetTwoWeight = view.findViewById(R.id.exerciseSixSetTwoWeightET);
-        mExSixSetThreeWeight = view.findViewById(R.id.exerciseSixSetThreeWeightET);
+            mExOneSetOneReps = view.findViewById(R.id.benchPressSetOneRepsET);
+            mExOneSetTwoReps = view.findViewById(R.id.benchPressSetTwoRepsET);
+            mExOneSetThreeReps = view.findViewById(R.id.benchPressSetThreeRepsET);
+            mExOneSetOneWeight = view.findViewById(R.id.benchPressSetOneWeightET);
+            mExOneSetTwoWeight = view.findViewById(R.id.benchPressSetTwoWeightET);
+            mExOneSetThreeWeight = view.findViewById(R.id.benchPressSetThreeWeightET);
+            mExTwoSetOneReps = view.findViewById(R.id.inclineBenchPressSetOneRepsET);
+            mExTwoSetTwoReps = view.findViewById(R.id.inclineBenchPressSetTwoRepsET);
+            mExTwoSetThreeReps = view.findViewById(R.id.inclineBenchPressSetThreeRepsET);
+            mExTwoSetOneWeight = view.findViewById(R.id.inclineBenchPressSetOneWeightET);
+            mExTwoSetTwoWeight = view.findViewById(R.id.inclineBenchPressSetTwoWeightET);
+            mExTwoSetThreeWeight = view.findViewById(R.id.inclineBenchPressSetThreeWeightET);
+            mExThreeSetOneReps = view.findViewById(R.id.exerciseThreeSetOneRepsET);
+            mExThreeSetTwoReps = view.findViewById(R.id.exerciseThreeSetTwoRepsET);
+            mExThreeSetThreeReps = view.findViewById(R.id.exerciseThreeSetThreeRepsET);
+            mExThreeSetOneWeight = view.findViewById(R.id.exerciseThreeSetOneWeightET);
+            mExThreeSetTwoWeight = view.findViewById(R.id.exerciseThreeSetTwoWeightET);
+            mExThreeSetThreeWeight = view.findViewById(R.id.exerciseThreeSetThreeWeightET);
+            mExFourSetOneReps = view.findViewById(R.id.exerciseFourSetOneRepsET);
+            mExFourSetTwoReps = view.findViewById(R.id.exerciseFourSetTwoRepsET);
+            mExFourSetThreeReps = view.findViewById(R.id.exerciseFourSetThreeRepsET);
+            mExFourSetOneWeight = view.findViewById(R.id.exerciseFourSetOneWeightET);
+            mExFourSetTwoWeight = view.findViewById(R.id.exerciseFourSetTwoWeightET);
+            mExFourSetThreeWeight = view.findViewById(R.id.exerciseFourSetThreeWeightET);
+            mExFiveSetOneReps = view.findViewById(R.id.exerciseFiveSetOneRepsET);
+            mExFiveSetTwoReps = view.findViewById(R.id.exerciseFiveSetTwoRepsET);
+            mExFiveSetThreeReps = view.findViewById(R.id.exerciseFiveSetThreeRepsET);
+            mExFiveSetOneWeight = view.findViewById(R.id.exerciseFiveSetOneWeightET);
+            mExFiveSetTwoWeight = view.findViewById(R.id.exerciseFiveSetTwoWeightET);
+            mExFiveSetThreeWeight = view.findViewById(R.id.exerciseFiveSetThreeWeightET);
+            mExSixSetOneReps = view.findViewById(R.id.exerciseSixSetOneRepsET);
+            mExSixSetTwoReps = view.findViewById(R.id.exerciseSixSetTwoRepsET);
+            mExSixSetThreeReps = view.findViewById(R.id.exerciseSixSetThreeRepsET);
+            mExSixSetOneWeight = view.findViewById(R.id.exerciseSixSetOneWeightET);
+            mExSixSetTwoWeight = view.findViewById(R.id.exerciseSixSetTwoWeightET);
+            mExSixSetThreeWeight = view.findViewById(R.id.exerciseSixSetThreeWeightET);
+
+        }catch (Exception e){
+            Log.d(TAG, "initalizeEditTexts: error: " + e);
+        }
 
     }
 
     public void retrieveMaxWorkoutID(){
-        mHkrHealthRepository.retrieveMaxWorkoutID().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer == null){
-                    mWorkoutID = 0;
-                }else {
-                    mWorkoutID = integer;
-                    Log.d(TAG, "onChanged: workoutID: " + mWorkoutID);
-                }
+        try {
+            mHkrHealthRepository.retrieveMaxWorkoutID().observe(this, new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if (integer == null) {
+                        mWorkoutID = 0;
+                    } else {
+                        mWorkoutID = integer;
+                        Log.d(TAG, "onChanged: workoutID: " + mWorkoutID);
+                    }
 
-            }
-        });
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "retrieveMaxWorkoutID: error: " + e);
+        }
     }
 
     public void insertFirstExerciseToDatabase(int workoutID){
-        try {
             mExerciseName = String.valueOf(mHeaderOne.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExOneSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExOneSetOneWeight.getText()));
@@ -197,14 +232,9 @@ public class HyperAWorkoutFragment extends Fragment {
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
-
-        }catch (Exception e){
-            Log.d(TAG, "insertFirstExerciseToDatabase: error: " + e);
-        }
     }
 
     public void insertSecondExerciseToDatabase(int workoutID){
-        try {
             mExerciseName = String.valueOf(mHeaderTwo.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExTwoSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExTwoSetOneWeight.getText()));
@@ -225,14 +255,9 @@ public class HyperAWorkoutFragment extends Fragment {
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
-
-        }catch (Exception e){
-            Log.d(TAG, "insertSecondExerciseToDatabase: error: " + e);
-        }
     }
 
     public void insertThirdExerciseToDatabase(int workoutID){
-        try {
             mExerciseName = String.valueOf(mHeaderThree.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExThreeSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExThreeSetOneWeight.getText()));
@@ -254,13 +279,9 @@ public class HyperAWorkoutFragment extends Fragment {
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
 
-        }catch (Exception e){
-            Log.d(TAG, "insertThirdExerciseToDatabase: error: " + e);
-        }
     }
 
     public void insertFourthExerciseToDatabase(int workoutID){
-        try {
             mExerciseName = String.valueOf(mHeaderFour.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExFourSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExFourSetOneWeight.getText()));
@@ -281,14 +302,9 @@ public class HyperAWorkoutFragment extends Fragment {
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
-
-        }catch (Exception e){
-            Log.d(TAG, "insertFourthExerciseToDatabase: error: " + e);
-        }
     }
 
     public void insertFifthExerciseToDatabase(int workoutID){
-        try {
             mExerciseName = String.valueOf(mHeaderFive.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExFiveSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExFiveSetOneWeight.getText()));
@@ -309,14 +325,9 @@ public class HyperAWorkoutFragment extends Fragment {
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
-
-        }catch (Exception e){
-            Log.d(TAG, "insertFifthExerciseToDatabase: error: " + e);
-        }
     }
 
     public void insertSixthExerciseToDatabase(int workoutID){
-        try {
             mExerciseName = String.valueOf(mHeaderSix.getText());
             mExerciseReps = Integer.parseInt(String.valueOf(mExSixSetOneReps.getText()));
             mExerciseWeight = Double.parseDouble(String.valueOf(mExSixSetOneWeight.getText()));
@@ -337,16 +348,10 @@ public class HyperAWorkoutFragment extends Fragment {
             mExercise = new Exercise(workoutID, mWorkoutType, mExerciseName, mExerciseReps, mExerciseWeight, mExerciseSet);
             mExerciseSet = 1;
             mHkrHealthRepository.insertExercise(mExercise);
-
-        }catch (Exception e){
-            Log.d(TAG, "insertSixthExerciseToDatabase: error: " + e);
-        }
-    }
-
+   }
 
     public void youTubeButtons(View view){
         try {
-
             mYouTubeButton1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

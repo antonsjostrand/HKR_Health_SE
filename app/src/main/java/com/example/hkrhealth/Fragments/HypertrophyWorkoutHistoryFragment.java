@@ -55,27 +55,35 @@ public class HypertrophyWorkoutHistoryFragment extends Fragment implements Hyper
     }
 
     public void getAllWorkouts(){
-        mHkrHealthRepository.getAllHypertrophyWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
-            @Override
-            public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
-                if (mHypertrophyWorkouts.size() > 0){
-                    mHypertrophyWorkouts.clear();
+        try {
+            mHkrHealthRepository.getAllHypertrophyWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
+                @Override
+                public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
+                    if (mHypertrophyWorkouts.size() > 0) {
+                        mHypertrophyWorkouts.clear();
+                    }
+                    if (hypertrophyWorkouts != null) {
+                        mHypertrophyWorkouts.addAll(hypertrophyWorkouts);
+                    }
+                    mHypertrophyWorkoutRecyclerAdapter.notifyDataSetChanged();
                 }
-                if (hypertrophyWorkouts != null){
-                    mHypertrophyWorkouts.addAll(hypertrophyWorkouts);
-                }
-                mHypertrophyWorkoutRecyclerAdapter.notifyDataSetChanged();
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllWorkouts: error: " + e);
+        }
     }
 
     public void initRecyclerView(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
-        mRecyclerView.addItemDecoration(itemDecorator);
-        mHypertrophyWorkoutRecyclerAdapter = new HypertrophyWorkoutRecyclerAdapter(mHypertrophyWorkouts, this);
-        mRecyclerView.setAdapter(mHypertrophyWorkoutRecyclerAdapter);
+        try {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+            VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+            mRecyclerView.addItemDecoration(itemDecorator);
+            mHypertrophyWorkoutRecyclerAdapter = new HypertrophyWorkoutRecyclerAdapter(mHypertrophyWorkouts, this);
+            mRecyclerView.setAdapter(mHypertrophyWorkoutRecyclerAdapter);
+        }catch (Exception e){
+            Log.d(TAG, "initRecyclerView: error: " + e);
+        }
     }
 
     @Override

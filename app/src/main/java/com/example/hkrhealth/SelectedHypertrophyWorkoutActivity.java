@@ -49,19 +49,12 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
             mComment = findViewById(R.id.workoutCommentTV);
             mRating = findViewById(R.id.workoutRatingTV);
 
-
-
             mHypertrophyWorkout = getIntent().getParcelableExtra("hypertrophy_workout");
             Log.d(TAG, "onCreate: TESTING WORKOUTID: " + mHypertrophyWorkout.getWorkoutID());
 
-
             initializeTextViews();
-
             initRecyclerView();
             getAllExercises(mHypertrophyWorkout.getWorkoutID());
-
-
-
 
         }catch (Exception e){
             Log.d(TAG, "onCreate: error: " + e);
@@ -84,14 +77,18 @@ public class SelectedHypertrophyWorkoutActivity extends AppCompatActivity {
     }
 
     public void initializeTextViews(){
-        mWorkoutType.setText(mHypertrophyWorkout.getWorkoutType());
-        mRating.setText(String.valueOf(mHypertrophyWorkout.getRating()));
-        mComment.setText(mHypertrophyWorkout.getComment());
+        try {
+            mWorkoutType.setText(mHypertrophyWorkout.getWorkoutType());
+            mRating.setText("Rating: " + String.valueOf(mHypertrophyWorkout.getRating()));
+            mComment.setText(mHypertrophyWorkout.getComment());
 
-        mModifiedDate = mHypertrophyWorkout.getDate();
-        mModifiedDate = mModifiedDate.substring(0,16);
+            mModifiedDate = mHypertrophyWorkout.getDate();
+            mModifiedDate = mModifiedDate.substring(0, 16);
 
-        mDate.setText(mModifiedDate);
+            mDate.setText(mModifiedDate);
+        }catch (Exception e){
+            Log.d(TAG, "initializeTextViews: error: "+ e);
+        }
     }
 
     public void getAllExercises(int workoutID){

@@ -43,30 +43,35 @@ public class GoalsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_goalsetting, container, false);
 
-        //textView = (TextView)view.findViewById(R.id.textView1)
+        try {
+            //textView = (TextView)view.findViewById(R.id.textView1)
 
-        mHkrHealthRepository = new HkrHealthRepository(getActivity());
+            mHkrHealthRepository = new HkrHealthRepository(getActivity());
 
-        initializeTextViews(view);
-        initializeEditTexts(view);
+            initializeTextViews(view);
+            initializeEditTexts(view);
 
-        getCurrentGoal();
+            getCurrentGoal();
 
-        mSaveGsButton = view.findViewById(R.id.saveGoalWeightButton);
-        mSaveGsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveGoalSettingButtonPressed();
-            }
-        });
+            mSaveGsButton = view.findViewById(R.id.saveGoalWeightButton);
+            mSaveGsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveGoalSettingButtonPressed();
+                }
+            });
 
-        mSaveCurrentWeightButton = view.findViewById(R.id.saveCurrentWeightButton);
-        mSaveCurrentWeightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveCurrentWeightButtonPressed();
-            }
-        });
+            mSaveCurrentWeightButton = view.findViewById(R.id.saveCurrentWeightButton);
+            mSaveCurrentWeightButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveCurrentWeightButtonPressed();
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+        }
+
         return view;
     }
 
@@ -106,30 +111,42 @@ public class GoalsFragment extends Fragment {
     }
 
     public void initializeTextViews(View view){
-        mGoalsettingTV = view.findViewById(R.id.goalSettingTV);
-        mCurrentWeightTV = view.findViewById(R.id.currentWeightTV);
-        mCurrentGoalShown = view.findViewById(R.id.currentGoalShownTV);
+        try {
+            mGoalsettingTV = view.findViewById(R.id.goalSettingTV);
+            mCurrentWeightTV = view.findViewById(R.id.currentWeightTV);
+            mCurrentGoalShown = view.findViewById(R.id.currentGoalShownTV);
+        }catch (Exception e) {
+            Log.d(TAG, "initializeTextViews: error: " + e);
+        }
 
     }
 
     public void initializeEditTexts(View view){
-        mWeightGoalET = view.findViewById(R.id.weigtGoalET);
-        mCurrentWeightET = view.findViewById(R.id.currentWeightET);
+        try {
+            mWeightGoalET = view.findViewById(R.id.weigtGoalET);
+            mCurrentWeightET = view.findViewById(R.id.currentWeightET);
+        }catch (Exception e){
+            Log.d(TAG, "initializeEditTexts: error: " + e);
+        }
     }
 
     public void getCurrentGoal(){
-        mHkrHealthRepository.getCurrentGoal().observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double dub) {
-                if (dub != null){
-                    mCuGoal = dub;
-                    mCurrentGoalShown.setText(String.valueOf(mCuGoal));
-                }else{
-                    mCuGoal = 0;
-                    mCurrentGoalShown.setText(R.string.zero);
+        try {
+            mHkrHealthRepository.getCurrentGoal().observe(getActivity(), new Observer<Double>() {
+                @Override
+                public void onChanged(@Nullable Double dub) {
+                    if (dub != null) {
+                        mCuGoal = dub;
+                        mCurrentGoalShown.setText(String.valueOf(mCuGoal));
+                    } else {
+                        mCuGoal = 0;
+                        mCurrentGoalShown.setText(R.string.zero);
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getCurrentGoal: error: " + e);
+        }
     }
 }
 

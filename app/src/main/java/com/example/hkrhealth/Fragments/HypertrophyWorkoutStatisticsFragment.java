@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hkrhealth.Database.HkrHealthRepository;
 import com.example.hkrhealth.Models.HypertrophyWorkout;
@@ -106,6 +107,9 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
 
                 for (HypertrophyWorkout i : mPushWorkouts){
                     getTotalWeightPerExercisePush(i.getWorkoutID());
+
+                    Thread.sleep(1000);
+                    Log.d(TAG, "mPushButtonPressed: delay finished, moving on.");
                 }
             }
 
@@ -126,6 +130,9 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
 
                 for (HypertrophyWorkout i : mPullWorkouts){
                     getTotalWeightPerExercisePull(i.getWorkoutID());
+
+                    Thread.sleep(1000);
+                    Log.d(TAG, "mPullButtonPressed: delay finished.");
                 }
             }
         }catch (Exception e){
@@ -145,6 +152,9 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
 
                 for (HypertrophyWorkout i : mLegsWorkouts){
                     getTotalWeightPerExerciseLegs(i.getWorkoutID());
+
+                    Thread.sleep(1000);
+                    Log.d(TAG, "mLegsButtonPressed: delay finished, moving on.");
                 }
             }
         }catch (Exception e){
@@ -154,94 +164,124 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
     }
 
     public void getAllPushWorkouts(){
-        mHkrHealthRepository.getAllHypertrophyPushWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
-            @Override
-            public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
-                if (mPushWorkouts.size() > 0){
-                    mPushWorkouts.clear();
-                }
-                if (hypertrophyWorkouts != null){
-                    mPushWorkouts.addAll(hypertrophyWorkouts);
-                    Log.d(TAG, "onChanged: added all push workouts.");
-                    mPushWorkoutsAdded = true;
-                }
+        try {
+            mHkrHealthRepository.getAllHypertrophyPushWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
+                @Override
+                public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
+                    if (mPushWorkouts.size() > 0) {
+                        mPushWorkouts.clear();
+                    }
+                    if (hypertrophyWorkouts != null) {
+                        mPushWorkouts.addAll(hypertrophyWorkouts);
+                        Log.d(TAG, "onChanged: added all push workouts.");
+                        mPushWorkoutsAdded = true;
+                    }
 
-            }
-        });
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllPushWorkouts: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getAllPullWorkouts(){
-        mHkrHealthRepository.getAllHypertrophyPullWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
-            @Override
-            public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
-                if (mPullWorkouts.size() > 0){
-                    mPullWorkouts.clear();
+        try {
+            mHkrHealthRepository.getAllHypertrophyPullWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
+                @Override
+                public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
+                    if (mPullWorkouts.size() > 0) {
+                        mPullWorkouts.clear();
+                    }
+                    if (hypertrophyWorkouts != null) {
+                        mPullWorkouts.addAll(hypertrophyWorkouts);
+                        Log.d(TAG, "onChanged: added all pull workouts.");
+                        mPullWorkoutsAdded = true;
+                    }
                 }
-                if (hypertrophyWorkouts != null){
-                    mPullWorkouts.addAll(hypertrophyWorkouts);
-                    Log.d(TAG, "onChanged: added all pull workouts.");
-                    mPullWorkoutsAdded = true;
-                }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllPullWorkouts: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getAllLegsWorkouts(){
-        mHkrHealthRepository.getAllHypertrophyLegsWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
-            @Override
-            public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
-                if (mLegsWorkouts.size() > 0){
-                    mLegsWorkouts.clear();
+        try {
+            mHkrHealthRepository.getAllHypertrophyLegsWorkouts().observe(getActivity(), new Observer<List<HypertrophyWorkout>>() {
+                @Override
+                public void onChanged(@Nullable List<HypertrophyWorkout> hypertrophyWorkouts) {
+                    if (mLegsWorkouts.size() > 0) {
+                        mLegsWorkouts.clear();
+                    }
+                    if (hypertrophyWorkouts != null) {
+                        mLegsWorkouts.addAll(hypertrophyWorkouts);
+                        Log.d(TAG, "onChanged: added all legs workouts.");
+                        mLegsWorkoutsAdded = true;
+                    }
                 }
-                if (hypertrophyWorkouts != null){
-                    mLegsWorkouts.addAll(hypertrophyWorkouts);
-                    Log.d(TAG, "onChanged: added all legs workouts.");
-                    mLegsWorkoutsAdded = true;
-                }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllLegsWorkouts: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getTotalWeightPerExercisePush(final int workoutID){
-        mHkrHealthRepository.getTotalWeightForSpecificHypertrophyWorkout(workoutID).observe(getActivity(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer != null){
-                    clearLineChart();
-                    Log.d(TAG, "onChanged: adding weight: " + integer + ", for workout id: " + workoutID);
-                    mWorkoutsLiftedWeight.add(integer);
-                    drawLineChartPush();
+        try {
+            mHkrHealthRepository.getTotalWeightForSpecificHypertrophyWorkout(workoutID).observe(getActivity(), new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if (integer != null) {
+                        clearLineChart();
+                        Log.d(TAG, "onChanged: adding weight: " + integer + ", for workout id: " + workoutID);
+                        mWorkoutsLiftedWeight.add(integer);
+                        drawLineChartPush();
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getTotalWeightPerExercisePush: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getTotalWeightPerExercisePull(final int workoutID){
-        mHkrHealthRepository.getTotalWeightForSpecificHypertrophyWorkout(workoutID).observe(getActivity(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer != null){
-                    clearLineChart();
-                    Log.d(TAG, "onChanged: adding weight: " + integer + ", for workout id: " + workoutID);
-                    mWorkoutsLiftedWeight.add(integer);
-                    drawLineChartPull();
+        try {
+            mHkrHealthRepository.getTotalWeightForSpecificHypertrophyWorkout(workoutID).observe(getActivity(), new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if (integer != null) {
+                        clearLineChart();
+                        Log.d(TAG, "onChanged: adding weight: " + integer + ", for workout id: " + workoutID);
+                        mWorkoutsLiftedWeight.add(integer);
+                        drawLineChartPull();
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getTotalWeightPerExercisePull: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getTotalWeightPerExerciseLegs(final int workoutID){
-        mHkrHealthRepository.getTotalWeightForSpecificHypertrophyWorkout(workoutID).observe(getActivity(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer != null){
-                    clearLineChart();
-                    Log.d(TAG, "onChanged: adding weight: " + integer + ", for workout id: " + workoutID);
-                    mWorkoutsLiftedWeight.add(integer);
-                    drawLineChartLegs();
+        try {
+            mHkrHealthRepository.getTotalWeightForSpecificHypertrophyWorkout(workoutID).observe(getActivity(), new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if (integer != null) {
+                        clearLineChart();
+                        Log.d(TAG, "onChanged: adding weight: " + integer + ", for workout id: " + workoutID);
+                        mWorkoutsLiftedWeight.add(integer);
+                        drawLineChartLegs();
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getTotalWeightPerExerciseLegs: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void calculateTotalPushWeight(){
@@ -254,6 +294,9 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
                         mLiftedWeight = integer;
                         Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
                         mTotalWeightTV.setText(String.valueOf(mLiftedWeight));
+                    }else{
+                        Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
+                        toast.show();
                     }
                 }
             });
@@ -273,6 +316,9 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
                         mLiftedWeight = integer;
                         Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
                         mTotalWeightTV.setText(String.valueOf(mLiftedWeight));
+                    }else{
+                        Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
+                        toast.show();
                     }
                 }
             });
@@ -292,6 +338,9 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
                         mLiftedWeight = integer;
                         Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
                         mTotalWeightTV.setText(String.valueOf(mLiftedWeight));
+                    }else{
+                        Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
+                        toast.show();
                     }
                 }
             });

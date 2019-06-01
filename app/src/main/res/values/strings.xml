@@ -14,6 +14,7 @@
     <!-- Strings used in all kinds of workout layouts -->
     <string name="exercise">Exercise</string>
     <string name="comment">Write a comment</string>
+    <string name="selected_comment">Comment: </string>
     <string name="rating">Rate this exercise</string>
     <string name="save">Save</string>
     <string name="reps">Reps</string>
@@ -96,6 +97,20 @@
         <item name="shoulder_side_raises">Side raises</item>
         <item name="pushdown">Pushdown</item>
         <item name="french_press">French press</item>
+        <item name="deadlift">Deadlift</item>
+        <item name="barbell_row">Barbell row</item>
+        <item name="chin_up">Chin-up</item>
+        <item name="one_arm_dumbell_row">One Arm dumbell row</item>
+        <item name="bent_over_lateral_raise">Bent-over lateral raise</item>
+        <item name="incline_curl">Incline dumbell curl</item>
+        <item name="squat">Squats</item>
+        <item name="leg_press">Leg press</item>
+        <item name="romanian_deadlift">Romanian deadlift</item>
+        <item name="leg_curl">Leg curl</item>
+        <item name="hamstring_curl">Hamstring curl</item>
+        <item name="standing_calf_raise">Standing calf raise</item>
+        <item name="military_press">Military press</item>
+        <item name="power_clean">Power clean</item>
     </string-array>
 
     <!-- Strings used in workoutdesign -->

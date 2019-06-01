@@ -39,6 +39,7 @@ public class GoalSettingStatisticsFragment extends Fragment {
     private double mGoalWeight = 0, mCurrentWeight = 0;
     private int mId;
     private GoalSetting mGoalSetting;
+    private boolean mGoalWeightFetched = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,79 +64,109 @@ public class GoalSettingStatisticsFragment extends Fragment {
     }
 
     public void initializeID(){
-        mHkrHealthRepository.getMaxIdGoal().observe(getActivity(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer != null){
-                    mId = integer;
-                    Log.d(TAG, "onChanged: mId: " + integer);
-                    if (mId > 0){
-                        initializeCurrent();
-                        initializeGoal();
+        try {
+            mHkrHealthRepository.getMaxIdGoal().observe(getActivity(), new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if (integer != null) {
+                        mId = integer;
+                        Log.d(TAG, "onChanged: mId: " + integer);
+                        if (mId > 0) {
+                            initializeGoal();
+                            initializeCurrent();
+                        }
+                    } else {
+                        mId = 0;
                     }
-                } else{
-                    mId = 0;
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "initializeID: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void initializeGoal(){
-        mHkrHealthRepository.getCurrentGoal().observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double doub) {
-                if (doub != null){
-                    mGoalWeight = doub;
-                    mGoalTV.setText(String.valueOf(mGoalWeight));
+        try {
+            mHkrHealthRepository.getCurrentGoal().observe(getActivity(), new Observer<Double>() {
+                @Override
+                public void onChanged(@Nullable Double doub) {
+                    if (doub != null) {
+                        mGoalWeight = doub;
+                        mGoalTV.setText(String.valueOf(mGoalWeight));
+                        Log.d(TAG, "onChanged: got goal weight: " + mGoalWeight);
+                        mGoalWeightFetched = true;
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "initializeGoal: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void initializeCurrent(){
-        mHkrHealthRepository.getLatestGoalSetting(mId).observe(getActivity(), new Observer<GoalSetting>() {
-            @Override
-            public void onChanged(@Nullable GoalSetting goalSetting) {
-                if (goalSetting != null){
-                    mGoalSetting = goalSetting;
-                    mCurrentWeight = mGoalSetting.getWeight();
-                    mCurrentTV.setText(String.valueOf(mCurrentWeight));
+        try {
+            Thread.sleep(1000);
+            mHkrHealthRepository.getLatestGoalSetting(mId).observe(getActivity(), new Observer<GoalSetting>() {
+                @Override
+                public void onChanged(@Nullable GoalSetting goalSetting) {
+                    if (goalSetting != null) {
+                        mGoalSetting = goalSetting;
+                        mCurrentWeight = mGoalSetting.getWeight();
+                        mCurrentTV.setText(String.valueOf(mCurrentWeight));
 
-                    if (mGoalSetting != null){
-                        initalizeReach();
+                        if (mGoalSetting != null) {
+                            initalizeReach();
+                        }
+                        Log.d(TAG, "onChanged: got data");
+                    } else {
+                        Log.d(TAG, "onChanged: no data found (initializeCurrent");
                     }
-                    Log.d(TAG, "onChanged: got data");
-                }else{
-                    Log.d(TAG, "onChanged: no data found (initializeCurrent");
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "initializeCurrent: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void initalizeReach(){
-        double difference = mCurrentWeight - mGoalWeight;
-        mReachTV.setText(String.valueOf(difference) + " kg");
+        try {
+            Log.d(TAG, "initalizeReach: currentweight: " + mCurrentWeight + ", goal weight: " + mGoalWeight);
+            double difference = mCurrentWeight - mGoalWeight;
+            mReachTV.setText(String.valueOf(difference) + " kg");
+
+        }catch (Exception e){
+            Log.d(TAG, "initalizeReach: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getAllGoalSettings(){
-        mHkrHealthRepository.getAllGoals().observe(getActivity(), new Observer<List<GoalSetting>>() {
-            @Override
-            public void onChanged(@Nullable List<GoalSetting> goalSettings) {
-                if (mGoalsettings.size() > 0){
-                    mGoalsettings.clear();
-                }
-                if (goalSettings != null){
-                    mGoalsettings.addAll(goalSettings);
-
-                    if (mGoalsettings != null){
-                        Log.d(TAG, "onChanged: mGoalSettings size: " + mGoalsettings.size());
-                        initializeLineChart();
+        try {
+            mHkrHealthRepository.getAllGoals().observe(getActivity(), new Observer<List<GoalSetting>>() {
+                @Override
+                public void onChanged(@Nullable List<GoalSetting> goalSettings) {
+                    if (mGoalsettings.size() > 0) {
+                        mGoalsettings.clear();
                     }
-                }else{
-                    Log.d(TAG, "onChanged: getAllGoalSettings, no data found");
+                    if (goalSettings != null) {
+                        mGoalsettings.addAll(goalSettings);
+
+                        if (mGoalsettings != null) {
+                            Log.d(TAG, "onChanged: mGoalSettings size: " + mGoalsettings.size());
+                            initializeLineChart();
+                        }
+                    } else {
+                        Log.d(TAG, "onChanged: getAllGoalSettings, no data found");
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllGoalSettings: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void initializeLineChart() {

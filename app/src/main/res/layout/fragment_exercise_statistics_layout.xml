@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/confirmButton"
         android:layout_margin="20dp"
+        android:text="@string/confirm"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/searchFieldACTV"
         app:layout_constraintTop_toTopOf="parent"

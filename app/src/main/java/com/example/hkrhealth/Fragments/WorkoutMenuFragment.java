@@ -36,184 +36,71 @@ public class WorkoutMenuFragment extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_workout_menu_layout, container, false);
 
-        mCardViewA = view.findViewById(R.id.card_viewA);
-        mCardViewB = view.findViewById(R.id.card_viewB);
-        mCardViewC = view.findViewById(R.id.card_viewC);
-        mCardViewD = view.findViewById(R.id.card_viewD);
-        mCardViewE = view.findViewById(R.id.card_viewE);
-        mCardViewF = view.findViewById(R.id.card_viewF);
+        try {
+            mCardViewA = view.findViewById(R.id.card_viewA);
+            mCardViewB = view.findViewById(R.id.card_viewB);
+            mCardViewC = view.findViewById(R.id.card_viewC);
+            mCardViewD = view.findViewById(R.id.card_viewD);
+            mCardViewE = view.findViewById(R.id.card_viewE);
+            mCardViewF = view.findViewById(R.id.card_viewF);
 
+            mCardViewA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cardViewAisPressed();
+                    Log.d(TAG, "onClick: Cardview A: Pressed");
+                }
+            });
 
+            mCardViewB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cardViewBisPressed();
+                    Log.d(TAG, "onClick: Cardview B: Pressed");
+                }
+            });
 
+            mCardViewC.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cardViewCisPressed();
+                    Log.d(TAG, "onClick: Cardview C: Pressed");
+                }
+            });
 
-        mCardViewA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardViewAisPressed();
-                Log.d(TAG, "onClick: Cardview A: Pressed");
-            }
-        });
+            mCardViewD.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cardViewDisPressed();
+                    Log.d(TAG, "onClick: Cardview D: Pressed");
+                }
+            });
 
-        mCardViewB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardViewBisPressed();
-                Log.d(TAG, "onClick: Cardview B: Pressed");
-            }
-        });
+            mCardViewE.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cardViewEisPressed();
+                    Log.d(TAG, "onClick: Cardview D: Pressed");
+                }
+            });
 
-        mCardViewC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardViewCisPressed();
-                Log.d(TAG, "onClick: Cardview C: Pressed");
-            }
-        });
-
-        mCardViewD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardViewDisPressed();
-                Log.d(TAG, "onClick: Cardview D: Pressed");
-            }
-        });
-
-        mCardViewE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardViewEisPressed();
-                Log.d(TAG, "onClick: Cardview D: Pressed");
-            }
-        });
-
-        mCardViewF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardViewFisPressed();
-                Log.d(TAG, "onClick: Cardview D: Pressed");
-            }
-        });
-
-
-
-
-        //mCardViewB = view.findViewById(R.id.card_viewB);
-        //mCardViewC = view.findViewById(R.id.card_viewC);
-
-        /*mHyperAButton = view.findViewById(R.id.hyperAButton);
-        mHyperBButton = view.findViewById(R.id.hyperBButton);
-        mHyperCButton = view.findViewById(R.id.hyperCButton);
-        mStrengthAButton = view.findViewById(R.id.strengthAButton);
-        mStrengthBButton = view.findViewById(R.id.strengthBButton);
-        mStrengthCButton = view.findViewById(R.id.strengthCButton);
-        mHiitButton = view.findViewById(R.id.hiitButton);
-
-        mHyperAButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hyperAButtonPressed();
-            }
-        });
-
-        mHyperBButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hyperBButtonPressed();
-            }
-        });
-
-        mHyperCButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hyperCButtonPressed();
-            }
-        });
-
-        mStrengthAButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                strengthAButtonPressed();
-            }
-        });
-
-        mStrengthBButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                strengthBButtonPressed();
-            }
-        });
-
-        mStrengthCButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                strengthCButtonPressed();
-            }
-        });
-
-        mHiitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hiitButtonPressed();
-            }
-        });*/
+            mCardViewF.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cardViewFisPressed();
+                    Log.d(TAG, "onClick: Cardview D: Pressed");
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+        }
 
         return view;
     }
-
-    public void hyperAButtonPressed(){
-
-    }
-
-    public void hyperBButtonPressed(){
-
-    }
-
-    public void hyperCButtonPressed(){
-
-
-    }
-
-    public void strengthAButtonPressed(){
-
-
-    }
-
-    public void strengthBButtonPressed(){
-
-
-    }
-
-    public void strengthCButtonPressed(){
-
-    }
-
-    public void hiitButtonPressed(){
-        try {
-            fm = getActivity().getSupportFragmentManager();
-            ft = fm.beginTransaction();
-
-            HiitWorkoutFragment hiitWorkoutFragment = new HiitWorkoutFragment();
-            ft.replace(R.id.fragment_container, hiitWorkoutFragment);
-            ft.commit();
-        }catch (Exception e){
-            Log.d(TAG, "hyperAButtonPressed: error: " + e);
-        }
-
-    }
-
-
-
-
-
-
-
-
-
 
     public void cardViewAisPressed() {
         try {
@@ -270,7 +157,7 @@ public class WorkoutMenuFragment extends Fragment {
     }
 
     public void cardViewEisPressed() {
-        // Strength A
+        // Strength B
         try {
             fm = getActivity().getSupportFragmentManager();
             ft = fm.beginTransaction();
@@ -285,7 +172,7 @@ public class WorkoutMenuFragment extends Fragment {
     }
 
     public void cardViewFisPressed() {
-        // Strength B
+        // Hiit
         try {
             fm = getActivity().getSupportFragmentManager();
             ft = fm.beginTransaction();

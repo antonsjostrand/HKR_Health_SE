@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.example.hkrhealth.R;
 import java.util.Locale;
 
 public class HiitWorkoutFragment extends Fragment {
+
+    private static final String TAG = "HiitWorkoutFragment";
 
     private CountDownTimer mCountDownTimer;
 
@@ -38,90 +41,114 @@ public class HiitWorkoutFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hiit_workout, container, false);
 
-        youTubeButton(view);
+        try {
+            youTubeButton(view);
 
-        mTimerTV = view.findViewById(R.id.timerTV);
-        mStartButton = view.findViewById(R.id.startCountDownButton);
-        mResetButton = view.findViewById(R.id.resetButton);
+            mTimerTV = view.findViewById(R.id.timerTV);
+            mStartButton = view.findViewById(R.id.startCountDownButton);
+            mResetButton = view.findViewById(R.id.resetButton);
 
-        mStartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mTimerRunning){
-                    pauseTimer();
-                } else {
-                    startTimer();
+            mStartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mTimerRunning) {
+                        pauseTimer();
+                    } else {
+                        startTimer();
+                    }
                 }
-            }
-        });
+            });
 
-        mResetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetTimer();
+            mResetButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    resetTimer();
 
-            }
-        });
+                }
+            });
 
-        updateCountDownText();
+            updateCountDownText();
+        }catch (Exception e){
+            Log.d(TAG, "onCreateView: error: " + e);
+        }
         return view;
     }
 
-    private void startTimer(){
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
-            }
+    private void startTimer() {
+        try {
+            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    mTimeLeftInMillis = millisUntilFinished;
+                    updateCountDownText();
+                }
 
-            @Override
-            public void onFinish() {
+                @Override
+                public void onFinish() {
 
-                mTimerRunning = false;
-                mStartButton.setText("Start");
-                mStartButton.setVisibility(View.INVISIBLE);
-                mResetButton.setVisibility(View.VISIBLE);
+                    mTimerRunning = false;
+                    mStartButton.setText("Start");
+                    mStartButton.setVisibility(View.INVISIBLE);
+                    mResetButton.setVisibility(View.VISIBLE);
 
-            }
-        }.start();
-        mTimerRunning = true;
-        mStartButton.setText("pause");
-        mResetButton.setVisibility(View.INVISIBLE);
+                }
+            }.start();
+            mTimerRunning = true;
+            mStartButton.setText("pause");
+            mResetButton.setVisibility(View.INVISIBLE);
+        }catch (Exception e){
+            Log.d(TAG, "startTimer: error: " + e);
+        }
     }
 
     private void pauseTimer(){
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-        mStartButton.setText("Start");
-        mResetButton.setVisibility(View.VISIBLE);
+        try {
+            mCountDownTimer.cancel();
+            mTimerRunning = false;
+            mStartButton.setText("Start");
+            mResetButton.setVisibility(View.VISIBLE);
+        }catch (Exception e){
+            Log.d(TAG, "pauseTimer: error: " + e);
+        }
     }
 
     private void resetTimer(){
-        mTimeLeftInMillis = startTimeInMillis;
-        updateCountDownText();
-        mResetButton.setVisibility(View.INVISIBLE);
-        mStartButton.setVisibility(View.VISIBLE);
+        try {
+            mTimeLeftInMillis = startTimeInMillis;
+            updateCountDownText();
+            mResetButton.setVisibility(View.INVISIBLE);
+            mStartButton.setVisibility(View.VISIBLE);
+        }catch (Exception e){
+            Log.d(TAG, "resetTimer: error: " + e);
+        }
     }
 
     private void updateCountDownText(){
-        int minutes = (int) (mTimeLeftInMillis / 1000)/ 60;
-        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        try {
+            int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+            int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
 
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
-        mTimerTV.setText(timeLeftFormatted);
+            mTimerTV.setText(timeLeftFormatted);
+        }catch (Exception e){
+            Log.d(TAG, "updateCountDownText: error: " + e);
+        }
     }
 
     public void youTubeButton(View view){
-        mYoutubeButton = view.findViewById(R.id.goToYoutubeButton);
-        mYoutubeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent webLink = new Intent(Intent.ACTION_VIEW);
-                webLink.setData(Uri.parse("https://www.youtube.com/watch?v=iLcQzW4_izg"));
-                startActivity(webLink);
-            }
-        });
+        try {
+            mYoutubeButton = view.findViewById(R.id.goToYoutubeButton);
+            mYoutubeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent webLink = new Intent(Intent.ACTION_VIEW);
+                    webLink.setData(Uri.parse("https://www.youtube.com/watch?v=iLcQzW4_izg"));
+                    startActivity(webLink);
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "youTubeButton: error: " + e);
+        }
     }
 }

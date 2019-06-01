@@ -125,34 +125,49 @@ public class ExerciseStatisticsFragment extends Fragment {
     }
 
     public void clearFields(){
-        mMaxLiftTV.setText("");
-        mTotalRepsTV.setText("");
-        mTotalWeightTV.setText("");
+        try {
+            mMaxLiftTV.setText("");
+            mTotalRepsTV.setText("");
+            mTotalWeightTV.setText("");
+        }catch (Exception e){
+            Log.d(TAG, "clearFields: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void clearLineChart(){
-        Log.d(TAG, "clearLineChart: clearing linechart");
-        mLineChart.invalidate();
-        mLineChart.clear();
+        try {
+            Log.d(TAG, "clearLineChart: clearing linechart");
+            mLineChart.invalidate();
+            mLineChart.clear();
+        }catch (Exception e){
+            Log.d(TAG, "clearLineChart: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getAllExercisesBySearchedNameAndReps(String exerciseName, int exerciseReps){
-        mHkrHealthRepository.getAllExercisesByNameAndReps(exerciseName, exerciseReps).observe(getActivity(), new Observer<List<Exercise>>() {
-            @Override
-            public void onChanged(@Nullable List<Exercise> exercises) {
-                if (mExercises.size() > 0){
-                    mExercises.clear();
-                }
-                if (exercises != null){
-                    mExercises.addAll(exercises);
-                    if (mExercises.size() > 0){
-                        drawLineChart();
-                    }else{
-                        mEnterRepsET.setText(R.string.no_data_found);
+        try {
+            mHkrHealthRepository.getAllExercisesByNameAndReps(exerciseName, exerciseReps).observe(getActivity(), new Observer<List<Exercise>>() {
+                @Override
+                public void onChanged(@Nullable List<Exercise> exercises) {
+                    if (mExercises.size() > 0) {
+                        mExercises.clear();
+                    }
+                    if (exercises != null) {
+                        mExercises.addAll(exercises);
+                        if (mExercises.size() > 0) {
+                            drawLineChart();
+                        } else {
+                            mEnterRepsET.setText(R.string.no_data_found);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getAllExercisesBySearchedNameAndReps: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getMaximumLiftFromExerciseByName(String exericseName){
@@ -173,55 +188,70 @@ public class ExerciseStatisticsFragment extends Fragment {
     }
 
     public void getTotalAmountOfRepsForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getTotalAmountOfRepsExerciseByName(exerciseName).observe(getActivity(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer integer) {
-                if (integer == 0){
-                    mTotalRepsTV.setText("0");
-                }else {
-                    mTotalRepsTV.setText(String.valueOf(integer + " reps"));
+        try {
+            mHkrHealthRepository.getTotalAmountOfRepsExerciseByName(exerciseName).observe(getActivity(), new Observer<Integer>() {
+                @Override
+                public void onChanged(@Nullable Integer integer) {
+                    if (integer == 0) {
+                        mTotalRepsTV.setText("0");
+                    } else {
+                        mTotalRepsTV.setText(String.valueOf(integer + " reps"));
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getTotalAmountOfRepsForExerciseByName: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getTotalWeightLiftedForExerciseByName(String exerciseName){
-        mHkrHealthRepository.getTotalAmountOfWeightLiftedExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble == 0){
-                    mTotalWeightTV.setText("0");
-                }else {
-                    mTotalWeightTV.setText(String.valueOf(aDouble / 1000 + " ton"));
+        try {
+            mHkrHealthRepository.getTotalAmountOfWeightLiftedExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
+                @Override
+                public void onChanged(@Nullable Double aDouble) {
+                    if (aDouble == 0) {
+                        mTotalWeightTV.setText("0");
+                    } else {
+                        mTotalWeightTV.setText(String.valueOf(aDouble / 1000 + " ton"));
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getTotalWeightLiftedForExerciseByName: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void getBiggestAndSmallest1RmForExerciseByName(String exerciseName){
-        final String name = exerciseName;
-        mHkrHealthRepository.getBiggest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
-            @Override
-            public void onChanged(@Nullable Double aDouble) {
-                if (aDouble != null){
-                    mBiggest1Rm = aDouble;
-                    Log.d(TAG, "onChanged: biggest value: " + mBiggest1Rm);
+        try {
+            final String name = exerciseName;
+            mHkrHealthRepository.getBiggest1RmForExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
+                @Override
+                public void onChanged(@Nullable Double aDouble) {
+                    if (aDouble != null) {
+                        mBiggest1Rm = aDouble;
+                        Log.d(TAG, "onChanged: biggest value: " + mBiggest1Rm);
 
-                    mHkrHealthRepository.getSmallest1RmForExerciseByName(name).observe(getActivity(), new Observer<Double>() {
-                        @Override
-                        public void onChanged(@Nullable Double aDouble) {
-                            if (aDouble != null) {
-                                mSmallest1Rm = aDouble;
-                                Log.d(TAG, "onChanged: smallest value: " + mSmallest1Rm);
+                        mHkrHealthRepository.getSmallest1RmForExerciseByName(name).observe(getActivity(), new Observer<Double>() {
+                            @Override
+                            public void onChanged(@Nullable Double aDouble) {
+                                if (aDouble != null) {
+                                    mSmallest1Rm = aDouble;
+                                    Log.d(TAG, "onChanged: smallest value: " + mSmallest1Rm);
 
-                                calculateAndSetPercentualIncrease(mSmallest1Rm, mBiggest1Rm);
+                                    calculateAndSetPercentualIncrease(mSmallest1Rm, mBiggest1Rm);
+                                }
                             }
-                        }
-                    });
+                        });
 
+                    }
                 }
-            }
-        });
+            });
+        }catch (Exception e){
+            Log.d(TAG, "getBiggestAndSmallest1RmForExerciseByName: error: " + e);
+            e.printStackTrace();
+        }
     }
 
     public void calculateAndSetPercentualIncrease(double smallest, double biggest){
