@@ -54,6 +54,7 @@ public class WorkoutHistoryFragment extends Fragment {
                 }
             });
 
+            /*
             mLeanCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,7 +63,7 @@ public class WorkoutHistoryFragment extends Fragment {
                     leanButtonPressed();
                 }
             });
-
+            */
 
         }catch (Exception e){
             Log.d(TAG, "onCreateView: Error: " + e);

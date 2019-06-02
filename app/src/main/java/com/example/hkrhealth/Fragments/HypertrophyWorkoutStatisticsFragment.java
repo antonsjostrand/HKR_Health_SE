@@ -293,7 +293,7 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
                         Log.d(TAG, "onChanged: added weight");
                         mLiftedWeight = integer;
                         Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
-                        mTotalWeightTV.setText(String.valueOf(mLiftedWeight));
+                        mTotalWeightTV.setText(String.valueOf(mLiftedWeight) + " kg");
                     }else{
                         Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
                         toast.show();
@@ -315,7 +315,7 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
                         Log.d(TAG, "onChanged: added weight");
                         mLiftedWeight = integer;
                         Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
-                        mTotalWeightTV.setText(String.valueOf(mLiftedWeight));
+                        mTotalWeightTV.setText(String.valueOf(mLiftedWeight) + " kg");
                     }else{
                         Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
                         toast.show();
@@ -337,7 +337,7 @@ public class HypertrophyWorkoutStatisticsFragment extends Fragment {
                         Log.d(TAG, "onChanged: added weight");
                         mLiftedWeight = integer;
                         Log.d(TAG, "onChanged: total weight: " + mLiftedWeight);
-                        mTotalWeightTV.setText(String.valueOf(mLiftedWeight));
+                        mTotalWeightTV.setText(String.valueOf(mLiftedWeight) + " kg");
                     }else{
                         Toast toast = Toast.makeText(getActivity(), "No data found for this workout type", Toast.LENGTH_LONG);
                         toast.show();
