@@ -175,10 +175,10 @@ public class ExerciseStatisticsFragment extends Fragment {
             mHkrHealthRepository.getMaximumLiftFromExerciseByName(exericseName).observe(getActivity(), new Observer<Double>() {
                 @Override
                 public void onChanged(@Nullable Double aDouble) {
-                    if (aDouble == 0) {
-                        mMaxLiftTV.setText("0");
-                    } else {
+                    if (aDouble != null) {
                         mMaxLiftTV.setText(String.valueOf(aDouble + " kg"));
+                    } else {
+                        mMaxLiftTV.setText("0");
                     }
                 }
             });
@@ -192,10 +192,10 @@ public class ExerciseStatisticsFragment extends Fragment {
             mHkrHealthRepository.getTotalAmountOfRepsExerciseByName(exerciseName).observe(getActivity(), new Observer<Integer>() {
                 @Override
                 public void onChanged(@Nullable Integer integer) {
-                    if (integer == 0) {
-                        mTotalRepsTV.setText("0");
-                    } else {
+                    if (integer != null) {
                         mTotalRepsTV.setText(String.valueOf(integer + " reps"));
+                    } else {
+                        mTotalRepsTV.setText("0");
                     }
                 }
             });
@@ -210,10 +210,10 @@ public class ExerciseStatisticsFragment extends Fragment {
             mHkrHealthRepository.getTotalAmountOfWeightLiftedExerciseByName(exerciseName).observe(getActivity(), new Observer<Double>() {
                 @Override
                 public void onChanged(@Nullable Double aDouble) {
-                    if (aDouble == 0) {
-                        mTotalWeightTV.setText("0");
-                    } else {
+                    if (aDouble != null) {
                         mTotalWeightTV.setText(String.valueOf(aDouble / 1000 + " ton"));
+                    } else {
+                        mTotalWeightTV.setText("0");
                     }
                 }
             });
